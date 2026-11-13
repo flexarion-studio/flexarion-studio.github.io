@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'IA des Gardiens de Vesper Protocol | Devlog Flexarion</title>
+<meta name="description" content="Devlog Flexarion #1 : comment nous avons conçu l'IA des Gardiens de Vesper Protocol, des ennemis aliens qui mémorisent vos attaques et s'adaptent.">
+<link rel="canonical" href="https://flexarion.github.io/devlog/ia-gardiens-aliens/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Flexarion">
+<meta name="theme-color" content="#f1eee6">
+<meta property="og:site_name" content="Flexarion">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="L'IA des Gardiens de Vesper Protocol | Devlog Flexarion">
+<meta property="og:description" content="Devlog Flexarion #1 : comment nous avons conçu l'IA des Gardiens de Vesper Protocol, des ennemis aliens qui mémorisent vos attaques et s'adaptent.">
+<meta property="og:url" content="https://flexarion.github.io/devlog/ia-gardiens-aliens/">
+<meta property="og:image" content="https://flexarion.github.io/assets/img/og-flexarion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://flexarion.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Devlog", "item": "https://flexarion.github.io/devlog/"}, {"@type": "ListItem", "position": 3, "name": "IA des Gardiens", "item": "https://flexarion.github.io/devlog/ia-gardiens-aliens/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Concevoir l'IA des Gardiens : des automates qui patchent vos exploits", "description": "Devlog Flexarion #1 : comment nous avons conçu l'IA des Gardiens de Vesper Protocol, des ennemis aliens qui mémorisent vos attaques et s'adaptent.", "url": "https://flexarion.github.io/devlog/ia-gardiens-aliens/", "mainEntityOfPage": "https://flexarion.github.io/devlog/ia-gardiens-aliens/", "datePublished": "2026-11-13", "dateModified": "2026-11-13", "inLanguage": "fr", "image": "https://flexarion.github.io/assets/img/og-flexarion.png", "author": {"@type": "Person", "name": "Camille Roux"}, "publisher": {"@id": "https://flexarion.github.io/#organisation"}, "about": {"@type": "VideoGame", "name": "Vesper Protocol"}}</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../../" aria-label="Flexarion, retour à l'accueil">
+      <img src="../../assets/img/logo-flexarion.svg" alt="Logo du studio Flexarion" width="36" height="36">
+      <span>FLEXARION</span>
+    </a>
+    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../../">Accueil</a></li><li><a href="../../studio/">Le studio</a></li><li><a href="../../vesper-protocol/">Le jeu</a></li><li><a href="../../devlog/" aria-current="page">Devlog</a></li><li><a href="../../contact/">Contact & presse</a></li></ul></nav>
+  </div>
+</header>
+<main id="contenu">
+<nav class="breadcrumb" aria-label="Fil d'Ariane"><ol><li><a href="../../">Accueil</a></li><li><a href="../../devlog/">Devlog</a></li><li aria-current="page">IA des Gardiens</li></ol></nav>
+
+<article class="wrap section prose">
+  <header>
+    <p class="meta">Devlog #1 · Intelligence artificielle · <time datetime="2026-11-13">13 novembre 2026</time> · par Camille Roux</p>
+    <h1>Concevoir l'IA des Gardiens : des automates qui patchent vos exploits</h1>
+    <p class="lead">Dans Vesper Protocol, les ennemis ne vous tirent pas dessus : ils corrigent vos failles. Voici comment
+    l'équipe de Flexarion a construit des Gardiens aliens qui apprennent de vos attaques, et pourquoi il a fallu
+    réécrire leur IA trois fois.</p>
+  </header>
+
+  <h2>Le problème : un puzzle résolu une fois est résolu pour toujours</h2>
+  <p>Dans un jeu de hacking classique, le joueur trouve une solution, puis la répète. Après deux heures, le
+  « piratage » devient une routine. Or dans la réalité, un système attaqué réagit : il est mis à jour,
+  surveillé, durci. Nous voulions que la Vesper se comporte comme un vrai système d'information vivant.
+  D'où l'idée centrale : <strong>les Gardiens patchent les exploits que vous utilisez trop</strong>.</p>
+
+  <h2>Version 1 : une machine à états trop prévisible</h2>
+  <p>Notre premier prototype utilisait une machine à états finis classique : <em>patrouille</em>, <em>alerte</em>,
+  <em>réparation</em>. Quand le joueur piratait une porte, le Gardien le plus proche passait en alerte, venait
+  réparer, puis repartait. C'était lisible, mais les testeurs ont vite compris la boucle : il suffisait de pirater
+  une porte au loin pour attirer le Gardien et passer tranquillement. L'IA devenait elle-même une faille.</p>
+
+  <h2>Version 2 : une IA « utilitaire »</h2>
+  <p>Nous sommes passés à une IA basée sur l'utilité (<em>utility AI</em>). À chaque instant, un Gardien évalue
+  plusieurs actions et leur attribue un score : réparer un système, inspecter une zone, se recharger sur un
+  radiateur, escorter un autre Gardien. Chaque score combine des facteurs simples, normalisés entre 0 et 1.</p>
+  <pre><code>score(réparer) = urgence_du_système × proximité × (1 - fatigue)
+score(inspecter) = bruit_récent × curiosité × (1 - charge_actuelle)
+action = argmax(scores)</code></pre>
+  <p>Le comportement est devenu beaucoup plus organique. Mais un problème restait : le Gardien réagissait à
+  l'instant présent, sans se souvenir de rien. Il manquait la dimension « apprentissage ».</p>
+
+  <h2>Version 3 : la mémoire d'exploits</h2>
+  <p>La version actuelle ajoute une <strong>mémoire d'exploits</strong> partagée par tous les Gardiens d'un même
+  secteur. Chaque fois que vous réussissez un piratage, le jeu enregistre sa <em>signature</em> : le type de faille
+  utilisée (dépassement de tampon, condition de course, clé codée en dur…), le type de système visé et le secteur.</p>
+  <p>Chaque signature a un compteur d'usage. Quand il dépasse un seuil, les Gardiens « publient un correctif » :
+  la faille disparaît des systèmes du secteur, avec une petite animation de mise à jour visible à l'écran.</p>
+  <pre><code>on_exploit_reussi(signature):
+    memoire[signature] += 1
+    si memoire[signature] >= seuil(secteur):
+        planifier_correctif(signature, delai = 90 s)
+        notifier_joueur("Les Gardiens analysent votre méthode...")</code></pre>
+
+  <h3>Laisser au joueur le temps de réagir</h3>
+  <p>Les premiers tests étaient frustrants : un correctif appliqué instantanément donnait l'impression que le jeu
+  trichait. Nous avons ajouté un <strong>délai de 90 secondes</strong> entre la détection et le correctif, signalé
+  par un message diégétique. Le joueur sait que sa méthode va bientôt cesser de fonctionner et peut en profiter une
+  dernière fois. Ce simple délai a transformé une punition en tension.</p>
+
+  <h3>Régler le seuil sans frustrer</h3>
+  <p>Un seuil fixe ne fonctionnait pas : trop bas, les débutants étaient bloqués ; trop haut, l'adaptation ne se
+  voyait jamais. Le seuil dépend désormais de deux paramètres : la profondeur du secteur dans la Vesper et la variété
+  des failles que le joueur a déjà utilisées. Un joueur qui varie ses approches est récompensé par des Gardiens
+  plus lents à réagir.</p>
+
+  <h2>Ce que nous avons appris</h2>
+  <ul class="ticks">
+    <li><strong>Une IA lisible vaut mieux qu'une IA brillante.</strong> Les joueurs doivent comprendre pourquoi un Gardien agit.</li>
+    <li><strong>Prévenir avant de punir.</strong> Le délai annoncé change complètement la perception de l'adaptation.</li>
+    <li><strong>S'inspirer du réel.</strong> Le cycle « exploit, détection, correctif » vient directement de la cybersécurité.</li>
+  </ul>
+
+  <h2>Et ensuite ?</h2>
+  <p>Nous testons maintenant des Gardiens « chercheurs » qui fouillent activement les zones où vous avez piraté,
+  ainsi qu'une mémoire qui se transmet entre secteurs. Pour suivre la suite, rendez-vous dans le
+  <a href="../">devlog de Flexarion</a>, ou découvrez les autres mécaniques sur la page de
+  <a href="../../vesper-protocol/">Vesper Protocol</a>. Le prochain article parle de rendu :
+  <a href="../optimisation-shaders-nebuleuse/">comment nous avons accéléré notre shader de nébuleuse</a>.</p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">FLEXARION</p>
+      <p>Studio indépendant de jeux vidéo de science-fiction<br>Aix-en-Provence (13100), France</p>
+    </div>
+    <nav aria-label="Liens du pied de page">
+      <ul>
+        <li><a href="../../studio/">Le studio Flexarion</a></li>
+        <li><a href="../../vesper-protocol/">Vesper Protocol</a></li>
+        <li><a href="../../devlog/">Devlog</a></li>
+        <li><a href="../../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../../mentions-legales/">Mentions légales</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.</p>
+</footer>
+</body>
+</html>

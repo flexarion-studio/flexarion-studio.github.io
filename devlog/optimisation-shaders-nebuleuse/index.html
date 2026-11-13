@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimiser un shader de nébuleuse | Devlog Flexarion</title>
+<meta name="description" content="Devlog Flexarion #2 : raymarching, bruit bleu, demi-résolution et reprojection temporelle pour accélérer la nébuleuse de Vesper Protocol.">
+<link rel="canonical" href="https://flexarion.github.io/devlog/optimisation-shaders-nebuleuse/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Flexarion">
+<meta name="theme-color" content="#f1eee6">
+<meta property="og:site_name" content="Flexarion">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimiser un shader de nébuleuse | Devlog Flexarion">
+<meta property="og:description" content="Devlog Flexarion #2 : raymarching, bruit bleu, demi-résolution et reprojection temporelle pour accélérer la nébuleuse de Vesper Protocol.">
+<meta property="og:url" content="https://flexarion.github.io/devlog/optimisation-shaders-nebuleuse/">
+<meta property="og:image" content="https://flexarion.github.io/assets/img/og-flexarion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://flexarion.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Devlog", "item": "https://flexarion.github.io/devlog/"}, {"@type": "ListItem", "position": 3, "name": "Shader de nébuleuse", "item": "https://flexarion.github.io/devlog/optimisation-shaders-nebuleuse/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image", "description": "Devlog Flexarion #2 : raymarching, bruit bleu, demi-résolution et reprojection temporelle pour accélérer la nébuleuse de Vesper Protocol.", "url": "https://flexarion.github.io/devlog/optimisation-shaders-nebuleuse/", "mainEntityOfPage": "https://flexarion.github.io/devlog/optimisation-shaders-nebuleuse/", "datePublished": "2026-11-13", "dateModified": "2026-11-13", "inLanguage": "fr", "image": "https://flexarion.github.io/assets/img/og-flexarion.png", "author": {"@type": "Person", "name": "Yanis Belkacem"}, "publisher": {"@id": "https://flexarion.github.io/#organisation"}, "about": {"@type": "VideoGame", "name": "Vesper Protocol"}}</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../../" aria-label="Flexarion, retour à l'accueil">
+      <img src="../../assets/img/logo-flexarion.svg" alt="Logo du studio Flexarion" width="36" height="36">
+      <span>FLEXARION</span>
+    </a>
+    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../../">Accueil</a></li><li><a href="../../studio/">Le studio</a></li><li><a href="../../vesper-protocol/">Le jeu</a></li><li><a href="../../devlog/" aria-current="page">Devlog</a></li><li><a href="../../contact/">Contact & presse</a></li></ul></nav>
+  </div>
+</header>
+<main id="contenu">
+<nav class="breadcrumb" aria-label="Fil d'Ariane"><ol><li><a href="../../">Accueil</a></li><li><a href="../../devlog/">Devlog</a></li><li aria-current="page">Shader de nébuleuse</li></ol></nav>
+
+<article class="wrap section prose">
+  <header>
+    <p class="meta">Devlog #2 · Rendu temps réel · <time datetime="2026-11-13">13 novembre 2026</time> · par Yanis Belkacem</p>
+    <h1>Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image</h1>
+    <p class="lead">La nébuleuse rouge qui entoure Tau-Héliade est l'image la plus reconnaissable de Vesper Protocol.
+    Elle coûtait aussi 9 millisecondes par image à elle seule. Voici les quatre optimisations qui ont permis
+    à Flexarion de la ramener à 2,1 ms sans perdre son allure.</p>
+  </header>
+
+  <h2>Le point de départ : un raymarching volumétrique naïf</h2>
+  <p>Notre nébuleuse est un volume, pas une texture plaquée sur le ciel. Pour chaque pixel, le shader avance
+  pas à pas le long du rayon de vue (<em>raymarching</em>), échantillonne une densité calculée à partir de bruit
+  procédural, et accumule la lumière absorbée et diffusée.</p>
+  <p>La première version faisait 128 pas par pixel, avec 5 octaves de bruit calculées à chaque pas. Sur notre
+  machine de référence — un portable avec une GeForce GTX 1650 en 1080p — elle prenait <strong>9,0 ms</strong> :
+  plus de la moitié de notre budget de 16,6 ms pour tenir 60 images par seconde.</p>
+
+  <h2>Étape 1 : précalculer le bruit dans une texture 3D (9,0 → 5,2 ms)</h2>
+  <p>Le bruit procédural était recalculé à chaque pas, pour chaque pixel. Or la forme de la nébuleuse change
+  lentement. Nous générons maintenant le bruit une seule fois au chargement, dans une texture 3D de 128³ texels
+  qui boucle sur elle-même. Le shader se contente d'y lire une valeur, et le matériel graphique s'occupe de
+  l'interpolation. Pour garder du détail, nous ajoutons une seule octave de bruit calculée à la volée.</p>
+
+  <h2>Étape 2 : moins de pas, mais mieux répartis (5,2 → 3,4 ms)</h2>
+  <p>Passer de 128 à 48 pas faisait apparaître des bandes visibles dans le volume. La solution : décaler le point
+  de départ de chaque rayon avec un <strong>bruit bleu</strong>. Les bandes deviennent un grain fin et régulier,
+  que l'œil remarque beaucoup moins.</p>
+  <pre><code>float jitter = texture(blueNoise, gl_FragCoord.xy / 64.0).r;
+float t = tStart + jitter * stepSize;
+for (int i = 0; i &lt; 48; i++) {
+    float d = sampleDensity(rayOrigin + rayDir * t);
+    if (d &gt; 0.01) accumulate(d, t);
+    if (transmittance &lt; 0.02) break;   // sortie anticipée
+    t += stepSize;
+}</code></pre>
+  <p>Nous avons aussi ajouté une <strong>sortie anticipée</strong> : quand le volume est déjà presque opaque,
+  inutile de continuer à avancer.</p>
+
+  <h2>Étape 3 : rendre à demi-résolution (3,4 → 2,4 ms)</h2>
+  <p>Une nébuleuse est floue par nature. Nous la calculons donc à la moitié de la résolution de l'écran, puis
+  nous l'agrandissons avec un <em>suréchantillonnage bilatéral</em> qui respecte les contours des objets au
+  premier plan (vaisseaux, structure de la Vesper). Sans ce filtre, un halo apparaissait autour des silhouettes.</p>
+
+  <h2>Étape 4 : la reprojection temporelle (2,4 → 2,1 ms)</h2>
+  <p>Le grain du bruit bleu change à chaque image. En mélangeant l'image courante avec la précédente,
+  reprojetée selon le mouvement de la caméra, ce grain se lisse dans le temps. Cela nous a permis de
+  descendre encore à 40 pas tout en obtenant une image plus propre qu'au départ.</p>
+
+  <h2>Bilan des optimisations</h2>
+  <table class="facts">
+    <thead><tr><th scope="col">Étape</th><th scope="col">Temps GPU</th></tr></thead>
+    <tbody>
+      <tr><td>Version naïve (128 pas, bruit procédural)</td><td>9,0 ms</td></tr>
+      <tr><td>Bruit précalculé en texture 3D</td><td>5,2 ms</td></tr>
+      <tr><td>48 pas + bruit bleu + sortie anticipée</td><td>3,4 ms</td></tr>
+      <tr><td>Demi-résolution + suréchantillonnage bilatéral</td><td>2,4 ms</td></tr>
+      <tr><td>Reprojection temporelle (40 pas)</td><td>2,1 ms</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Ce que nous retenons</h2>
+  <ul class="ticks">
+    <li><strong>Mesurer avant d'optimiser</strong> : sans profileur GPU, nous aurions optimisé la mauvaise partie.</li>
+    <li><strong>Exploiter ce que l'œil ne voit pas</strong> : un effet flou n'a pas besoin de la pleine résolution.</li>
+    <li><strong>Échanger du bruit contre du temps</strong> : bruit bleu et accumulation temporelle font le travail à notre place.</li>
+  </ul>
+  <p>Ces gains libèrent du budget pour l'éclairage des intérieurs de la Vesper. Découvrez où cette nébuleuse
+  apparaît dans le jeu sur la page <a href="../../vesper-protocol/">Vesper Protocol</a>, relisez le devlog précédent sur
+  <a href="../ia-gardiens-aliens/">l'IA des Gardiens</a>, ou retrouvez tous les articles du
+  <a href="../">devlog Flexarion</a>.</p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">FLEXARION</p>
+      <p>Studio indépendant de jeux vidéo de science-fiction<br>Aix-en-Provence (13100), France</p>
+    </div>
+    <nav aria-label="Liens du pied de page">
+      <ul>
+        <li><a href="../../studio/">Le studio Flexarion</a></li>
+        <li><a href="../../vesper-protocol/">Vesper Protocol</a></li>
+        <li><a href="../../devlog/">Devlog</a></li>
+        <li><a href="../../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../../mentions-legales/">Mentions légales</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.</p>
+</footer>
+</body>
+</html>

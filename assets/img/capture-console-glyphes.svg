@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350" role="img" aria-labelledby="t">
+<title id="t">Console de débogage de Vesper Protocol</title>
+<rect width="560" height="350" fill="#050810"/>
+<rect x="16" y="16" width="528" height="318" rx="10" fill="#0b1220" stroke="#24314d"/>
+<text x="40" y="54" font-family="Consolas, monospace" font-size="15" fill="#3fe0d0">GARDIEN-12 :: FIRMWARE GLYPHE · POINT D'ARRÊT ACTIF</text>
+<rect x="30" y="185" width="380" height="24" fill="#ffb347" opacity=".12"/>
+<g font-family="Consolas, monospace" font-size="15"><text x="40" y="92" fill="#5a6f96">0x4A00</text><text x="130" y="92" fill="#cfe7ff">+−− +0− 0−− +−+ 00−</text><text x="40" y="118" fill="#5a6f96">0x4A0C</text><text x="130" y="118" fill="#cfe7ff">++− 0−− 00− ++− +−0</text><text x="40" y="144" fill="#5a6f96">0x4A18</text><text x="130" y="144" fill="#cfe7ff">−+− ++− +0+ 00− −0−</text><text x="40" y="170" fill="#5a6f96">0x4A24</text><text x="130" y="170" fill="#cfe7ff">00− −0+ 0++ +0+ 0−0</text><text x="40" y="196" fill="#5a6f96">0x4A30</text><text x="130" y="196" fill="#ffb347">−00 −0− 0−− 0−+ 0−+</text><text x="40" y="222" fill="#5a6f96">0x4A3C</text><text x="130" y="222" fill="#cfe7ff">0−− −+− 0−− −+− −+−</text><text x="40" y="248" fill="#5a6f96">0x4A48</text><text x="130" y="248" fill="#cfe7ff">−00 ++0 −0+ 0+0 ++0</text><text x="40" y="274" fill="#5a6f96">0x4A54</text><text x="130" y="274" fill="#cfe7ff">00+ +−− +0− −0− 0−+</text><text x="40" y="300" fill="#5a6f96">0x4A60</text><text x="130" y="300" fill="#cfe7ff">+0+ ++− −++ 00− 0+−</text></g>
+<rect x="420" y="76" width="108" height="240" rx="6" fill="#0f1626" stroke="#24314d"/>
+<g font-family="Consolas, monospace" font-size="12" fill="#9aa7bd">
+<text x="432" y="100">O₂  72%</text><text x="432" y="124">CHALEUR</text>
+<rect x="432" y="132" width="84" height="8" fill="#24314d"/><rect x="432" y="132" width="58" height="8" fill="#ff6b5a"/>
+<text x="432" y="168">MÉMOIRE</text><text x="432" y="188" fill="#3fe0d0">R0 = +0−</text><text x="432" y="206" fill="#3fe0d0">R1 = 0++</text>
+<text x="432" y="246">PATCH ›</text><text x="432" y="266" fill="#ffb347">INJECTER</text>
+</g>
+</svg>
