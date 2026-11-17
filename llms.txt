@@ -23,6 +23,16 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 - [Concevoir l'IA des Gardiens : des automates qui patchent vos exploits](https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/): Machine à états, IA utilitaire puis mémoire d'exploits : trois versions pour créer des ennemis aliens qui apprennent de vos attaques.
 - [Flux RSS du devlog](https://flexarion-studio.github.io/feed.xml): abonnement aux nouveaux articles
 
+## Codex de l'univers
+
+- [Index du codex](https://flexarion-studio.github.io/codex/): encyclopédie de l'univers de Vesper Protocol
+- [La Vesper](https://flexarion-studio.github.io/codex/la-vesper/): fiche du codex
+- [Ancre-7](https://flexarion-studio.github.io/codex/ancre-7/): fiche du codex
+- [Ilya Sorel](https://flexarion-studio.github.io/codex/ilya-sorel/): fiche du codex
+- [Les Gardiens](https://flexarion-studio.github.io/codex/gardiens/): fiche du codex
+- [La logique ternaire](https://flexarion-studio.github.io/codex/logique-ternaire/): fiche du codex
+- [Tau-Héliade, l'étoile mourante](https://flexarion-studio.github.io/codex/tau-heliade/): fiche du codex
+
 ## Optional
 
 - [Mentions légales](https://flexarion-studio.github.io/mentions-legales/): nature fictive du site, hébergement, licence des visuels (CC BY-NC 4.0)

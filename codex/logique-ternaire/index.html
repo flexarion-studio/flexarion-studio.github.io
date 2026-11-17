@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La logique ternaire de la Vesper | Codex Vesper Protocol</title>
+<meta name="description" content="Fiche du codex : la logique ternaire des machines de la Vesper, ses trois états (−1, 0, +1), ses glyphes et ses instructions NEG, CPY, MIN, MAX et ADD.">
+<link rel="canonical" href="https://flexarion-studio.github.io/codex/logique-ternaire/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Flexarion">
+<meta name="theme-color" content="#f1eee6">
+<meta property="og:site_name" content="Flexarion">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="La logique ternaire de la Vesper | Codex Vesper Protocol">
+<meta property="og:description" content="Fiche du codex : la logique ternaire des machines de la Vesper, ses trois états (−1, 0, +1), ses glyphes et ses instructions NEG, CPY, MIN, MAX et ADD.">
+<meta property="og:url" content="https://flexarion-studio.github.io/codex/logique-ternaire/">
+<meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bannière du studio Flexarion : Vesper Protocol, jeu vidéo de science-fiction">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La logique ternaire de la Vesper | Codex Vesper Protocol">
+<meta name="twitter:description" content="Fiche du codex : la logique ternaire des machines de la Vesper, ses trois états (−1, 0, +1), ses glyphes et ses instructions NEG, CPY, MIN, MAX et ADD.">
+<meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://flexarion-studio.github.io/"},{"@type":"ListItem","position":2,"name":"Codex","item":"https://flexarion-studio.github.io/codex/"},{"@type":"ListItem","position":3,"name":"La logique ternaire","item":"https://flexarion-studio.github.io/codex/logique-ternaire/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"La logique ternaire","url":"https://flexarion-studio.github.io/codex/logique-ternaire/","description":"Fiche du codex : la logique ternaire des machines de la Vesper, ses trois états (−1, 0, +1), ses glyphes et ses instructions NEG, CPY, MIN, MAX et ADD.","inLanguage":"fr","dateModified":"2026-11-17","isPartOf":{"@type":"CollectionPage","name":"Codex de l'univers de Vesper Protocol","url":"https://flexarion-studio.github.io/codex/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/vesper-protocol/"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"}}</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../../" aria-label="Flexarion, retour à l'accueil">
+      <img src="../../assets/img/logo-flexarion.svg" alt="Logo du studio Flexarion" width="36" height="36">
+      <span>FLEXARION</span>
+    </a>
+    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../../">Accueil</a></li><li><a href="../../studio/">Le studio</a></li><li><a href="../../vesper-protocol/">Le jeu</a></li><li><a href="../../codex/" aria-current="page">Codex</a></li><li><a href="../../devlog/">Devlog</a></li><li><a href="../../contact/">Contact & presse</a></li></ul></nav>
+  </div>
+</header>
+<main id="contenu">
+<nav class="breadcrumb" aria-label="Fil d'Ariane"><ol><li><a href="../../">Accueil</a></li><li><a href="../../codex/">Codex</a></li><li aria-current="page">La logique ternaire</li></ol></nav>
+
+<article class="wrap section prose">
+  <header>
+    <p class="kicker">Codex · Concept</p>
+    <h1>La logique ternaire, la langue des machines</h1>
+  </header>
+
+  <p>Les bâtisseurs de la <a href="../la-vesper/">Vesper</a> ne comptaient pas en binaire. Leurs machines
+  utilisent trois états : négatif (−1), neutre (0) et positif (+1). On appelle cette unité un <em>trit</em>, et ce
+  système le <strong>ternaire équilibré</strong>.</p>
+  <h2>Les glyphes</h2>
+  <p>Dans la console d'<a href="../ilya-sorel/">Ilya Sorel</a>, chaque trit s'affiche sous forme de glyphe alien :
+  un arc ouvert vers le haut pour −1, un cercle barré pour 0, un arc ouvert vers le bas pour +1. Un réglage permet
+  de les remplacer par des chiffres le temps d'apprendre.</p>
+  <h2>Les instructions</h2>
+  <table class="facts">
+    <tbody>
+      <tr><th scope="row">NEG x</th><td>Inverse x : +1 devient −1, 0 reste 0.</td></tr>
+      <tr><th scope="row">CPY x, y</th><td>Copie la valeur de y dans x.</td></tr>
+      <tr><th scope="row">MIN x, y</th><td>Garde la plus petite valeur (le « ET » ternaire).</td></tr>
+      <tr><th scope="row">MAX x, y</th><td>Garde la plus grande valeur (le « OU » ternaire).</td></tr>
+      <tr><th scope="row">ADD x, y</th><td>Additionne modulo 3 : +1 + +1 = −1.</td></tr>
+    </tbody>
+  </table>
+  <h2>Pourquoi c'est difficile</h2>
+  <p>Un esprit habitué au binaire se trompe vite : inverser un 0 ne change rien, et additionner deux +1 fait −1.
+  Les <a href="../gardiens/">Gardiens</a>, eux, ne se trompent jamais. Pour apprendre ces règles pas à pas,
+  lisez notre <a href="../../devlog/logique-ternaire-jeu-hacking/">tutoriel sur la logique ternaire</a>.</p>
+
+  <h2>Voir aussi</h2>
+  <ul class="ticks">
+    <li><a href="../gardiens/">Les Gardiens</a></li>
+    <li><a href="../la-vesper/">La Vesper</a></li>
+    <li><a href="../ilya-sorel/">Ilya Sorel</a></li>
+    <li><a href="../">Toutes les entrées du codex</a></li>
+  </ul>
+  <p><a class="link-arrow" href="../../vesper-protocol/">Retour à Vesper Protocol</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">FLEXARION</p>
+      <p>Studio indépendant de jeux vidéo de science-fiction<br>Aix-en-Provence (13100), France</p>
+    </div>
+    <nav aria-label="Liens du pied de page">
+      <ul>
+        <li><a href="../../studio/">Le studio Flexarion</a></li>
+        <li><a href="../../vesper-protocol/">Vesper Protocol</a></li>
+        <li><a href="../../codex/">Codex de l'univers</a></li>
+        <li><a href="../../devlog/">Devlog</a></li>
+        <li><a href="../../presskit/">Presskit</a></li>
+        <li><a href="../../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../../mentions-legales/">Mentions légales</a></li>
+        <li><a href="../../feed.xml">Flux RSS du devlog</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.<br>Site réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.</p>
+</footer>
+</body>
+</html>
