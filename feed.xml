@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Devlog Flexarion</title>
+    <link>https://flexarion-studio.github.io/devlog/</link>
+    <atom:link href="https://flexarion-studio.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Le journal de développement de Vesper Protocol, par le studio Flexarion (studio fictif, projet pédagogique du BUT Informatique).</description>
+    <language>fr-FR</language>
+    <copyright>© 2026 Flexarion — studio fictif</copyright>
+    <lastBuildDate>Fri, 13 Nov 2026 08:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://flexarion-studio.github.io/assets/img/logo-flexarion.png</url>
+      <title>Devlog Flexarion</title>
+      <link>https://flexarion-studio.github.io/devlog/</link>
+    </image>
+    <item>
+      <title>Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image</title>
+      <link>https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/</link>
+      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/</guid>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 +0000</pubDate>
+      <dc:creator>Yanis Belkacem</dc:creator>
+      <category>Devlog #2</category>
+      <description>Raymarching, bruit bleu, demi-résolution et reprojection temporelle : comment le ciel volumétrique de Vesper Protocol est passé de 9 ms à 2,1 ms par image.</description>
+    </item>
+    <item>
+      <title>Concevoir l'IA des Gardiens : des automates qui patchent vos exploits</title>
+      <link>https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/</link>
+      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/</guid>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 +0000</pubDate>
+      <dc:creator>Camille Roux</dc:creator>
+      <category>Devlog #1</category>
+      <description>Machine à états, IA utilitaire puis mémoire d'exploits :trois versions pour créer des ennemis aliens qui apprennent de vos attaques.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,86 @@
+# Notifie IndexNow (Bing, Yandex, Seznam, Naver…) des pages modifiées à chaque push sur main.
+# La clé IndexNow est publique par conception : elle doit être servie à la racine du site
+# (fichier <clé>.txt). Le secret INDEXNOW_KEY est donc facultatif ; s'il est défini, il doit
+# correspondre à un fichier <clé>.txt présent à la racine du dépôt.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lister les URLs modifiées
+        id: urls
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -f CNAME ]; then HOST="$(tr -d ' \r\n' < CNAME)"; else HOST="flexarion-studio.github.io"; fi
+          KEY="${INDEXNOW_KEY:-}"
+          if [ -z "$KEY" ]; then KEY="$(ls | grep -E '^[0-9a-f]{32}\.txt$' | head -n1 | cut -c1-32 || true)"; fi
+          if [ -z "$KEY" ] || [ ! -f "$KEY.txt" ]; then echo "::error::Fichier de clé IndexNow introuvable à la racine"; exit 1; fi
+
+          if [ -z "${BEFORE:-}" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            git ls-files -- '*.html' > files.txt
+          else
+            git diff --name-only "$BEFORE" "$AFTER" -- '*.html' > files.txt
+          fi
+
+          : > urls.txt
+          while IFS= read -r f; do
+            case "$f" in
+              404.html|ancre-7/*|outils/*|.github/*) continue ;;
+              index.html) p="" ;;
+              */index.html) p="${f%index.html}" ;;
+              *.html) p="$f" ;;
+              *) continue ;;
+            esac
+            echo "https://$HOST/$p" >> urls.txt
+          done < files.txt
+
+          echo "URLs à notifier :"; cat urls.txt
+          {
+            echo "host=$HOST"
+            echo "key=$KEY"
+            echo "count=$(grep -c . urls.txt || true)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Attendre la mise en ligne GitHub Pages
+        if: steps.urls.outputs.count != '0'
+        run: sleep 120
+
+      - name: Notifier IndexNow
+        if: steps.urls.outputs.count != '0'
+        env:
+          HOST: ${{ steps.urls.outputs.host }}
+          KEY: ${{ steps.urls.outputs.key }}
+        run: |
+          set -euo pipefail
+          jq -n --arg host "$HOST" --arg key "$KEY" --arg loc "https://$HOST/$KEY.txt" --rawfile urls urls.txt \
+            '{host: $host, key: $key, keyLocation: $loc, urlList: ($urls | split("\n") | map(select(length > 0)))}' > body.json
+          cat body.json
+          code=$(curl -sS -o resp.txt -w '%{http_code}' -X POST "https://api.indexnow.org/indexnow" \
+            -H 'Content-Type: application/json; charset=utf-8' --data @body.json)
+          echo "Réponse IndexNow : HTTP $code"; cat resp.txt || true
+          case "$code" in
+            200|202) echo "OK" ;;
+            *) echo "::error::IndexNow a répondu HTTP $code"; exit 1 ;;
+          esac

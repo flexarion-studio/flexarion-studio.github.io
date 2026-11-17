@@ -6,7 +6,7 @@
 <title>Vesper Protocol — Jeu de hacking spatial par Flexarion</title>
 <meta name="description" content="Vesper Protocol, le jeu de hacking science-fiction du studio Flexarion : explorez une mégastructure alien et piratez ses systèmes embarqués. Bêta ouverte.">
 <link rel="canonical" href="https://flexarion-studio.github.io/vesper-protocol/">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Flexarion">
 <meta name="theme-color" content="#f1eee6">
 <meta property="og:site_name" content="Flexarion">
@@ -24,12 +24,14 @@
 <meta name="twitter:description" content="Vesper Protocol, le jeu de hacking science-fiction du studio Flexarion : explorez une mégastructure alien et piratez ses systèmes embarqués. Bêta ouverte.">
 <meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="../assets/css/style.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://flexarion-studio.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Vesper Protocol", "item": "https://flexarion-studio.github.io/vesper-protocol/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "Vesper Protocol", "url": "https://flexarion-studio.github.io/vesper-protocol/", "image": "https://flexarion-studio.github.io/assets/img/og-flexarion.png", "description": "Jeu d'exploration spatiale et de hacking de systèmes embarqués aliens.", "genre": ["Science-fiction", "Puzzle", "Exploration"], "gamePlatform": ["PC"], "operatingSystem": "Windows, Linux", "applicationCategory": "Game", "inLanguage": ["fr", "en"], "author": {"@id": "https://flexarion-studio.github.io/#organisation"}, "publisher": {"@id": "https://flexarion-studio.github.io/#organisation"}, "alternateName": "Vesper Protocol par Flexarion", "playMode": "SinglePlayer", "keywords": "jeu de hacking, science-fiction, exploration spatiale, puzzle, logique ternaire", "screenshot": ["https://flexarion-studio.github.io/assets/img/capture-console-glyphes.svg", "https://flexarion-studio.github.io/assets/img/capture-couloir-vesper.svg"], "subjectOf": [{"@type": "BlogPosting", "url": "https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/"}, {"@type": "BlogPosting", "url": "https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/"}], "countryOfOrigin": "FR", "locationCreated": {"@type": "Place", "name": "Aix-en-Provence"}, "sameAs": ["https://studio-flexarion.itch.io/vesper-protocol"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","contentUrl":"https://flexarion-studio.github.io/assets/img/keyart-vesper-protocol.svg","url":"https://flexarion-studio.github.io/assets/img/keyart-vesper-protocol.svg","name":"Key art de Vesper Protocol","caption":"La Vesper, mégastructure alien en orbite autour de l'étoile mourante Tau-Héliade","license":"https://creativecommons.org/licenses/by-nc/4.0/","acquireLicensePage":"https://flexarion-studio.github.io/mentions-legales/#licence-visuels","creditText":"Flexarion (studio fictif, projet pédagogique BUT Informatique)","creator":{"@type":"Organization","name":"Flexarion","url":"https://flexarion-studio.github.io/"},"copyrightNotice":"© 2026 Flexarion — CC BY-NC 4.0"},{"@type":"ImageObject","contentUrl":"https://flexarion-studio.github.io/assets/img/capture-console-glyphes.svg","url":"https://flexarion-studio.github.io/assets/img/capture-console-glyphes.svg","name":"Capture de Vesper Protocol : console de débogage","caption":"Console de débogage diégétique et glyphes aliens en logique ternaire","license":"https://creativecommons.org/licenses/by-nc/4.0/","acquireLicensePage":"https://flexarion-studio.github.io/mentions-legales/#licence-visuels","creditText":"Flexarion (studio fictif, projet pédagogique BUT Informatique)","creator":{"@type":"Organization","name":"Flexarion","url":"https://flexarion-studio.github.io/"},"copyrightNotice":"© 2026 Flexarion — CC BY-NC 4.0"},{"@type":"ImageObject","contentUrl":"https://flexarion-studio.github.io/assets/img/capture-couloir-vesper.svg","url":"https://flexarion-studio.github.io/assets/img/capture-couloir-vesper.svg","name":"Capture de Vesper Protocol : couloir de la Vesper","caption":"Couloir en apesanteur de la Vesper, éclairé par Tau-Héliade","license":"https://creativecommons.org/licenses/by-nc/4.0/","acquireLicensePage":"https://flexarion-studio.github.io/mentions-legales/#licence-visuels","creditText":"Flexarion (studio fictif, projet pédagogique BUT Informatique)","creator":{"@type":"Organization","name":"Flexarion","url":"https://flexarion-studio.github.io/"},"copyrightNotice":"© 2026 Flexarion — CC BY-NC 4.0"}]}</script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -103,6 +105,7 @@
       <figcaption>Un couloir de la Vesper, éclairé par la lumière rouge de Tau-Héliade.</figcaption>
     </figure>
   </div>
+  <p class="wrap meta">Visuels © 2026 Flexarion, sous licence <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.fr" rel="license">CC BY-NC 4.0</a> — <a href="../mentions-legales/#licence-visuels">conditions de réutilisation</a>.</p>
 
   <div class="wrap prose">
     <h2>Fiche technique</h2>
@@ -143,6 +146,7 @@
         <li><a href="../devlog/">Devlog</a></li>
         <li><a href="../contact/">Contact &amp; kit presse</a></li>
         <li><a href="../mentions-legales/">Mentions légales</a></li>
+        <li><a href="../feed.xml">Flux RSS du devlog</a></li>
       </ul>
     </nav>
   </div>

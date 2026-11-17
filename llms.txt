@@ -1,0 +1,26 @@
+# Flexarion
+
+> Flexarion est un studio de jeux vidéo **fictif**, imaginé pour un projet pédagogique de communication et de référencement du BUT Informatique (IUT d'Aix-Marseille). Le studio, son équipe (Léa Marchetti, Yanis Belkacem, Camille Roux), son jeu Vesper Protocol et les chiffres cités sont inventés. Le site a été réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.
+
+Dans l'univers du projet, Flexarion est un studio indépendant de jeux de hard science-fiction fondé en 2023 à Aix-en-Provence (France), par une équipe de trois personnes. Son premier jeu, **Vesper Protocol** (PC, Windows et Linux, accès anticipé annoncé pour 2027, démo gratuite sur itch.io), est un jeu d'exploration spatiale et de hacking : en 2231, l'auditrice Ilya Sorel, depuis la station de relais Ancre-7, pirate les systèmes embarqués de la Vesper, une mégastructure alien de 400 km en orbite autour de l'étoile mourante Tau-Héliade. Les puzzles reposent sur une logique ternaire (−1, 0, +1) et les ennemis, les Gardiens, corrigent les failles que le joueur réutilise trop.
+
+Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
+
+## Pages principales
+
+- [Accueil](https://flexarion-studio.github.io/): présentation du studio Flexarion et de Vesper Protocol
+- [Le studio](https://flexarion-studio.github.io/studio/): histoire (game jam de 2023), équipe fondatrice et ancrage à Aix-en-Provence
+- [Vesper Protocol](https://flexarion-studio.github.io/vesper-protocol/): univers, mécaniques de jeu, fiche technique et bêta
+- [Contact et presse](https://flexarion-studio.github.io/contact/): formulaire de contact et inscription à la bêta
+
+## Devlog
+
+- [Index du devlog](https://flexarion-studio.github.io/devlog/): tous les journaux de développement
+- [Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image](https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/): Raymarching, bruit bleu, demi-résolution et reprojection temporelle : comment le ciel volumétrique de Vesper Protocol est passé de 9 ms à 2,1 ms par image.
+- [Concevoir l'IA des Gardiens : des automates qui patchent vos exploits](https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/): Machine à états, IA utilitaire puis mémoire d'exploits : trois versions pour créer des ennemis aliens qui apprennent de vos attaques.
+- [Flux RSS du devlog](https://flexarion-studio.github.io/feed.xml): abonnement aux nouveaux articles
+
+## Optional
+
+- [Mentions légales](https://flexarion-studio.github.io/mentions-legales/): nature fictive du site, hébergement, licence des visuels (CC BY-NC 4.0)
+- [Plan du site (XML)](https://flexarion-studio.github.io/sitemap.xml): liste de toutes les pages indexables
