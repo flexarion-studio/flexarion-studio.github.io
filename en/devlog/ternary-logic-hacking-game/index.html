@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ternary logic explained through a hacking game | Devlog</title>
+<meta name="description" content="Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.">
+<link rel="canonical" href="https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/">
+<link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
+<link rel="alternate" hreflang="en" href="https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/">
+<link rel="alternate" hreflang="x-default" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Camille Roux">
+<meta name="theme-color" content="#f1eee6">
+<meta property="og:site_name" content="Flexarion">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ternary logic explained through a hacking game | Devlog">
+<meta property="og:description" content="Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.">
+<meta property="og:url" content="https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/">
+<meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flexarion studio banner: Vesper Protocol, a science-fiction video game">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ternary logic explained through a hacking game | Devlog">
+<meta name="twitter:description" content="Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.">
+<meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../../assets/css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flexarion-studio.github.io/en/"},{"@type":"ListItem","position":2,"name":"Devlog","item":"https://flexarion-studio.github.io/en/devlog/"},{"@type":"ListItem","position":3,"name":"Ternary logic","item":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ternary logic explained through a hacking game","description":"Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.","url":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/","mainEntityOfPage":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/","datePublished":"2026-11-17","dateModified":"2026-11-17","inLanguage":"en","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Camille Roux"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"translationOfWork":{"@type":"BlogPosting","url":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/"},"isPartOf":{"@type":"Blog","name":"Flexarion devlog","url":"https://flexarion-studio.github.io/en/devlog/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/en/vesper-protocol/"},"keywords":"ternary logic, balanced ternary, trit, Kleene logic, hacking game, Vesper Protocol","articleSection":"Tutorial","license":"https://creativecommons.org/licenses/by-nc/4.0/"}</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../../../en/" aria-label="Flexarion, back to home">
+      <img src="../../../assets/img/logo-flexarion.svg" alt="Flexarion studio logo" width="36" height="36">
+      <span>FLEXARION</span>
+    </a>
+    <nav aria-label="Main navigation"><ul class="menu"><li><a href="../../../en/">Home</a></li><li><a href="../../../en/vesper-protocol/">The game</a></li><li><a href="../../../en/demo/">Demo</a></li><li><a href="../../../en/devlog/" aria-current="page">Devlog</a></li><li><a href="../../../devlog/logique-ternaire-jeu-hacking/" hreflang="fr" lang="fr">Français</a></li></ul></nav>
+  </div>
+</header>
+<main id="contenu">
+<nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../../../en/">Home</a></li><li><a href="../../../en/devlog/">Devlog</a></li><li aria-current="page">Ternary logic</li></ol></nav>
+
+<article class="wrap section prose">
+  <header>
+    <p class="meta">Devlog #3 · Tutorial · <time datetime="2026-11-17">17 November 2026</time> · by Camille Roux</p>
+    <h1>Ternary logic explained through a hacking game</h1>
+    <p class="lead">In Vesper Protocol, alien machines don't think in 0s and 1s, but in −1, 0 and +1.
+    This tutorial explains ternary logic through the game's puzzles: how to count with three states,
+    how ternary logic gates work, and why they trip up even experienced developers.</p>
+  </header>
+
+  <nav aria-label="Table of contents">
+    <p class="kicker">Contents</p>
+    <ol>
+      <li><a href="#why-three-states">Why three states instead of two?</a></li>
+      <li><a href="#balanced-ternary">Balanced ternary: counting with −1, 0 and +1</a></li>
+      <li><a href="#logic-gates">Ternary logic gates</a></li>
+      <li><a href="#puzzle">How it becomes a puzzle in Vesper Protocol</a></li>
+      <li><a href="#exercises">Exercises: your turn</a></li>
+      <li><a href="#further">Going further</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="why-three-states">Why three states instead of two?</h2>
+  <p>A conventional computer handles <strong>bits</strong>: each memory cell is either 0 or 1. That is an
+  engineering choice, not a law of nature. Nothing prevents you from building a machine where each cell can hold
+  three values. Such a digit is called a <strong>trit</strong> (short for <em>trinary digit</em>).</p>
+  <p>A trit carries more information than a bit: about 1.58 bits (that's log₂ 3). With 6 trits you can encode
+  3⁶ = 729 different values, versus 64 with 6 bits. It isn't just a curiosity: in 1958, Moscow State University
+  built <strong>Setun</strong>, a real ternary computer, of which around fifty units were produced.</p>
+  <p>For Vesper Protocol, we wanted computing that feels alien while staying logical. Ternary was perfect: players
+  already know binary, or have heard of it, and must "unlearn" it to understand the machines of the Vesper.</p>
+
+  <h2 id="balanced-ternary">Balanced ternary: counting with −1, 0 and +1</h2>
+  <p>There are two ways to write numbers in base 3. The most intuitive one uses the digits 0, 1 and 2. The Vesper
+  uses −1, 0 and +1 instead: this is <strong>balanced ternary</strong>. In the game's console they are written
+  <code>−</code>, <code>0</code> and <code>+</code>.</p>
+  <p>It is still a positional system: each trit is multiplied by a power of 3, starting from the right
+  (1, 3, 9, 27…).</p>
+  <pre><code>+0−  =  (+1 × 9) + (0 × 3) + (−1 × 1)  =  9 + 0 − 1  =  8
+−++  =  (−1 × 9) + (+1 × 3) + (+1 × 1)  = −9 + 3 + 1  = −5</code></pre>
+  <p>Two properties make this system very elegant (mathematician Donald Knuth described it as one of the prettiest
+  number systems):</p>
+  <ul class="ticks">
+    <li><strong>No separate sign</strong>: negative numbers are written naturally, with no sign bit and no two's complement.</li>
+    <li><strong>Negating = flipping every trit</strong>: <code>+0−</code> is 8, so <code>−0+</code> is −8. No arithmetic needed.</li>
+  </ul>
+  <p>Two trits cover every value from −4 to +4; three trits, from −13 to +13. That detail matters in the game:
+  a Vesper register doesn't overflow where a binary register would.</p>
+
+  <h2 id="logic-gates">Ternary logic gates</h2>
+  <p>In logic, the three states can be read as <em>false</em> (−1), <em>unknown</em> (0) and <em>true</em> (+1).
+  This is the three-valued logic described by logician Stephen Kleene. Binary operations then have direct
+  equivalents.</p>
+
+  <h3>NEG: the inverter</h3>
+  <p>NEG swaps −1 and +1 and leaves 0 untouched. An inverted "unknown" stays unknown.</p>
+  <table class="facts">
+    <thead><tr><th scope="col">x</th><th scope="col">NEG x</th></tr></thead>
+    <tbody><tr><td>−1</td><td>+1</td></tr><tr><td>0</td><td>0</td></tr><tr><td>+1</td><td>−1</td></tr></tbody>
+  </table>
+
+  <h3>MIN and MAX: three-state AND and OR</h3>
+  <p>In binary, AND is 1 only if both inputs are 1: it's the minimum of the two. OR is 1 if either input is 1:
+  it's the maximum. Ternary keeps exactly that idea.</p>
+  <table class="facts">
+    <thead><tr><th scope="col">MIN (x, y)</th><th scope="col">y = −1</th><th scope="col">y = 0</th><th scope="col">y = +1</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">x = −1</th><td>−1</td><td>−1</td><td>−1</td></tr>
+      <tr><th scope="row">x = 0</th><td>−1</td><td>0</td><td>0</td></tr>
+      <tr><th scope="row">x = +1</th><td>−1</td><td>0</td><td>+1</td></tr>
+    </tbody>
+  </table>
+  <p>MAX reads the same way, taking the larger value: MAX(−1, 0) = 0, MAX(0, +1) = +1. An AND is only true if
+  everything is true, and a single "false" is enough to make it false.</p>
+
+  <h3>ADD: addition modulo 3</h3>
+  <p>Adding two trits can leave the range: +1 + +1 = 2. In balanced ternary, 2 is written <code>+−</code>
+  (3 − 1): you keep the trit −1 and carry +1. The Vesper's virtual machine keeps only the rightmost trit, without
+  the carry:</p>
+  <pre><code>ADD(+1, +1) = −1      ADD(−1, −1) = +1      ADD(+1, −1) = 0</code></pre>
+  <p>It's counter-intuitive, and that's deliberate: many puzzles rely on this "wrap-around".</p>
+
+  <h2 id="puzzle">How it becomes a puzzle in Vesper Protocol</h2>
+  <p>In the game, every door or machine reads a register. The player plugs in a console, watches the values and
+  writes a short routine with the available instructions. Here is a typical puzzle from the first sector:</p>
+  <pre><code>// Door 12-A: opens when R0 = +1
+// Allowed instructions: NEG, MAX
+R0 = 0
+R1 = −1
+
+NEG R1        // R1 = +1
+MAX R0, R1    // R0 = max(0, +1) = +1  → door open</code></pre>
+  <p>The difficulty comes from the constraints: a machine only accepts a reduced instruction set, and some
+  instructions heat up the suit. So the player looks for the shortest routine.</p>
+
+  <h3>The classic trap: thinking in binary</h3>
+  <p>During our playtests, players who already code all fell into the same traps:</p>
+  <ul class="ticks">
+    <li><strong>Assuming NEG always changes the value</strong>: NEG(0) = 0. A neutral register can't be inverted.</li>
+    <li><strong>Reading MIN(0, +1) as "true"</strong>: the result is 0. An AND with an unknown stays unknown.</li>
+    <li><strong>Forgetting the wrap-around</strong>: ADD(+1, +1) isn't +1 but −1.</li>
+  </ul>
+  <p>These mistakes are the best part of the game: players realise they can't apply their habits to a machine
+  they don't know. That's exactly the mindset of a security auditor facing unknown firmware.</p>
+
+  <h2 id="exercises">Exercises: your turn</h2>
+  <p>Three short exercises to check everything is clear. Click to reveal the answer. Prefer hands-on? Try the
+  <a href="../../demo/">playable mini demo</a>, with three ternary locks.</p>
+  <ol>
+    <li>What is <code>+−0</code> in decimal?
+      <details><summary>Answer</summary><p>9 − 3 + 0 = <strong>6</strong>.</p></details></li>
+    <li>What is MAX(NEG(+1), 0)?
+      <details><summary>Answer</summary><p>NEG(+1) = −1, then MAX(−1, 0) = <strong>0</strong>.</p></details></li>
+    <li>How do you write 5 in balanced ternary, with three trits?
+      <details><summary>Answer</summary><p><code>+−−</code>: 9 − 3 − 1 = <strong>5</strong>.</p></details></li>
+  </ol>
+
+  <h2 id="further">Going further</h2>
+  <p>Ternary logic is at the heart of <a href="../../vesper-protocol/">Vesper Protocol</a>, our space hacking game.
+  On the rendering side, our <a href="../raymarching-nebula-shader/">tutorial on raymarching a nebula</a> explains
+  how we draw the sky around Tau-Heliade. All English articles are in the <a href="../">Flexarion devlog</a>;
+  more articles, a lore codex and the full press kit are available <a href="../../../devlog/" hreflang="fr">in French</a>.</p>
+
+  <aside class="callout" id="republish">
+    <h2>Republish this article</h2>
+    <p>This article is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license">CC BY-NC 4.0</a>.
+    You may republish it (dev.to, Hashnode, your own blog) as long as you credit Flexarion and point to the original
+    with a canonical URL:</p>
+    <ul>
+      <li><strong>dev.to</strong>: add <code>canonical_url: https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/</code> to the front matter.</li>
+      <li><strong>Hashnode</strong>: in the article settings, enable "Are you republishing?" and paste the URL above as the <em>Original article URL</em>.</li>
+      <li><strong>Any other blog</strong>: add <code>&lt;link rel="canonical" href="https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/"&gt;</code> to the <code>&lt;head&gt;</code>.</li>
+    </ul>
+  </aside>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">FLEXARION</p>
+      <p>Independent science-fiction video game studio<br>Aix-en-Provence (13100), France</p>
+    </div>
+    <nav aria-label="Footer links">
+      <ul>
+        <li><a href="../../../en/vesper-protocol/">Vesper Protocol</a></li>
+        <li><a href="../../../en/demo/">Playable demo</a></li>
+        <li><a href="../../../en/devlog/">Devlog</a></li>
+        <li><a href="../../../presskit/">Press kit (in French)</a></li>
+        <li><a href="../../../ressources/">Free resources (in French)</a></li>
+        <li><a href="../../../mentions-legales/">Legal notice (in French)</a></li>
+        <li><a href="../../../">Version française</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap edu">Flexarion is a fictional studio, created for a teaching project in the BUT Informatique (computer science degree) at IUT d'Aix-Marseille, France.<br>Website by Adam MANKAI, Gabriel GOUIN and Mattéo YANNI.</p>
+</footer>
+</body>
+</html>

@@ -6,11 +6,15 @@
 <title>Démo jouable de Vesper Protocol : puzzles ternaires | Flexarion</title>
 <meta name="description" content="Jouez dans votre navigateur à trois puzzles de logique ternaire inspirés de Vesper Protocol : NEG, MIN, MAX et ternaire équilibré. Gratuit, au clavier.">
 <link rel="canonical" href="https://flexarion-studio.github.io/demo/">
+<link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/demo/">
+<link rel="alternate" hreflang="en" href="https://flexarion-studio.github.io/en/demo/">
+<link rel="alternate" hreflang="x-default" href="https://flexarion-studio.github.io/demo/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Flexarion">
 <meta name="theme-color" content="#f1eee6">
 <meta property="og:site_name" content="Flexarion">
 <meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Démo jouable de Vesper Protocol : puzzles ternaires | Flexarion">
 <meta property="og:description" content="Jouez dans votre navigateur à trois puzzles de logique ternaire inspirés de Vesper Protocol : NEG, MIN, MAX et ternaire équilibré. Gratuit, au clavier.">
@@ -51,6 +55,8 @@
 .demo .btn[disabled]{opacity:.45;cursor:not-allowed}
 .demo .btn[disabled]:hover{background:var(--ink);border-color:var(--ink)}
 .demo .btn-ghost[disabled]:hover{background:transparent;color:var(--ink)}
+.demo-code{width:100%;font:13px/1.5 var(--mono);background:var(--field);color:var(--ink);border:1px solid var(--ink-2);border-radius:0;padding:10px;resize:vertical}
+.demo-code:focus{outline:2px solid var(--signal);outline-offset:0}
 @media (max-width:520px){.trit{width:72px;height:72px}.demo{padding:4px 14px 18px}.demo .facts th,.demo .facts td{padding-right:6px}}
 </style>
 </head>
@@ -109,6 +115,14 @@
     </div>
   </section>
 
+  <h2 id="integrer">Intégrer cette démo sur votre site</h2>
+  <p>Professeur, blogueur ou club d'informatique ? Copiez ce code dans votre page : la démo s'affiche dans un cadre, avec un lien vers sa page d'origine. Gratuit, sans publicité ni traceur.</p>
+  <label class="meta" for="demo-code-integration">Code d'intégration (HTML)</label>
+  <textarea class="demo-code" id="demo-code-integration" rows="6" readonly>&lt;iframe src=&quot;https://flexarion-studio.github.io/demo/embed/&quot; width=&quot;760&quot; height=&quot;700&quot; style=&quot;max-width:100%;border:0&quot; title=&quot;Mini-démo de Vesper Protocol : puzzles de logique ternaire&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href=&quot;https://flexarion-studio.github.io/demo/&quot;&gt;Mini-démo de Vesper Protocol&lt;/a&gt;, un jeu de logique ternaire du studio Flexarion.&lt;/p&gt;</textarea>
+  <p><button type="button" class="btn btn-ghost" id="demo-copier">Copier le code</button>
+  <span class="meta" id="demo-copie-etat" role="status" aria-live="polite"></span></p>
+
   <h2>Les règles en bref</h2>
   <table class="facts">
     <tbody>
@@ -143,9 +157,11 @@
         <li><a href="../demo/">Démo jouable</a></li>
         <li><a href="../devlog/">Devlog</a></li>
         <li><a href="../presskit/">Presskit</a></li>
+        <li><a href="../ressources/">Ressources à télécharger</a></li>
         <li><a href="../contact/">Contact &amp; kit presse</a></li>
         <li><a href="../mentions-legales/">Mentions légales</a></li>
         <li><a href="../feed.xml">Flux RSS du devlog</a></li>
+        <li><a href="../en/">English version</a></li>
       </ul>
     </nav>
   </div>

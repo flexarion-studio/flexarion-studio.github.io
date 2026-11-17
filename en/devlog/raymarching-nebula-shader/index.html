@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raymarching a nebula in GLSL: a tutorial | Devlog</title>
+<meta name="description" content="Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.">
+<link rel="canonical" href="https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/">
+<link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/">
+<link rel="alternate" hreflang="en" href="https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/">
+<link rel="alternate" hreflang="x-default" href="https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Yanis Belkacem">
+<meta name="theme-color" content="#f1eee6">
+<meta property="og:site_name" content="Flexarion">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Raymarching a nebula in GLSL: a tutorial | Devlog">
+<meta property="og:description" content="Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.">
+<meta property="og:url" content="https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/">
+<meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flexarion studio banner: Vesper Protocol, a science-fiction video game">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Raymarching a nebula in GLSL: a tutorial | Devlog">
+<meta name="twitter:description" content="Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.">
+<meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../../assets/css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flexarion-studio.github.io/en/"},{"@type":"ListItem","position":2,"name":"Devlog","item":"https://flexarion-studio.github.io/en/devlog/"},{"@type":"ListItem","position":3,"name":"Raymarching a nebula","item":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Raymarching a nebula: the basics, with an example shader","description":"Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.","url":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/","mainEntityOfPage":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/","datePublished":"2026-11-17","dateModified":"2026-11-17","inLanguage":"en","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Yanis Belkacem"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"translationOfWork":{"@type":"BlogPosting","url":"https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/"},"isPartOf":{"@type":"Blog","name":"Flexarion devlog","url":"https://flexarion-studio.github.io/en/devlog/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/en/vesper-protocol/"},"keywords":"raymarching, volumetric rendering, GLSL shader, nebula, Beer-Lambert, fBm, Shadertoy","articleSection":"Tutorial","license":"https://creativecommons.org/licenses/by-nc/4.0/"}</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../../../en/" aria-label="Flexarion, back to home">
+      <img src="../../../assets/img/logo-flexarion.svg" alt="Flexarion studio logo" width="36" height="36">
+      <span>FLEXARION</span>
+    </a>
+    <nav aria-label="Main navigation"><ul class="menu"><li><a href="../../../en/">Home</a></li><li><a href="../../../en/vesper-protocol/">The game</a></li><li><a href="../../../en/demo/">Demo</a></li><li><a href="../../../en/devlog/" aria-current="page">Devlog</a></li><li><a href="../../../devlog/raymarching-nebuleuse-shader/" hreflang="fr" lang="fr">Français</a></li></ul></nav>
+  </div>
+</header>
+<main id="contenu">
+<nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../../../en/">Home</a></li><li><a href="../../../en/devlog/">Devlog</a></li><li aria-current="page">Raymarching a nebula</li></ol></nav>
+
+<article class="wrap section prose">
+  <header>
+    <p class="meta">Devlog #4 · Tutorial · <time datetime="2026-11-17">17 November 2026</time> · by Yanis Belkacem</p>
+    <h1>Raymarching a nebula: the basics, with an example shader</h1>
+    <p class="lead">In an earlier devlog, we explained how we optimised the nebula of Vesper Protocol.
+    Several readers asked us to start from the beginning. So here are the basics of volumetric raymarching,
+    step by step, with a complete GLSL shader you can paste into Shadertoy.</p>
+  </header>
+
+  <nav aria-label="Table of contents">
+    <p class="kicker">Contents</p>
+    <ol>
+      <li><a href="#principle">The principle: stepping through a volume</a></li>
+      <li><a href="#ray">Step 1: build the ray</a></li>
+      <li><a href="#density">Step 2: density from noise</a></li>
+      <li><a href="#beer-lambert">Step 3: absorb and emit light</a></li>
+      <li><a href="#full-shader">Step 4: the full shader</a></li>
+      <li><a href="#settings">The settings that change everything</a></li>
+      <li><a href="#shadertoy">Try the shader</a></li>
+      <li><a href="#further">Going further</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="principle">The principle: stepping through a volume</h2>
+  <p>A typical game engine draws triangles: it projects their vertices onto the screen and colours the pixels they
+  cover. That works very well for a spaceship or a wall. But a nebula has no surface: it is a cloud of gas, more or
+  less dense, that light partly passes through.</p>
+  <p><strong>Raymarching</strong> flips the problem around. For each pixel, we cast a ray from the camera and walk
+  along it in small steps. At each step we ask: "how dense is the gas here?" We accumulate what we see until we leave
+  the volume or the gas becomes opaque.</p>
+  <p>Everything happens in a <em>fragment shader</em>, the program the graphics card runs for every pixel. On
+  Shadertoy, this program is called <code>mainImage</code> and receives the pixel position.</p>
+
+  <h2 id="ray">Step 1: build the ray</h2>
+  <p>A ray is an origin (the camera, <code>ro</code>) and a direction (<code>rd</code>). We start by centring the
+  pixel coordinates and correcting for the screen's aspect ratio:</p>
+  <pre><code>vec2 uv = (fragCoord - 0.5 * iResolution.xy) / iResolution.y;
+vec3 ro = vec3(0.0, 0.0, -3.5);          // camera pulled back along z
+vec3 rd = normalize(vec3(uv, 1.5));      // 1.5 = focal length</code></pre>
+  <p>The point at distance <code>t</code> along the ray is simply <code>ro + rd * t</code>. Increasing the focal
+  length narrows the field of view, like zooming in.</p>
+
+  <h2 id="density">Step 2: density from noise</h2>
+  <p>We need a function <code>density(p)</code> that returns the amount of gas at point <code>p</code>. To get natural
+  swirls, we use <strong>value noise</strong>: pseudo-random numbers placed on a 3D grid and smoothly interpolated.
+  By adding several layers of ever finer noise (<em>octaves</em>), we get <strong>fBm</strong>
+  (<em>fractional Brownian motion</em>), the basis of almost every procedural cloud.</p>
+  <pre><code>float fbm(vec3 p) {
+    float v = 0.0, a = 0.5;
+    for (int i = 0; i &lt; 4; i++) {
+        v += a * noise(p);
+        p = p * 2.02 + vec3(1.7, 9.2, 3.1);  // shift each octave
+        a *= 0.5;                             // each octave weighs half as much
+    }
+    return v;
+}</code></pre>
+  <p>To break up the overly regular look, we <strong>distort</strong> the coordinates with a first fBm before
+  computing a second one (<em>domain warping</em>): the swirls stretch like gas. We then confine this noise inside a
+  soft sphere, otherwise it would fill all of space, and subtract a threshold to carve holes between the clouds.</p>
+
+  <h2 id="beer-lambert">Step 3: absorb and emit light</h2>
+  <p>When light passes through a gas, part of it is absorbed. The <strong>Beer–Lambert law</strong> says that the
+  fraction that gets through, the <em>transmittance</em>, decreases exponentially with the density crossed:</p>
+  <pre><code>T = exp(-absorption × density × step_length)</code></pre>
+  <p>Our nebula is also <strong>emissive</strong>: gas heated by the star glows. At each step, we add the light
+  emitted there to the pixel colour, attenuated by all the gas already crossed (the current transmittance). This is
+  front-to-back compositing:</p>
+  <pre><code>col += T * emission * d * STEP;   // emitted light, seen through the gas
+T   *= exp(-d * STEP);            // the gas in front becomes more opaque</code></pre>
+  <p>Order matters: add the light with the old transmittance, then update it.</p>
+
+  <h2 id="full-shader">Step 4: the full shader</h2>
+  <p>Here is the whole shader, ready to paste into Shadertoy. It adds two details: a small random offset of each
+  ray's starting point, and an early exit once the gas becomes opaque.</p>
+  <pre id="shader-nebuleuse"><code>// Volumetric nebula: teaching example (Flexarion, devlog #4)
+// License CC BY-NC 4.0: flexarion-studio.github.io
+
+float hash(vec3 p) {
+    p = fract(p * 0.3183099 + 0.1);
+    p *= 17.0;
+    return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
+}
+
+float noise(vec3 x) {
+    vec3 i = floor(x);
+    vec3 f = fract(x);
+    f = f * f * (3.0 - 2.0 * f);
+    return mix(mix(mix(hash(i + vec3(0, 0, 0)), hash(i + vec3(1, 0, 0)), f.x),
+                   mix(hash(i + vec3(0, 1, 0)), hash(i + vec3(1, 1, 0)), f.x), f.y),
+               mix(mix(hash(i + vec3(0, 0, 1)), hash(i + vec3(1, 0, 1)), f.x),
+                   mix(hash(i + vec3(0, 1, 1)), hash(i + vec3(1, 1, 1)), f.x), f.y), f.z);
+}
+
+float fbm(vec3 p) {
+    float v = 0.0, a = 0.5;
+    for (int i = 0; i &lt; 4; i++) {
+        v += a * noise(p);
+        p = p * 2.02 + vec3(1.7, 9.2, 3.1);
+        a *= 0.5;
+    }
+    return v;
+}
+
+float density(vec3 p) {
+    vec3 q = p * 1.6 + vec3(0.0, 0.0, iTime * 0.06);   // the cloud drifts slowly
+    float n = fbm(q + 1.5 * fbm(q));                   // noise warped by noise
+    float sphere = 1.0 - smoothstep(0.0, 2.3, length(p));
+    return max(n * sphere - 0.36, 0.0) * 8.0;
+}
+
+void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+    vec2 uv = (fragCoord - 0.5 * iResolution.xy) / iResolution.y;
+    vec3 ro = vec3(0.0, 0.0, -3.5);
+    vec3 rd = normalize(vec3(uv, 1.5));
+
+    const float STEP = 0.08;
+    float jitter = fract(sin(dot(fragCoord, vec2(12.9898, 78.233))) * 43758.5453);
+    float t = 1.0 + jitter * STEP;
+    vec3 col = vec3(0.0);
+    float T = 1.0;                        // transmittance
+
+    for (int i = 0; i &lt; 64; i++) {
+        vec3 p = ro + rd * t;
+        float d = density(p);
+        if (d &gt; 0.001) {
+            vec3 emission = mix(vec3(0.3, 0.02, 0.02), vec3(1.0, 0.32, 0.08), clamp(d, 0.0, 1.0));
+            col += T * emission * d * STEP;
+            T *= exp(-d * STEP);           // Beer-Lambert
+            if (T &lt; 0.02) break;          // early exit
+        }
+        t += STEP;
+    }
+
+    // Red star in the background, seen through the remaining gas
+    float star = 0.012 / (length(uv - vec2(0.55, 0.22)) + 0.02);
+    col += T * (vec3(0.012, 0.01, 0.025) + vec3(1.0, 0.35, 0.12) * star);
+    fragColor = vec4(pow(col, vec3(0.4545)), 1.0);   // gamma correction
+}</code></pre>
+
+  <h2 id="settings">The settings that change everything</h2>
+  <ul class="ticks">
+    <li><strong>Step size</strong> (<code>STEP</code>): a smaller step gives a finer volume, but costs more computation.</li>
+    <li><strong>Number of steps</strong>: 64 steps of 0.08 cover about 5 units, just enough to cross the sphere.</li>
+    <li><strong>Random offset</strong> (<code>jitter</code>): without it, regular bands appear in the cloud; with it, they turn into fine grain.</li>
+    <li><strong>Early exit</strong>: no point going on once less than 2% of the light gets through.</li>
+    <li><strong>Gamma correction</strong>: without it, dark areas look crushed.</li>
+  </ul>
+  <p>This shader is deliberately simple: it recomputes all the noise at every step, at full resolution. In the game,
+  we precompute it into a 3D texture and render at half resolution. That is the topic of our
+  <a href="../../../devlog/optimisation-shaders-nebuleuse/" hreflang="fr">devlog on optimising the nebula shader</a>
+  (in French), which explains how we went from 9 ms to 2.1 ms per frame.</p>
+
+  <h2 id="shadertoy">Try the shader</h2>
+  <p>The render below runs exactly the code from step 4 in your browser, with WebGL.</p>
+  <figure>
+    <canvas id="apercu-nebuleuse" width="640" height="360" style="width:100%;height:auto;display:block;border:1px solid var(--ink);background:var(--ink)"
+      role="img" aria-label="Live render of the nebula shader: a red and orange cloud in front of a red star"></canvas>
+    <figcaption id="apercu-statut">Live preview of the shader (WebGL 2).</figcaption>
+  </figure>
+  <p>To tweak it, open a <a href="https://www.shadertoy.com/new">new shader on Shadertoy</a>, replace the default
+  code with the code from step 4, then press Alt + Enter. Try changing <code>STEP</code>, the emission colours or the
+  absorption coefficient to see the effect of each parameter.</p>
+  <!-- SHADERTOY: once the shader is published on Shadertoy, replace XXXXXX with its ID and uncomment the link.
+  <p><a href="https://www.shadertoy.com/view/XXXXXX">See the nebula shader on Shadertoy</a></p>
+  -->
+
+  <h2 id="further">Going further</h2>
+  <p>This nebula surrounds Tau-Heliade, the dying star of <a href="../../vesper-protocol/">Vesper Protocol</a>.
+  If you prefer logic to rendering, read our <a href="../ternary-logic-hacking-game/">tutorial on ternary logic</a>,
+  or play the <a href="../../demo/">mini demo</a> in your browser. All English articles are in the
+  <a href="../">Flexarion devlog</a>.</p>
+
+  <aside class="callout" id="republish">
+    <h2>Republish this article</h2>
+    <p>This article and its shader are licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license">CC BY-NC 4.0</a>.
+    You may republish them (dev.to, Hashnode, your own blog) as long as you credit Flexarion and point to the original
+    with a canonical URL:</p>
+    <ul>
+      <li><strong>dev.to</strong>: add <code>canonical_url: https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/</code> to the front matter.</li>
+      <li><strong>Hashnode</strong>: in the article settings, enable "Are you republishing?" and paste the URL above as the <em>Original article URL</em>.</li>
+      <li><strong>Any other blog</strong>: add <code>&lt;link rel="canonical" href="https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/"&gt;</code> to the <code>&lt;head&gt;</code>.</li>
+    </ul>
+  </aside>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">FLEXARION</p>
+      <p>Independent science-fiction video game studio<br>Aix-en-Provence (13100), France</p>
+    </div>
+    <nav aria-label="Footer links">
+      <ul>
+        <li><a href="../../../en/vesper-protocol/">Vesper Protocol</a></li>
+        <li><a href="../../../en/demo/">Playable demo</a></li>
+        <li><a href="../../../en/devlog/">Devlog</a></li>
+        <li><a href="../../../presskit/">Press kit (in French)</a></li>
+        <li><a href="../../../ressources/">Free resources (in French)</a></li>
+        <li><a href="../../../mentions-legales/">Legal notice (in French)</a></li>
+        <li><a href="../../../">Version française</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap edu">Flexarion is a fictional studio, created for a teaching project in the BUT Informatique (computer science degree) at IUT d'Aix-Marseille, France.<br>Website by Adam MANKAI, Gabriel GOUIN and Mattéo YANNI.</p>
+</footer>
+<script>
+/* Aperçu WebGL 2 : exécute le shader affiché dans #shader-nebuleuse, sans dépendance. */
+(function () {
+  var c = document.getElementById('apercu-nebuleuse'), st = document.getElementById('apercu-statut');
+  var code = document.querySelector('#shader-nebuleuse code');
+  var gl = c && c.getContext('webgl2');
+  if (!gl || !code) { if (st) st.textContent = 'Preview unavailable: your browser does not support WebGL 2.'; return; }
+  var vs = '#version 300 es\nin vec2 p;\nvoid main(){ gl_Position = vec4(p, 0.0, 1.0); }';
+  var fs = '#version 300 es\nprecision highp float;\nuniform vec3 iResolution;\nuniform float iTime;\nout vec4 outColor;\n' +
+    code.textContent + '\nvoid main(){ mainImage(outColor, gl_FragCoord.xy); }';
+  function compile(type, src) {
+    var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  var prog = gl.createProgram();
+  try {
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  } catch (e) { st.textContent = 'Shader compilation error: ' + e.message; return; }
+  gl.useProgram(prog);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(prog, 'p');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  var uRes = gl.getUniformLocation(prog, 'iResolution'), uTime = gl.getUniformLocation(prog, 'iTime');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var visible = false, raf = 0, t0 = performance.now();
+  function frame(now) {
+    gl.viewport(0, 0, c.width, c.height);
+    gl.uniform3f(uRes, c.width, c.height, 1);
+    gl.uniform1f(uTime, (now - t0) / 1000);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    if (visible && !reduce) raf = requestAnimationFrame(frame);
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      visible = e[0].isIntersecting; cancelAnimationFrame(raf);
+      if (visible) raf = requestAnimationFrame(frame);
+    }).observe(c);
+  }
+  frame(performance.now());
+  if (reduce) st.textContent = 'Shader preview (still image: reduced motion is enabled in your settings).';
+})();
+</script>
+</body>
+</html>

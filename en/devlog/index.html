@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flexarion devlog — Behind the scenes of Vesper Protocol</title>
+<meta name="description" content="The Flexarion devlog in English: tutorials on ternary logic and volumetric raymarching from the making of Vesper Protocol, a sci-fi hacking game.">
+<link rel="canonical" href="https://flexarion-studio.github.io/en/devlog/">
+<link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/">
+<link rel="alternate" hreflang="en" href="https://flexarion-studio.github.io/en/devlog/">
+<link rel="alternate" hreflang="x-default" href="https://flexarion-studio.github.io/devlog/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Flexarion">
+<meta name="theme-color" content="#f1eee6">
+<meta property="og:site_name" content="Flexarion">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Flexarion devlog — Behind the scenes of Vesper Protocol">
+<meta property="og:description" content="The Flexarion devlog in English: tutorials on ternary logic and volumetric raymarching from the making of Vesper Protocol, a sci-fi hacking game.">
+<meta property="og:url" content="https://flexarion-studio.github.io/en/devlog/">
+<meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flexarion studio banner: Vesper Protocol, a science-fiction video game">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flexarion devlog — Behind the scenes of Vesper Protocol">
+<meta name="twitter:description" content="The Flexarion devlog in English: tutorials on ternary logic and volumetric raymarching from the making of Vesper Protocol, a sci-fi hacking game.">
+<meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flexarion-studio.github.io/en/"},{"@type":"ListItem","position":2,"name":"Devlog","item":"https://flexarion-studio.github.io/en/devlog/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"Flexarion devlog (English)","url":"https://flexarion-studio.github.io/en/devlog/","inLanguage":"en","publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"blogPost":[{"@type":"BlogPosting","headline":"Ternary logic explained through a hacking game","url":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/"},{"@type":"BlogPosting","headline":"Raymarching a nebula: the basics, with an example shader","url":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../../en/" aria-label="Flexarion, back to home">
+      <img src="../../assets/img/logo-flexarion.svg" alt="Flexarion studio logo" width="36" height="36">
+      <span>FLEXARION</span>
+    </a>
+    <nav aria-label="Main navigation"><ul class="menu"><li><a href="../../en/">Home</a></li><li><a href="../../en/vesper-protocol/">The game</a></li><li><a href="../../en/demo/">Demo</a></li><li><a href="../../en/devlog/" aria-current="page">Devlog</a></li><li><a href="../../devlog/" hreflang="fr" lang="fr">Français</a></li></ul></nav>
+  </div>
+</header>
+<main id="contenu">
+<nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../../en/">Home</a></li><li aria-current="page">Devlog</li></ol></nav>
+
+<section class="wrap section">
+  <h1>Flexarion devlog: making Vesper Protocol</h1>
+  <p class="lead">The Flexarion team shares the behind-the-scenes of Vesper Protocol: logic, rendering, game design,
+  and the mistakes that taught us something. These tutorials are translated from French.</p>
+  <div class="cards">
+    <article class="card">
+      <p class="meta">Tutorial · <time datetime="2026-11-17">17 Nov 2026</time> · by Yanis Belkacem</p>
+      <h2 class="h3"><a href="raymarching-nebula-shader/">Raymarching a nebula: the basics, with an example shader</a></h2>
+      <p>Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.</p>
+    </article>
+    <article class="card">
+      <p class="meta">Tutorial · <time datetime="2026-11-17">17 Nov 2026</time> · by Camille Roux</p>
+      <h2 class="h3"><a href="ternary-logic-hacking-game/">Ternary logic explained through a hacking game</a></h2>
+      <p>Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.</p>
+    </article>
+  </div>
+  <p>More articles, including how we designed the <a href="../../devlog/ia-gardiens-aliens/" hreflang="fr">Guardians' AI</a>
+  and <a href="../../devlog/optimisation-shaders-nebuleuse/" hreflang="fr">optimised the nebula shader</a>, are available in French
+  on the <a href="../../devlog/" hreflang="fr">French devlog</a>.</p>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">FLEXARION</p>
+      <p>Independent science-fiction video game studio<br>Aix-en-Provence (13100), France</p>
+    </div>
+    <nav aria-label="Footer links">
+      <ul>
+        <li><a href="../../en/vesper-protocol/">Vesper Protocol</a></li>
+        <li><a href="../../en/demo/">Playable demo</a></li>
+        <li><a href="../../en/devlog/">Devlog</a></li>
+        <li><a href="../../presskit/">Press kit (in French)</a></li>
+        <li><a href="../../ressources/">Free resources (in French)</a></li>
+        <li><a href="../../mentions-legales/">Legal notice (in French)</a></li>
+        <li><a href="../../">Version française</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap edu">Flexarion is a fictional studio, created for a teaching project in the BUT Informatique (computer science degree) at IUT d'Aix-Marseille, France.<br>Website by Adam MANKAI, Gabriel GOUIN and Mattéo YANNI.</p>
+</footer>
+</body>
+</html>

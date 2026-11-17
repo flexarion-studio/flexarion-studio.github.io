@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mini-démo de Vesper Protocol (version intégrable)</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://flexarion-studio.github.io/demo/">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<style>
+/* Styles propres à la démo : réutilisent les variables du site, n'affectent aucune autre page. */
+.demo{border:2px solid var(--ink);background:var(--field);padding:6px 22px 22px;margin:28px 0}
+.demo h2{border-top:0;padding-top:0;margin-top:.8em}
+.demo h2:focus{outline:none}
+.demo-entrees{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.trit{width:84px;height:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:0;cursor:pointer;font:600 2rem/1 var(--mono)}
+.trit small{font:.72rem/1 var(--mono);color:var(--ink-2)}
+.trit[data-v="1"]{background:var(--ink);color:var(--paper)}
+.trit[data-v="1"] small{color:var(--paper-2)}
+.trit[data-v="-1"]{border-style:dashed}
+.trit:hover{border-color:var(--signal)}
+.trit:focus-visible,.demo .btn:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+.demo-ok{color:var(--ink);font-weight:600}
+.demo-ko{color:var(--signal-deep)}
+.demo-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.demo .btn[disabled]{opacity:.45;cursor:not-allowed}
+.demo .btn[disabled]:hover{background:var(--ink);border-color:var(--ink)}
+.demo .btn-ghost[disabled]:hover{background:transparent;color:var(--ink)}
+.demo-code{width:100%;font:13px/1.5 var(--mono);background:var(--field);color:var(--ink);border:1px solid var(--ink-2);border-radius:0;padding:10px;resize:vertical}
+.demo-code:focus{outline:2px solid var(--signal);outline-offset:0}
+@media (max-width:520px){.trit{width:72px;height:72px}.demo{padding:4px 14px 18px}.demo .facts th,.demo .facts td{padding-right:6px}}
+</style>
+<style>body{background:var(--paper)}.demo{margin:8px 0}</style>
+</head>
+<body>
+<main id="contenu" class="wrap">
+  <section class="demo" id="demo" aria-labelledby="demo-titre" hidden>
+    <div id="demo-jeu">
+      <p class="meta" id="demo-progression"></p>
+      <h2 id="demo-titre" tabindex="-1"></h2>
+      <p id="demo-brief"></p>
+      <p class="meta" id="demo-aide">Cliquez sur une entrée (ou appuyez sur Entrée / Espace) pour la faire tourner ; les flèches haut et bas montent ou descendent la valeur.</p>
+      <div class="demo-entrees" id="demo-entrees" role="group" aria-label="Entrées de la serrure"></div>
+      <table class="facts">
+        <thead><tr><th scope="col">Sortie</th><th scope="col">Valeur</th><th scope="col">Cible</th><th scope="col">État</th></tr></thead>
+        <tbody id="demo-sorties"></tbody>
+      </table>
+      <p id="demo-etat" role="status" aria-live="polite"></p>
+      <div class="demo-actions">
+        <button type="button" class="btn" id="demo-suivant" disabled>Niveau suivant</button>
+        <button type="button" class="btn btn-ghost" id="demo-reset">Recommencer le niveau</button>
+        <button type="button" class="btn btn-ghost" id="demo-precedent">Niveau précédent</button>
+      </div>
+    </div>
+    <div id="demo-fin" hidden>
+      <h2 id="demo-fin-titre" tabindex="-1">Les trois serrures sont ouvertes</h2>
+      <p>Vous savez inverser une valeur avec NEG, combiner deux conditions avec MIN et MAX, lire un nombre en ternaire équilibré et anticiper le « tour du cadran » d'ADD. C'est exactement ce que demandent les premières heures de Vesper Protocol.</p>
+      <div class="demo-actions">
+        <a class="btn" href="https://studio-flexarion.itch.io/vesper-protocol" target="_top">Télécharger la démo PC sur itch.io</a>
+        <button type="button" class="btn btn-ghost" id="demo-rejouer">Rejouer</button>
+      </div>
+    </div>
+  </section>
+  <p class="meta"><a href="https://flexarion-studio.github.io/demo/" target="_blank" rel="noopener">Mini-démo de Vesper Protocol · studio Flexarion</a> (studio fictif, projet pédagogique)</p>
+</main>
+<script src="../../demo/demo.js" defer></script>
+</body>
+</html>
