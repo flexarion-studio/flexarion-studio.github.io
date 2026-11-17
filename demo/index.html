@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Démo jouable de Vesper Protocol : puzzles ternaires | Flexarion</title>
+<meta name="description" content="Jouez dans votre navigateur à trois puzzles de logique ternaire inspirés de Vesper Protocol : NEG, MIN, MAX et ternaire équilibré. Gratuit, au clavier.">
+<link rel="canonical" href="https://flexarion-studio.github.io/demo/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Flexarion">
+<meta name="theme-color" content="#f1eee6">
+<meta property="og:site_name" content="Flexarion">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Démo jouable de Vesper Protocol : puzzles ternaires | Flexarion">
+<meta property="og:description" content="Jouez dans votre navigateur à trois puzzles de logique ternaire inspirés de Vesper Protocol : NEG, MIN, MAX et ternaire équilibré. Gratuit, au clavier.">
+<meta property="og:url" content="https://flexarion-studio.github.io/demo/">
+<meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bannière du studio Flexarion : Vesper Protocol, jeu vidéo de science-fiction">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Démo jouable de Vesper Protocol : puzzles ternaires | Flexarion">
+<meta name="twitter:description" content="Jouez dans votre navigateur à trois puzzles de logique ternaire inspirés de Vesper Protocol : NEG, MIN, MAX et ternaire équilibré. Gratuit, au clavier.">
+<meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://flexarion-studio.github.io/"},{"@type":"ListItem","position":2,"name":"Vesper Protocol","item":"https://flexarion-studio.github.io/vesper-protocol/"},{"@type":"ListItem","position":3,"name":"Démo jouable","item":"https://flexarion-studio.github.io/demo/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":["VideoGame","WebApplication"],"@id":"https://flexarion-studio.github.io/demo/#demo","name":"Vesper Protocol : mini-démo de logique ternaire","url":"https://flexarion-studio.github.io/demo/","description":"Mini-démo jouable dans le navigateur : trois puzzles courts de logique ternaire (NEG, MIN, MAX, ternaire équilibré) inspirés de Vesper Protocol.","image":"https://flexarion-studio.github.io/assets/img/capture-console-glyphes.png","inLanguage":"fr","datePublished":"2026-11-17","genre":["Puzzle","Science-fiction"],"gamePlatform":"Navigateur web","applicationCategory":"GameApplication","operatingSystem":"Tout système avec un navigateur récent","browserRequirements":"JavaScript activé","playMode":"SinglePlayer","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"accessMode":["textual","visual"],"accessibilityControl":["fullKeyboardControl","fullMouseControl"],"author":{"@id":"https://flexarion-studio.github.io/#organisation"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"isBasedOn":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/vesper-protocol/"}}</script>
+<style>
+/* Styles propres à la démo : réutilisent les variables du site, n'affectent aucune autre page. */
+.demo{border:2px solid var(--ink);background:var(--field);padding:6px 22px 22px;margin:28px 0}
+.demo h2{border-top:0;padding-top:0;margin-top:.8em}
+.demo h2:focus{outline:none}
+.demo-entrees{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.trit{width:84px;height:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:0;cursor:pointer;font:600 2rem/1 var(--mono)}
+.trit small{font:.72rem/1 var(--mono);color:var(--ink-2)}
+.trit[data-v="1"]{background:var(--ink);color:var(--paper)}
+.trit[data-v="1"] small{color:var(--paper-2)}
+.trit[data-v="-1"]{border-style:dashed}
+.trit:hover{border-color:var(--signal)}
+.trit:focus-visible,.demo .btn:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+.demo-ok{color:var(--ink);font-weight:600}
+.demo-ko{color:var(--signal-deep)}
+.demo-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.demo .btn[disabled]{opacity:.45;cursor:not-allowed}
+.demo .btn[disabled]:hover{background:var(--ink);border-color:var(--ink)}
+.demo .btn-ghost[disabled]:hover{background:transparent;color:var(--ink)}
+@media (max-width:520px){.trit{width:72px;height:72px}.demo{padding:4px 14px 18px}.demo .facts th,.demo .facts td{padding-right:6px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../" aria-label="Flexarion, retour à l'accueil">
+      <img src="../assets/img/logo-flexarion.svg" alt="Logo du studio Flexarion" width="36" height="36">
+      <span>FLEXARION</span>
+    </a>
+    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../">Accueil</a></li><li><a href="../studio/">Le studio</a></li><li><a href="../vesper-protocol/">Le jeu</a></li><li><a href="../codex/">Codex</a></li><li><a href="../demo/" aria-current="page">Démo</a></li><li><a href="../devlog/">Devlog</a></li><li><a href="../contact/">Contact & presse</a></li></ul></nav>
+  </div>
+</header>
+<main id="contenu">
+<nav class="breadcrumb" aria-label="Fil d'Ariane"><ol><li><a href="../">Accueil</a></li><li><a href="../vesper-protocol/">Vesper Protocol</a></li><li aria-current="page">Démo jouable</li></ol></nav>
+
+<article class="wrap section prose">
+  <header>
+    <p class="kicker">Démo jouable · navigateur</p>
+    <h1>Mini-démo de Vesper Protocol : trois puzzles de logique ternaire</h1>
+    <p class="lead">Avant de brancher votre console sur la Vesper, entraînez-vous sur trois serrures aliens.
+    Chaque entrée prend trois valeurs : −1, 0 ou +1. Réglez-les pour que toutes les sorties atteignent leur cible.</p>
+  </header>
+
+  <p id="demo-sans-js" class="callout">Cette démo a besoin de JavaScript. En attendant, lisez notre
+  <a href="../devlog/logique-ternaire-jeu-hacking/">tutoriel sur la logique ternaire</a>.</p>
+
+  <section class="demo" id="demo" aria-labelledby="demo-titre" hidden>
+    <div id="demo-jeu">
+      <p class="meta" id="demo-progression"></p>
+      <h2 id="demo-titre" tabindex="-1"></h2>
+      <p id="demo-brief"></p>
+      <p class="meta" id="demo-aide">Cliquez sur une entrée (ou appuyez sur Entrée / Espace) pour la faire tourner ; les flèches haut et bas montent ou descendent la valeur.</p>
+      <div class="demo-entrees" id="demo-entrees" role="group" aria-label="Entrées de la serrure"></div>
+      <table class="facts">
+        <thead><tr><th scope="col">Sortie</th><th scope="col">Valeur</th><th scope="col">Cible</th><th scope="col">État</th></tr></thead>
+        <tbody id="demo-sorties"></tbody>
+      </table>
+      <p id="demo-etat" role="status" aria-live="polite"></p>
+      <div class="demo-actions">
+        <button type="button" class="btn" id="demo-suivant" disabled>Niveau suivant</button>
+        <button type="button" class="btn btn-ghost" id="demo-reset">Recommencer le niveau</button>
+        <button type="button" class="btn btn-ghost" id="demo-precedent">Niveau précédent</button>
+      </div>
+    </div>
+    <div id="demo-fin" hidden>
+      <h2 id="demo-fin-titre" tabindex="-1">Les trois serrures sont ouvertes</h2>
+      <p>Vous savez inverser une valeur avec NEG, combiner deux conditions avec MIN et MAX, lire un nombre en ternaire
+      équilibré et anticiper le « tour du cadran » d'ADD. C'est exactement ce que demandent les premières heures de
+      Vesper Protocol.</p>
+      <div class="demo-actions">
+        <a class="btn" href="https://studio-flexarion.itch.io/vesper-protocol">Télécharger la démo PC sur itch.io</a>
+        <button type="button" class="btn btn-ghost" id="demo-rejouer">Rejouer</button>
+      </div>
+    </div>
+  </section>
+
+  <h2>Les règles en bref</h2>
+  <table class="facts">
+    <tbody>
+      <tr><th scope="row">NEG(a)</th><td>Inverse a : +1 devient −1, 0 reste 0.</td></tr>
+      <tr><th scope="row">MIN(a, b)</th><td>La plus petite valeur : le « ET » ternaire.</td></tr>
+      <tr><th scope="row">MAX(a, b)</th><td>La plus grande valeur : le « OU » ternaire.</td></tr>
+      <tr><th scope="row">ADD(a, b)</th><td>Addition modulo 3 : +1 + +1 = −1, −1 + −1 = +1.</td></tr>
+      <tr><th scope="row">ABC</th><td>Nombre en ternaire équilibré : 9 × A + 3 × B + C.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Aller plus loin</h2>
+  <p>Cette démo reprend les bases des puzzles de <a href="../vesper-protocol/">Vesper Protocol</a>. Les règles sont
+  expliquées en détail dans le <a href="../devlog/logique-ternaire-jeu-hacking/">tutoriel sur la logique ternaire</a>,
+  et la fiche <a href="../codex/logique-ternaire/">logique ternaire du codex</a> présente les glyphes et les instructions
+  de la Vesper. La démo complète, avec exploration, Gardiens et gestion de l'oxygène, se télécharge gratuitement
+  sur <a href="https://studio-flexarion.itch.io/vesper-protocol">itch.io</a>.</p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">FLEXARION</p>
+      <p>Studio indépendant de jeux vidéo de science-fiction<br>Aix-en-Provence (13100), France</p>
+    </div>
+    <nav aria-label="Liens du pied de page">
+      <ul>
+        <li><a href="../studio/">Le studio Flexarion</a></li>
+        <li><a href="../vesper-protocol/">Vesper Protocol</a></li>
+        <li><a href="../codex/">Codex de l'univers</a></li>
+        <li><a href="../demo/">Démo jouable</a></li>
+        <li><a href="../devlog/">Devlog</a></li>
+        <li><a href="../presskit/">Presskit</a></li>
+        <li><a href="../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../mentions-legales/">Mentions légales</a></li>
+        <li><a href="../feed.xml">Flux RSS du devlog</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.<br>Site réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.</p>
+</footer>
+<script src="demo.js" defer></script>
+</body>
+</html>
