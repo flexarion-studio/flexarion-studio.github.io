@@ -7,6 +7,10 @@ Le dossier `/outils/` est exclu de l'exploration dans `robots.txt` : il ne crée
 | --- | --- |
 | `logique-ternaire-jeu-hacking.devto.md` | https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/ |
 | `raymarching-nebuleuse-shader.devto.md` | https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/ |
+| `ternary-logic-hacking-game.en.devto.md` (anglais) | https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/ |
+| `raymarching-nebula-shader.en.devto.md` (anglais) | https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/ |
+
+dev.to est surtout lu en anglais : publie de préférence les versions `.en.devto.md`.
 
 ## dev.to
 

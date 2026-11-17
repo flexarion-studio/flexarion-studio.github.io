@@ -13,6 +13,7 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 - [Vesper Protocol](https://flexarion-studio.github.io/vesper-protocol/): univers, mécaniques de jeu, fiche technique et bêta
 - [Démo jouable dans le navigateur](https://flexarion-studio.github.io/demo/): trois puzzles courts de logique ternaire, accessibles au clavier
 - [Presskit](https://flexarion-studio.github.io/presskit/): fact sheet, descriptions, visuels et vidéo à télécharger, contact presse
+- [Ressources gratuites](https://flexarion-studio.github.io/ressources/): fonds d'écran (jusqu'à 4K), glyphes ternaires en SVG et mémo PDF sur la logique ternaire, sous licence CC BY-NC 4.0
 - [Contact et presse](https://flexarion-studio.github.io/contact/): formulaire de contact et inscription à la bêta
 
 ## Devlog
@@ -33,6 +34,14 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 - [Les Gardiens](https://flexarion-studio.github.io/codex/gardiens/): fiche du codex
 - [La logique ternaire](https://flexarion-studio.github.io/codex/logique-ternaire/): fiche du codex
 - [Tau-Héliade, l'étoile mourante](https://flexarion-studio.github.io/codex/tau-heliade/): fiche du codex
+
+## English version
+
+- [Flexarion (English)](https://flexarion-studio.github.io/en/): the studio and its game in English
+- [Vesper Protocol (English)](https://flexarion-studio.github.io/en/vesper-protocol/): world, gameplay and fact sheet
+- [Playable mini demo (English)](https://flexarion-studio.github.io/en/demo/): three ternary logic puzzles in the browser
+- [Ternary logic explained through a hacking game](https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/): balanced ternary, NEG, MIN, MAX, ADD
+- [Raymarching a nebula: the basics](https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/): step-by-step GLSL volumetric rendering tutorial
 
 ## Optional
 
