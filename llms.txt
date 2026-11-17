@@ -17,6 +17,8 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 ## Devlog
 
 - [Index du devlog](https://flexarion-studio.github.io/devlog/): tous les journaux de développement
+- [Raymarching d'une nébuleuse : les bases, avec un exemple de shader](https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/): Rayon, densité, loi de Beer-Lambert et accumulation : un tutoriel GLSL pas à pas pour coder une nébuleuse volumétrique, avec un shader complet à copier.
+- [La logique ternaire expliquée par un jeu de hacking](https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/): Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.
 - [Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image](https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/): Raymarching, bruit bleu, demi-résolution et reprojection temporelle : comment le ciel volumétrique de Vesper Protocol est passé de 9 ms à 2,1 ms par image.
 - [Concevoir l'IA des Gardiens : des automates qui patchent vos exploits](https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/): Machine à états, IA utilitaire puis mémoire d'exploits : trois versions pour créer des ennemis aliens qui apprennent de vos attaques.
 - [Flux RSS du devlog](https://flexarion-studio.github.io/feed.xml): abonnement aux nouveaux articles

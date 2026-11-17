@@ -7,12 +7,30 @@
     <description>Le journal de développement de Vesper Protocol, par le studio Flexarion (studio fictif, projet pédagogique du BUT Informatique).</description>
     <language>fr-FR</language>
     <copyright>© 2026 Flexarion — studio fictif</copyright>
-    <lastBuildDate>Fri, 13 Nov 2026 08:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 08:00:00 +0000</lastBuildDate>
     <image>
       <url>https://flexarion-studio.github.io/assets/img/logo-flexarion.png</url>
       <title>Devlog Flexarion</title>
       <link>https://flexarion-studio.github.io/devlog/</link>
     </image>
+    <item>
+      <title>Raymarching d'une nébuleuse : les bases, avec un exemple de shader</title>
+      <link>https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/</link>
+      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/</guid>
+      <pubDate>Tue, 17 Nov 2026 08:00:00 +0000</pubDate>
+      <dc:creator>Yanis Belkacem</dc:creator>
+      <category>Devlog #4</category>
+      <description>Rayon, densité, loi de Beer-Lambert et accumulation : un tutoriel GLSL pas à pas pour coder une nébuleuse volumétrique, avec un shader complet à copier.</description>
+    </item>
+    <item>
+      <title>La logique ternaire expliquée par un jeu de hacking</title>
+      <link>https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/</link>
+      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/</guid>
+      <pubDate>Tue, 17 Nov 2026 08:00:00 +0000</pubDate>
+      <dc:creator>Camille Roux</dc:creator>
+      <category>Devlog #3</category>
+      <description>Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.</description>
+    </item>
     <item>
       <title>Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image</title>
       <link>https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/</link>
@@ -29,7 +47,7 @@
       <pubDate>Fri, 13 Nov 2026 08:00:00 +0000</pubDate>
       <dc:creator>Camille Roux</dc:creator>
       <category>Devlog #1</category>
-      <description>Machine à états, IA utilitaire puis mémoire d'exploits :trois versions pour créer des ennemis aliens qui apprennent de vos attaques.</description>
+      <description>Machine à états, IA utilitaire puis mémoire d'exploits : trois versions pour créer des ennemis aliens qui apprennent de vos attaques.</description>
     </item>
   </channel>
 </rss>
