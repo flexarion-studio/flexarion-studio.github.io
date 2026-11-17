@@ -1,0 +1,35 @@
+/* PROJET */
+Flexarion est un studio de jeux vidéo FICTIF, imaginé pour un projet pédagogique
+de communication et de référencement du BUT Informatique (IUT d'Aix-Marseille).
+
+/* ÉQUIPE (réelle) */
+Réalisation du site : Adam MANKAI, Gabriel GOUIN, Mattéo YANNI
+Formation : BUT Informatique, IUT d'Aix-Marseille
+Localisation : Aix-en-Provence, France
+
+/* ÉQUIPE DU STUDIO (personnages fictifs) */
+Direction créative & game design : Léa Marchetti
+Programmation moteur & rendu : Yanis Belkacem
+Systèmes embarqués & design du hacking : Camille Roux
+
+/* SITE */
+Dernière mise à jour : 2026/11/17
+Langue : français
+Standards : HTML5, CSS3, JSON-LD (schema.org), RSS 2.0, IndexNow
+Composants : aucun framework, aucune dépendance JavaScript
+Polices : IBM Plex Sans, IBM Plex Mono
+Hébergement : GitHub Pages
+Contact : https://flexarion-studio.github.io/contact/
+
+/* ------------------------------------------------------------------ */
+/* [ANCRE-7 // TRANSMISSION INTERCEPTÉE // SEGMENT 12]                 */
+/*                                                                    */
+/* Sorel, si tu lis ceci, c'est que tu as trouvé le canal humain.      */
+/* Les Gardiens ne lisent que leurs consignes de patrouille.           */
+/* Les auditeurs, eux, commencent toujours par la politique de         */
+/* sécurité du système qu'ils inspectent :                             */
+/*                                                                    */
+/*     /.well-known/security.txt                                      */
+/*                                                                    */
+/* (Jeu de piste fictif. Aucune vraie donnée n'est cachée sur ce site.) */
+/* ------------------------------------------------------------------ */

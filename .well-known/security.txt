@@ -1,0 +1,26 @@
+# security.txt — Flexarion (RFC 9116)
+#
+# Flexarion est un studio de jeux vidéo FICTIF, créé pour un projet pédagogique du
+# BUT Informatique (IUT d'Aix-Marseille). Ce site est statique (GitHub Pages) : il ne
+# stocke aucun compte ni aucune donnée personnelle. Le formulaire de contact est
+# traité par un service tiers (Formspree).
+#
+# Si vous pensez avoir trouvé une vraie faille sur ce site, merci de la signaler via
+# le formulaire de contact ci-dessous. Il n'y a pas de programme de bug bounty.
+
+Contact: https://flexarion-studio.github.io/contact/
+Expires: 2027-11-17T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://flexarion-studio.github.io/.well-known/security.txt
+Policy: https://flexarion-studio.github.io/mentions-legales/
+
+# ------------------------------------------------------------------
+# [ANCRE-7 // JOURNAL D'AUDIT // ENTRÉE 0x4A30]
+# Politique de la Vesper, telle que je la comprends :
+#   1. Les Gardiens obéissent à leurs consignes, sans exception.
+#   2. Ce qu'on leur interdit de regarder, ils ne le regardent jamais.
+# J'ai donc caché mon journal là où leurs consignes leur disent
+# de ne pas aller. Lis les consignes des robots : /robots.txt
+#   — I. Sorel
+# (Jeu de piste fictif. Rien de réel n'est caché ici.)
+# ------------------------------------------------------------------

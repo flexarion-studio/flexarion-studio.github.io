@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ancre-7 : journal d'audit d'Ilya Sorel</title>
+<meta name="description" content="Page cachée d'un jeu de piste autour de Vesper Protocol (studio fictif Flexarion).">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Flexarion">
+<meta name="theme-color" content="#f1eee6">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../" aria-label="Flexarion, retour à l'accueil">
+      <img src="../assets/img/logo-flexarion.svg" alt="Logo du studio Flexarion" width="36" height="36">
+      <span>FLEXARION</span>
+    </a>
+    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../">Accueil</a></li><li><a href="../studio/">Le studio</a></li><li><a href="../vesper-protocol/">Le jeu</a></li><li><a href="../codex/">Codex</a></li><li><a href="../devlog/">Devlog</a></li><li><a href="../contact/">Contact & presse</a></li></ul></nav>
+  </div>
+</header>
+<main id="contenu">
+
+<article class="wrap section prose">
+  <header>
+    <p class="kicker">Ancre-7 · journal d'audit · accès restreint</p>
+    <h1>Journal d'Ilya Sorel : la porte 0x4A30</h1>
+    <p class="lead">Vous avez suivi la piste jusqu'au relais. Ce journal n'est pas référencé, et les Gardiens n'y
+    viennent jamais. Il reste une porte à ouvrir.</p>
+  </header>
+
+  <h2>Entrées du journal</h2>
+<pre><code>[cycle 112] Segment 12 atteint. La porte 0x4A30 refuse mes patchs.
+[cycle 113] Les Gardiens ont publié un correctif contre ma dernière méthode.
+            Je change d'approche : je lis le code au lieu de le forcer.
+[cycle 114] La serrure attend trois valeurs, en décimal, dans l'ordre.
+            Elle les calcule à partir de trois registres ternaires.
+[cycle 115] Ancre-7 me demande de laisser la solution à qui viendra après moi.
+            Voilà : à toi de jouer.</code></pre>
+
+  <h2>Les registres de la porte</h2>
+  <p>Rappel : en ternaire équilibré, chaque trit vaut −1, 0 ou +1, multiplié par 9, 3 puis 1 en partant de la gauche.
+  NEG inverse chaque trit.</p>
+  <table class="facts">
+    <thead><tr><th scope="col">Registre</th><th scope="col">Opération</th><th scope="col">Valeur attendue</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">R0</th><td><code data-r="+-0">+−0</code></td><td>sa valeur décimale</td></tr>
+      <tr><th scope="row">R1</th><td><code data-r="-0+" data-neg="1">NEG(−0+)</code></td><td>sa valeur décimale</td></tr>
+      <tr><th scope="row">R2</th><td><code data-r="++-">++−</code></td><td>sa valeur décimale</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Injecter le code</h2>
+  <form class="contact-form" id="porte" autocomplete="off" novalidate>
+    <label for="code">Code d'accès (trois nombres, par exemple 1-2-3)</label>
+    <input id="code" name="code" type="text" inputmode="numeric" aria-describedby="porte-etat" required>
+    <button class="btn" type="submit">Injecter le patch</button>
+  </form>
+  <p id="porte-etat" class="meta" role="status" aria-live="polite"></p>
+
+  <aside class="callout" id="porte-ouverte" hidden>
+    <h2>ACCÈS ACCORDÉ</h2>
+    <p>La porte 0x4A30 s'ouvre. Au fond du sas, un registre clignote :</p>
+    <p><strong><code>VSP-7TRIT-4A30</code></strong></p>
+    <p><strong>Ce code de bêta est fictif</strong> : il n'ouvre aucun accès, nulle part. Il prouve seulement que vous
+    avez résolu le jeu de piste. Montrez-le avec le mot-dièse #vesperprotocol, puis essayez la
+    <a href="https://studio-flexarion.itch.io/vesper-protocol">démo de Vesper Protocol</a>.</p>
+  </aside>
+
+  <p class="meta">Page cachée d'un jeu de piste. Flexarion est un studio fictif (projet pédagogique BUT Informatique) ;
+  aucune donnée réelle ou sensible n'est présente sur ce site. <a href="../">Retour à l'accueil</a>.</p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">FLEXARION</p>
+      <p>Studio indépendant de jeux vidéo de science-fiction<br>Aix-en-Provence (13100), France</p>
+    </div>
+    <nav aria-label="Liens du pied de page">
+      <ul>
+        <li><a href="../studio/">Le studio Flexarion</a></li>
+        <li><a href="../vesper-protocol/">Vesper Protocol</a></li>
+        <li><a href="../codex/">Codex de l'univers</a></li>
+        <li><a href="../devlog/">Devlog</a></li>
+        <li><a href="../presskit/">Presskit</a></li>
+        <li><a href="../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../mentions-legales/">Mentions légales</a></li>
+        <li><a href="../feed.xml">Flux RSS du devlog</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.<br>Site réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.</p>
+</footer>
+<script>
+(function () {
+  var T = { '+': 1, '0': 0, '-': -1 };
+  function val(s, neg) { var v = 0; for (var i = 0; i < s.length; i++) v = v * 3 + T[s[i]] * (neg ? -1 : 1); return v; }
+  var attendu = Array.prototype.map.call(document.querySelectorAll('code[data-r]'), function (c) { return val(c.dataset.r, c.dataset.neg); });
+  var form = document.getElementById('porte'), etat = document.getElementById('porte-etat'), ok = document.getElementById('porte-ouverte');
+  var essais = 0;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var n = (document.getElementById('code').value.match(/\d+/g) || []).map(Number);
+    essais++;
+    if (n.length === 3 && n.every(function (x, i) { return x === attendu[i]; })) {
+      etat.textContent = 'Patch accepté. La porte 0x4A30 s\u2019ouvre.';
+      ok.hidden = false; ok.querySelector('h2').setAttribute('tabindex', '-1'); ok.querySelector('h2').focus();
+    } else if (n.length !== 3) {
+      etat.textContent = 'La serrure attend exactement trois nombres.';
+    } else {
+      var juste = n.filter(function (x, i) { return x === attendu[i]; }).length;
+      etat.textContent = 'Patch rejeté (' + juste + ' valeur(s) correcte(s) sur 3).' + (essais >= 3 ? ' Indice : +−0 = 9 − 3 + 0.' : '');
+    }
+  });
+})();
+</script>
+</body>
+</html>
