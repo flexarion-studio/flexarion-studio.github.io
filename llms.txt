@@ -11,6 +11,7 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 - [Accueil](https://flexarion-studio.github.io/): présentation du studio Flexarion et de Vesper Protocol
 - [Le studio](https://flexarion-studio.github.io/studio/): histoire (game jam de 2023), équipe fondatrice et ancrage à Aix-en-Provence
 - [Vesper Protocol](https://flexarion-studio.github.io/vesper-protocol/): univers, mécaniques de jeu, fiche technique et bêta
+- [Jouer à Vesper Protocol en ligne](https://flexarion-studio.github.io/jouer/): la démo complète dans le navigateur (apesanteur, Gardiens, consoles de piratage, boss), gratuite, environ 20 minutes
 - [Démo jouable dans le navigateur](https://flexarion-studio.github.io/demo/): trois puzzles courts de logique ternaire, accessibles au clavier
 - [Presskit](https://flexarion-studio.github.io/presskit/): fact sheet, descriptions, visuels et vidéo à télécharger, contact presse
 - [Ressources gratuites](https://flexarion-studio.github.io/ressources/): fonds d'écran (jusqu'à 4K), glyphes ternaires en SVG et mémo PDF sur la logique ternaire, sous licence CC BY-NC 4.0
