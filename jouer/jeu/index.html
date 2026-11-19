@@ -2,1901 +2,300 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vesper Protocol — démo jouable | Flexarion</title>
-<meta name="description" content="Jouez gratuitement à la démo de Vesper Protocol : exploration en apesanteur, infiltration et piratage de firmware alien en logique ternaire. Un jeu de hard science-fiction du studio indépendant Flexarion (Aix-en-Provence).">
-<meta name="author" content="Flexarion">
-<meta name="robots" content="index,follow">
-<meta name="theme-color" content="#05070d">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Vesper : Dérive — mini-jeu | Flexarion</title>
+<meta name="description" content="Vesper : Dérive, le mini-jeu gratuit de l'univers Vesper Protocol. Une touche : accrochez votre câble, envolez-vous, allez le plus loin possible.">
 <link rel="canonical" href="https://flexarion-studio.github.io/jouer/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Flexarion">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="Vesper Protocol — démo jouable gratuite (hard SF, hacking, apesanteur)">
-<meta property="og:description" content="On ne tire pas sur les aliens : on pirate leur code. Traversez la Vesper en apesanteur, déjouez des Gardiens qui apprennent de vos exploits et réécrivez leur firmware.">
-<meta property="og:url" content="https://flexarion-studio.github.io/jouer/">
-<meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vesper Protocol — démo jouable gratuite">
-<meta name="twitter:description" content="Exploration en apesanteur, infiltration et piratage en logique ternaire. Un jeu Flexarion.">
-<meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoGame","@id":"https://flexarion-studio.github.io/vesper-protocol/#jeu","name":"Vesper Protocol","alternateName":"Vesper Protocol — démo jouable","url":"https://flexarion-studio.github.io/vesper-protocol/","sameAs":["https://studio-flexarion.itch.io/vesper-protocol"],"image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","description":"Jeu de hard science-fiction en 2D : exploration en apesanteur de la Vesper, mégastructure alien en orbite autour d'une étoile mourante, infiltration et piratage de firmware en logique ternaire.","genre":["Science-fiction","Puzzle","Infiltration","Exploration"],"keywords":"jeu de hacking, hard SF, apesanteur, logique ternaire, rétro-ingénierie, démo gratuite, jeu indépendant, Aix-en-Provence","softwareVersion":"0.5.0-beta","gamePlatform":["PC","Navigateur web"],"operatingSystem":"Windows, Linux, navigateur","applicationCategory":"Game","playMode":"SinglePlayer","inLanguage":"fr","isAccessibleForFree":true,"character":{"@type":"Person","name":"Ilya Sorel"},"author":{"@type":"Organization","@id":"https://flexarion-studio.github.io/#organisation","name":"Flexarion","url":"https://flexarion-studio.github.io/"},"publisher":{"@type":"Organization","@id":"https://flexarion-studio.github.io/#organisation","name":"Flexarion","url":"https://flexarion-studio.github.io/"},"countryOfOrigin":"FR"}
-</script>
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#05070d">
 <style>
-:root{--bg:#05070d;--panel:rgba(11,17,30,.88);--line:#1f2a40;--line2:#2a3858;--ink:#e6edf6;--dim:#8292ae;--faint:#4f5f80;--cyan:#3fe0d0;--amber:#ffb347;--red:#ff6a55;--violet:#9d8cff;--mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,"DejaVu Sans Mono",Menlo,monospace}
-*{box-sizing:border-box}*{scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
-html,body{margin:0;height:100%;background:#000;color:var(--ink);font:14px/1.5 var(--mono);overflow:hidden;user-select:none;-webkit-font-smoothing:antialiased}
-body{display:grid;place-items:center}
-canvas#cv{display:block;cursor:crosshair;background:var(--bg)}
-button{font:inherit;color:inherit;cursor:pointer}
-a{color:var(--cyan);text-underline-offset:3px}a:hover{color:var(--amber)}
-kbd{font:inherit;font-size:11px;border:1px solid var(--line2);padding:0 5px;color:var(--ink);background:#0d1424;border-radius:3px}
-.hidden{display:none!important}.app-only{display:none!important}html.is-app .app-only{display:inline-flex!important}html.is-app .web-only{display:none!important}
-.btn{background:transparent;border:1px solid var(--cyan);color:var(--cyan);padding:11px 20px;letter-spacing:.08em;text-transform:uppercase;font-size:13px;transition:background .15s,color .15s;display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px}
-.btn small{font-size:10.5px;letter-spacing:.04em;text-transform:none;opacity:.75}
-.btn:hover{background:var(--cyan);color:var(--bg)}.btn.ghost{border-color:var(--line2);color:var(--dim)}.btn.ghost:hover{background:var(--line2);color:var(--ink)}
-.btn.amber{border-color:var(--amber);color:var(--amber)}.btn.amber:hover{background:var(--amber);color:var(--bg)}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-/* ---------- écrans ---------- */
-.screen{position:fixed;inset:0;display:none;z-index:20}.screen.on{display:flex}
-.modalbg{background:rgba(3,5,10,.72);align-items:center;justify-content:center;padding:16px}
-.modal{background:#0b111e;border:1px solid var(--line2);border-radius:16px;max-width:720px;width:100%;padding:28px 30px;max-height:100%;overflow:auto;user-select:text}
-.modal h2{margin:0 0 10px;font-size:24px;letter-spacing:.06em}.modal h3{font-size:12.5px;color:var(--amber);margin:18px 0 6px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
-.modal p,.modal li{color:var(--dim)}.modal b{color:var(--ink);font-weight:500}.modal ul{padding-left:18px;margin:6px 0}
-.kicker{color:var(--amber);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 8px}
-#title{flex-direction:column;justify-content:space-between;padding:4vh 6vw;pointer-events:none}#title>*{pointer-events:auto}
-.t-top{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.16em;color:var(--dim)}.t-top b{color:var(--amber);font-weight:500}
-.t-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:end}
-h1.logo{font-size:clamp(34px,min(6.2vw,9vh),82px);line-height:1;margin:0;letter-spacing:.18em;font-weight:600;color:#e8eef7}
-.sub{color:var(--cyan);letter-spacing:.42em;font-size:clamp(12px,1.4vw,16px);margin:12px 0 18px}
-.tag{font-size:17px;margin:0 0 22px}.tag s{color:var(--faint)}.tag b{color:var(--amber);font-weight:600}
-.menu{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-.menu>.btn{min-width:320px}
-.links{display:grid;gap:5px;font-size:12.5px}.links a::before{content:"↗ ";color:var(--faint)}
-.fine{color:var(--faint);font-size:11px;margin:14px 0 0;max-width:62ch}
-#intro{background:rgba(2,3,7,.82);align-items:center;justify-content:center;flex-direction:column}
-#introTxt{max-width:900px;padding:0 40px;font-size:24px;line-height:1.6;color:var(--ink);white-space:pre-line;text-align:center;min-height:120px}
-#introTxt.big{font-size:64px;color:var(--amber);letter-spacing:.2em}
-.cur{display:inline-block;width:12px;height:1em;background:var(--cyan);vertical-align:-3px;margin-left:4px;animation:bl .8s steps(2) infinite}@keyframes bl{50%{opacity:0}}
-#introSkip{position:absolute;bottom:30px;right:30px}
-/* ---------- HUD (d'après les captures) ---------- */
-#hud{position:fixed;inset:0;pointer-events:none;z-index:5}
-.panel{position:absolute;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
-.tl{top:16px;left:16px;width:250px}.tr{top:16px;right:16px;width:300px}
-.big{font-size:24px;letter-spacing:.04em}.big b{font-weight:500}
-.lbl{color:var(--dim);letter-spacing:.1em;font-size:11.5px;margin-top:6px}
-.bar{height:5px;background:#1b2740;margin-top:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--cyan);transition:width .2s}
-.hbar{height:12px;background:#23304d;margin-top:6px;overflow:hidden}.hbar i{display:block;height:100%;background:var(--red);transition:width .15s}
-.warn{color:var(--red)!important;animation:bl .7s steps(2) infinite}
-.ex{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;font-size:12.5px;padding:3px 0}
-.ex .dots{color:var(--amber);letter-spacing:2px;font-size:11px}.ex.patched{color:var(--faint);text-decoration:line-through}.ex.patched .dots{color:var(--red);text-decoration:none}.ex.pending .dots{color:var(--red)}
-.caption{position:absolute;left:20px;bottom:16px;color:var(--amber);font-size:clamp(14px,1.5vw,19px);text-shadow:0 0 12px #000}
-#hFrag{position:absolute;right:20px;bottom:16px;color:var(--amber);font-size:12.5px;letter-spacing:.08em;text-shadow:0 0 10px #000}
-#prompt{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);font-size:14px;background:rgba(5,7,13,.6);padding:4px 14px;border-radius:8px;white-space:nowrap;text-shadow:0 0 8px #000}#prompt:empty{display:none}
-#radio{position:absolute;left:16px;top:150px;width:min(460px,38vw);display:flex;flex-direction:column;gap:6px}
-#radio p{margin:0;background:rgba(11,17,30,.84);border-left:2px solid var(--cyan);padding:7px 11px;font-size:13px;transition:opacity .8s}
-#radio p span{color:var(--cyan)}#radio p.gd{border-color:var(--red)}#radio p.gd span{color:var(--red)}#radio p.sys{border-color:var(--amber)}#radio p.sys span{color:var(--amber)}#radio p.me{border-color:var(--violet)}#radio p.me span{color:var(--violet)}#radio p.out{opacity:0}
-#radio em{font-style:normal}
-#notif{position:fixed;top:20px;left:50%;transform:translate(-50%,-20px);opacity:0;transition:all .3s;background:rgba(11,17,30,.92);border:1px solid var(--line2);border-radius:10px;padding:10px 18px;text-align:center;pointer-events:none;z-index:6;max-width:560px}
-#notif.on{opacity:1;transform:translate(-50%,0)}#notif b{display:block;color:var(--cyan);letter-spacing:.1em;font-weight:600}#notif span{display:block;color:var(--dim);font-size:12.5px;margin-top:2px}
-#notif.bad{border-color:var(--red)}#notif.bad b{color:var(--red)}#notif.gold{border-color:var(--amber)}#notif.gold b{color:var(--amber)}#notif.gold span{color:var(--ink);font-style:italic}
-#card{position:fixed;left:0;right:0;top:38%;text-align:center;pointer-events:none;opacity:0;transition:opacity .7s;z-index:6}
-#card.on{opacity:1}#card h2{margin:0;font-size:clamp(24px,3.2vw,44px);letter-spacing:.16em;color:var(--amber);font-weight:500;text-shadow:0 0 18px #000}#card p{margin:8px 0 0;letter-spacing:.24em;font-size:13px;text-shadow:0 0 12px #000}
-#fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity .8s;z-index:30}#fade.on{opacity:1}
-/* ---------- roue de piratage ---------- */
-#hack{position:fixed;z-index:12;transform:translate(40px,-50%);display:none;background:rgba(8,12,22,.95);border:1px solid var(--cyan);border-radius:12px;padding:12px;width:330px;box-shadow:0 0 30px rgba(63,224,208,.25)}
-#hack.on{display:block}.hw-title{color:var(--cyan);font-size:12px;letter-spacing:.08em;margin-bottom:8px}
-.hw-opt{display:grid;grid-template-columns:26px 1fr;gap:2px 8px;width:100%;text-align:left;background:#0d1526;border:1px solid var(--line2);border-radius:8px;padding:8px 10px;margin:5px 0}
-.hw-opt:hover{border-color:var(--amber)}.hw-opt kbd{grid-row:span 2;align-self:center}.hw-opt b{color:var(--amber);font-weight:600;letter-spacing:.05em}.hw-opt small{color:var(--dim);font-size:11.5px}
-.hw-opt.hw2 b{color:var(--cyan)}.hw-opt.patched{opacity:.55}.hw-opt.patched b{color:var(--red);text-decoration:line-through}.hw-foot{color:var(--faint);font-size:11px;margin-top:6px}
-/* ---------- console (d'après « capture-console-glyphes ») ---------- */
-#console{background:rgba(2,4,9,.78);align-items:center;justify-content:center;padding:16px;z-index:15}
-#conBox{background:#0b111e;border:1px solid #1f2a40;border-radius:18px;max-width:1180px;width:100%;padding:24px 28px;max-height:100%;overflow:auto}
-.c-head{color:var(--cyan);font-size:clamp(15px,1.6vw,20px);letter-spacing:.03em;margin:0 0 16px}
-.c-grid{display:grid;grid-template-columns:1fr 300px;gap:22px}
-.cols,.ln{display:grid;grid-template-columns:86px 230px 1fr;gap:12px;align-items:center;padding:7px 12px}
-.cols{font-size:10.5px;letter-spacing:.12em;color:var(--faint);padding-bottom:2px}
-.ln{cursor:pointer;border-radius:4px;font-size:15px}.ln:hover{background:rgba(63,224,208,.05)}
-.ln .ad{color:#56688f}.ln .w{color:#d3e3ff;white-space:nowrap;font-size:14px}.ln .tx{color:var(--ink);font-size:13px;line-height:1.3}.ln .tx small{display:block;color:var(--dim);font-size:11.5px}.ln .tx s{color:var(--faint)}
-.ln.bp{background:#28241f}.ln.bp .w{color:var(--amber)}.ln.sel{outline:1px solid var(--cyan);outline-offset:-1px}
-.ln.skip .w{text-decoration:line-through;color:var(--faint)}.ln.skip .tx{color:var(--amber)}.ln.patch .w,.ln.patch .tx{color:var(--amber)}.ln.end .w{color:#7f93b8}
-.ln.run{background:rgba(63,224,208,.12)}.ln.run .w{color:var(--cyan)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.chip{border:1px solid var(--line2);background:#0d1526;color:var(--ink);padding:5px 10px;font-size:12.5px;text-align:left;border-radius:6px}.chip small{display:block;color:var(--dim);font-size:10.5px}
-.chip:hover{border-color:var(--amber)}.chip.on{border-color:var(--amber);background:rgba(255,179,71,.12);color:var(--amber)}
-.hint{font-size:12.5px;color:var(--dim);border-left:2px solid var(--cyan);padding:4px 10px;margin-top:12px}.hint b{color:var(--ink);font-weight:500}
-.tut{border:1px solid var(--amber);background:rgba(255,179,71,.07);border-radius:10px;padding:12px 14px;margin:0 0 14px;font-size:13.5px;line-height:1.6}.tut b{color:var(--amber)}
-.glow{outline:2px solid var(--amber)!important;outline-offset:-2px;animation:gl .9s ease-in-out infinite alternate}@keyframes gl{to{box-shadow:0 0 16px rgba(255,179,71,.55)}}
-.side{border:1px solid #1f2a40;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:15px}
-.side .k{color:var(--dim);letter-spacing:.06em;margin-top:6px;font-size:13px}.gauges{display:grid;gap:4px;color:var(--ink);font-size:13px}
-.tgrid{display:grid;grid-template-columns:repeat(var(--c),52px);gap:6px}
-.tgrid i{font-style:normal;height:52px;display:grid;place-items:center;font-size:24px;font-weight:700;border-radius:6px;border:1px solid var(--line2);background:#0d1526;transition:transform .2s}
-.tgrid .tp{color:var(--cyan);border-color:rgba(63,224,208,.5)}.tgrid .tm{color:var(--amber);border-color:rgba(255,179,71,.5)}.tgrid .tz{color:#7c8aa8}
-.tgrid.key i{opacity:.85;height:40px;font-size:19px}.tgrid.key{grid-template-columns:repeat(var(--c),40px)}
-.tgrid.flip i{animation:fl .35s}@keyframes fl{0%{transform:rotateX(90deg)}100%{transform:none}}
-.tgrid.win i{background:rgba(63,224,208,.18);border-color:var(--cyan);animation:wi .5s}@keyframes wi{50%{transform:scale(1.12)}}
-.tgrid i.bad{border-color:var(--red);box-shadow:0 0 0 2px rgba(255,106,85,.4) inset;animation:bl .6s steps(2) 3}
-.act{background:none;border:0;text-align:left;padding:3px 0;color:var(--dim);font-size:15px;letter-spacing:.03em}.act:hover{color:var(--ink)}.act.on{color:var(--cyan)}.act:disabled{opacity:.35;cursor:default}
-.act.small{font-size:12px}.side-low{display:flex;justify-content:space-between;margin-top:8px}
-.inj{background:none;border:1px solid var(--amber);color:var(--amber);font-size:16px;letter-spacing:.06em;padding:8px;border-radius:8px;margin-top:6px}.inj:hover{background:var(--amber);color:var(--bg)}.inj:disabled{opacity:.4}
-.c-foot{margin-top:12px;min-height:22px;font-size:13px;color:var(--dim)}.c-foot.ok{color:var(--cyan)}.c-foot.bad{color:var(--red)}
-/* ---------- fin ---------- */
-.stats{display:grid;grid-template-columns:1fr auto;gap:4px 24px;margin:12px 0;font-size:13.5px}.stats span{color:var(--dim)}.stats b{text-align:right;font-weight:500}
-.grade{float:right;font-size:56px;color:var(--amber);line-height:1}
-.opt{display:grid;grid-template-columns:1fr 200px;align-items:center;gap:12px;margin:10px 0;color:var(--dim)}
-input[type=range]{accent-color:var(--cyan)}
-.choice{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.choice .cbox{border:1px solid var(--line2);border-radius:12px;padding:16px}.choice .cbox h3{margin-top:0}
-@media (max-width:900px){.t-grid{grid-template-columns:1fr}.c-grid{grid-template-columns:1fr}.choice{grid-template-columns:1fr}}
+:root{--cyan:#3fe0d0;--amber:#ffb347;--red:#ff6a55;--ink:#e6edf6;--dim:#8292ae;--faint:#4f5f80;--mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,"DejaVu Sans Mono",Menlo,monospace}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#05070d;color:var(--ink);font:14px/1.45 var(--mono);overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;-webkit-tap-highlight-color:transparent}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+.ov{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(3,5,10,.55)}.ov.on{display:flex}
+.card{background:rgba(9,14,26,.94);border:1px solid #2a3858;border-radius:16px;padding:22px 24px;max-width:460px;width:100%;text-align:center}
+h1{margin:0;font-size:clamp(26px,6vw,40px);letter-spacing:.16em;font-weight:700}h1 b{color:var(--cyan);font-weight:700}
+.sub{color:var(--cyan);letter-spacing:.3em;font-size:11px;margin:6px 0 14px}
+.how{color:var(--dim);margin:0 0 16px}.how b{color:var(--ink);font-weight:600}
+.btn{display:block;width:100%;margin:8px 0;padding:13px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);font:600 15px var(--mono);letter-spacing:.08em;border-radius:10px;cursor:pointer;text-decoration:none}
+.btn:hover,.btn:active{background:var(--cyan);color:#05070d}.btn.amber{border-color:var(--amber);color:var(--amber)}.btn.amber:hover{background:var(--amber);color:#05070d}
+.btn small{display:block;font-weight:400;font-size:11px;opacity:.8;letter-spacing:.02em}
+.ghost{border-color:#2a3858;color:var(--dim)}.ghost:hover{background:#2a3858;color:var(--ink)}
+.row{display:flex;gap:8px}.row .btn{flex:1}
+.score{font-size:54px;font-weight:700;color:var(--amber);line-height:1;margin:8px 0 2px}.rec{color:var(--cyan);font-weight:600;letter-spacing:.1em;min-height:20px}
+.best{color:var(--dim);font-size:12.5px;margin:4px 0 12px}
+.vp{border-top:1px solid #1f2a40;margin-top:14px;padding-top:12px;font-size:12.5px;color:var(--dim)}.vp b{color:var(--ink)}
+.vp a{color:var(--cyan)}
+#hud[hidden]{display:none!important}#hud{position:fixed;left:0;right:0;top:12px;display:flex;justify-content:space-between;padding:0 18px;pointer-events:none;font-weight:600;text-shadow:0 0 10px #000}
+#hud .s{font-size:30px;color:var(--ink)}#hud .s small{font-size:13px;color:var(--dim);margin-left:6px}#hud .c{color:var(--amber);font-size:18px;text-align:right}
+#snd{position:fixed;right:12px;bottom:12px;background:rgba(9,14,26,.8);border:1px solid #2a3858;color:var(--dim);border-radius:8px;padding:6px 10px;font:12px var(--mono);cursor:pointer;z-index:5}
 </style>
 </head>
 <body>
-<canvas id="cv" aria-label="Vesper Protocol"></canvas>
-<noscript><p style="padding:24px">Vesper Protocol nécessite JavaScript. <a href="https://flexarion-studio.github.io/vesper-protocol/">Découvrir le jeu sur le site de Flexarion</a>.</p></noscript>
+<canvas id="cv"></canvas>
+<div id="hud" hidden><div class="s" id="hS">0<small>m</small></div><div class="c" id="hC"></div></div>
+<button id="snd" aria-label="Son">SON : OUI</button>
 
-<div id="hud" class="hidden">
-  <div class="panel tl"><div class="big">O₂ <b id="hO2">100%</b></div><div class="bar"><i id="hO2bar"></i></div><div class="lbl">CHALEUR</div><div class="hbar"><i id="hHeat"></i></div><div class="lbl" id="hCool"></div></div>
-  <div class="panel tr"><div class="lbl" style="margin:0 0 4px">MÉMOIRE DES GARDIENS</div><div id="hMem"></div></div>
-  <div id="radio"></div><div id="prompt"></div>
-  <div class="caption" id="hSector"></div><div id="hFrag"></div>
-</div>
-<div id="notif"></div><div id="card"></div><div id="hack"></div><div id="fade"></div>
-<section id="console" class="screen" role="dialog" aria-label="Console de piratage"><div id="conBox"></div></section>
+<div class="ov on" id="menu"><div class="card">
+  <h1>VESPER<b> : </b>DÉRIVE</h1><div class="sub">UN MINI-JEU FLEXARION</div>
+  <p class="how"><b>Maintenez</b> (clic, doigt ou Espace) pour accrocher votre câble. <b>Relâchez</b> pour vous envoler. Allez le plus loin possible sans toucher les radiateurs ni les Gardiens.</p>
+  <button class="btn" id="bPlay">▶ JOUER<small id="bestInf"></small></button>
+  <button class="btn amber" id="bDaily">DÉFI DU JOUR<small id="bestDay"></small></button>
+  <div class="vp">Un mini-jeu dans l'univers de <b>Vesper Protocol</b>, le jeu de hacking hard SF du studio Flexarion. <a href="https://flexarion-studio.github.io/vesper-protocol/" target="_blank" rel="noopener">Découvrir le vrai jeu ↗</a></div>
+</div></div>
 
-<section id="title" class="screen">
-  <div class="t-top"><span>FLEXARION // TRANSMISSION</span><b id="buildTag"></b></div>
-  <div class="t-grid">
-    <div>
-      <h1 class="logo">VESPER PROTOCOL</h1>
-      <p class="sub">UN JEU FLEXARION</p>
-      <p class="tag"><s>On ne tire pas sur les aliens.</s> <b>On pirate leur code.</b></p>
-      <div class="menu">
-        <button class="btn" id="bNew">▶ Nouvelle partie <small>démo · environ 20 minutes</small></button>
-        <button class="btn hidden" id="bContinue">Continuer</button>
-        <div class="row"><button class="btn ghost" id="bHow">Commandes</button><button class="btn ghost" id="bOpt">Options</button><button class="btn ghost" id="bCredits">Crédits</button><button class="btn ghost app-only bQuit">Quitter</button></div>
-      </div>
-    </div>
-    <div>
-      <nav class="links" aria-label="Liens Flexarion">
-        <a href="https://flexarion-studio.github.io/" target="_blank" rel="noopener">Site officiel de Flexarion Studio</a>
-        <a href="https://flexarion-studio.github.io/vesper-protocol/" target="_blank" rel="noopener">L'univers complet de Vesper Protocol</a>
-        <a href="https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/" target="_blank" rel="noopener">Devlog : l'IA des Gardiens qui patchent vos exploits</a>
-        <a href="https://flexarion-studio.github.io/contact/" target="_blank" rel="noopener">Rejoindre la bêta fermée</a>
-      </nav>
-      <p class="fine">Démo bêta : 3 secteurs, environ 20 minutes. Souris + clavier recommandés (manette prise en charge). Jeu complet prévu sur PC (Windows, Linux), accès anticipé prévu en 2027. Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.</p>
-    </div>
-  </div>
-</section>
-
-<section id="intro" class="screen"><div id="introTxt"></div><button class="btn ghost" id="introSkip">Passer ›</button></section>
-
-<section id="help" class="screen modalbg"><div class="modal">
-  <h2>Commandes</h2>
-  <h3>Se déplacer en apesanteur</h3>
-  <ul><li><b>Souris</b> : viser. <b>Espace</b> contre une paroi : se propulser vers la visée (gratuit, le plus efficace).</li>
-  <li><b>Clic gauche maintenu</b> : câble d'ancrage. Il accroche toutes les surfaces et vous tire ; relâchez pour garder l'élan et vous balancer.</li>
-  <li><kbd>Z Q S D</kbd> / <kbd>W A S D</kbd> / flèches : propulseurs (consomment de l'O₂). <kbd>Maj</kbd> : freiner.</li></ul>
-  <h3>Survivre</h3>
-  <ul><li><b>O₂</b> : baisse en continu. Stations d'oxygène (<kbd>E</kbd>, elles sauvegardent) et cartouches cyan.</li>
-  <li><b>Chaleur</b> : rayons de Tau-Héliade, radiateurs aliens. <kbd>R</kbd> : purger (cellules violettes).</li></ul>
-  <h3>Gardiens</h3>
-  <ul><li>Restez hors de leur cône. Approchez par derrière : <kbd>F</kbd> ou <b>clic droit</b> pour pirater, puis <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd>.</li>
-  <li><b>Débordement</b> : il plante. <b>Concurrence</b> : il regarde derrière lui. <b>Clé en dur</b> : il vous obéit et ouvre les portails des Gardiens.</li>
-  <li>Ils apprennent : trop d'utilisations d'une même faille dans un secteur, et elle est corrigée.</li></ul>
-  <h3>Consoles</h3>
-  <ul><li><kbd>E</kbd> près d'une console. Le firmware transforme la grille de glyphes ligne par ligne : corrigez-le pour que la mémoire finale égale la CLÉ.</li></ul>
-  <p>Manette : stick gauche (poussées), stick droit (visée), A (se propulser), gâchette droite (câble), X (interagir), Y (pirater), B (purger).</p>
-  <div class="row" style="margin-top:14px"><button class="btn" data-close="help">Compris</button></div>
-</div></section>
-
-<section id="options" class="screen modalbg"><div class="modal">
-  <h2>Options</h2>
-  <label class="opt">Musique <input type="range" id="oMusic" min="0" max="100"></label>
-  <label class="opt">Effets sonores <input type="range" id="oSfx" min="0" max="100"></label>
-  <label class="opt">Tremblements d'écran <input type="checkbox" id="oShake"></label>
-  <p class="app-only" style="display:none">F11 : plein écran.</p>
-  <div class="row" style="margin-top:14px"><button class="btn" data-close="options">Fermer</button></div>
-</div></section>
-
-<section id="credits" class="screen modalbg"><div class="modal">
-  <h2>Crédits</h2>
-  <p><b>Vesper Protocol</b> — un jeu Flexarion (studio indépendant fictif, Aix-en-Provence).</p>
-  <p>Direction créative & game design : Léa Marchetti · Programmation moteur & rendu : Yanis Belkacem · Systèmes embarqués & design du hacking : Camille Roux.</p>
-  <p>Projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille, réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI, avec l'aide d'une IA (code, textes, son).</p>
-  <p><a href="https://flexarion-studio.github.io/" target="_blank" rel="noopener">flexarion-studio.github.io</a></p>
-  <div class="row" style="margin-top:14px"><button class="btn" data-close="credits">Fermer</button></div>
-</div></section>
-
-<section id="pause" class="screen modalbg"><div class="modal">
-  <h2>Pause</h2><p>La Vesper attend. Tau-Héliade, elle, n'attend personne.</p>
-  <div class="row"><button class="btn" id="bResume">Reprendre</button><button class="btn ghost" id="bPOpt">Options</button><button class="btn ghost" id="bPHelp">Commandes</button><button class="btn ghost app-only" id="bFull">Plein écran (F11)</button><button class="btn ghost" id="bMenu">Menu principal</button><button class="btn ghost app-only bQuit">Quitter le jeu</button></div>
-  <h3>Flexarion</h3>
-  <nav class="links"><a href="https://flexarion-studio.github.io/" target="_blank" rel="noopener">Site officiel de Flexarion Studio</a><a href="https://flexarion-studio.github.io/devlog/" target="_blank" rel="noopener">Tous les devlogs techniques de Vesper Protocol</a><a href="https://flexarion-studio.github.io/contact/" target="_blank" rel="noopener">Kit presse et bêta fermée</a></nav>
-</div></section>
-
-<section id="dead" class="screen modalbg"><div class="modal">
-  <p class="kicker">Liaison perdue</p><h2 id="deadTitle"></h2><p id="deadTxt"></p>
-  <div class="row"><button class="btn" id="bRetry">Reprendre au dernier point</button></div>
-</div></section>
-
-<section id="choice" class="screen modalbg"><div class="modal">
-  <p class="kicker">Relais d'énergie 2-C · accès obtenu</p><h2>Que faites-vous du relais ?</h2>
-  <p>La Vesper retient tout. Ce choix change la suite de la démo et sa fin.</p>
-  <div class="choice">
-    <div class="cbox"><h3 style="color:var(--cyan)">Réparer</h3><p>La section se rallume, les radiateurs se calment. Les Gardiens vous tolèrent mieux.</p><button class="btn" id="bChR">Réparer le relais</button></div>
-    <div class="cbox"><h3>Piller</h3><p>+25 % d'oxygène maximum et purges rechargées. Mais les Gardiens deviennent plus vigilants, et un de plus patrouille.</p><button class="btn amber" id="bChP">Piller le relais</button></div>
-  </div>
-</div></section>
-
-<section id="end" class="screen modalbg"><div class="modal">
-  <span class="grade" id="endGrade"></span><p class="kicker">Fin de la démo</p><h2>Il reste trois orbites.</h2>
-  <p>Le signal de la Vesper est une liste de réparations, et votre nom y figure désormais. La suite, l'anneau entier et les quatre fins sont dans le jeu complet : 10 à 14 heures, accès anticipé prévu en 2027.</p>
-  <div class="stats" id="endStats"></div>
-  <div class="row"><a class="btn amber" href="https://flexarion-studio.github.io/contact/" target="_blank" rel="noopener">Rejoindre la bêta fermée</a><a class="btn" href="https://flexarion-studio.github.io/vesper-protocol/" target="_blank" rel="noopener">Suivre Vesper Protocol</a></div>
-  <h3>Aller plus loin</h3>
-  <nav class="links"><a href="https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/" target="_blank" rel="noopener">Comment nous avons conçu l'IA des Gardiens (devlog)</a><a href="https://flexarion-studio.github.io/" target="_blank" rel="noopener">Flexarion, studio indépendant à Aix-en-Provence</a></nav>
-  <div class="row" style="margin-top:16px"><button class="btn ghost" id="bEndReplay">Rejouer</button><button class="btn ghost" id="bEndMenu">Menu principal</button></div>
-</div></section>
+<div class="ov" id="over"><div class="card">
+  <div style="color:var(--dim);letter-spacing:.14em;font-size:12px" id="oWhy">SURCHAUFFE</div>
+  <div class="score" id="oScore">0 m</div><div class="rec" id="oRec"></div>
+  <div class="best" id="oBest"></div>
+  <div class="row"><button class="btn" id="bAgain">REJOUER<small>Espace / toucher</small></button><button class="btn ghost" id="bShare">PARTAGER<small id="shareState">mon score</small></button></div>
+  <button class="btn ghost" id="bMenu">Menu</button>
+  <div class="vp">Dans <b>Vesper Protocol</b>, Ilya Sorel traverse la Vesper en apesanteur et pirate le firmware des Gardiens. <a href="https://flexarion-studio.github.io/vesper-protocol/" target="_blank" rel="noopener">Voir le jeu</a> · <a href="https://flexarion-studio.github.io/contact/" target="_blank" rel="noopener">Rejoindre la bêta fermée</a></div>
+</div></div>
 
 <script>
-/* ---- 00-util.js ---- */
 'use strict';
 /* =====================================================================
-   VESPER PROTOCOL — démo · Flexarion
-   Outils communs
+   VESPER : DÉRIVE — mini-jeu à une touche, univers Vesper Protocol (Flexarion)
+   Dans l'anneau en rotation, la force centrifuge fait office de gravité :
+   on s'accroche aux anneaux d'ancrage, on se balance, on s'envole.
    ===================================================================== */
-const VERSION = '0.5.0';
-const TAU = Math.PI * 2;
-const T = 40;                                   // taille d'une tuile (px monde)
-const VW = 1280, VH = 720;                      // vue logique (zoom de la caméra)
-const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
-const lerp = (a, b, t) => a + (b - a) * t;
-const dist = (ax, ay, bx, by) => Math.hypot(bx - ax, by - ay);
-const angDiff = (a, b) => { let d = (b - a) % TAU; if (d > Math.PI) d -= TAU; if (d < -Math.PI) d += TAU; return d; };
-const ease = {
-  out: (t) => 1 - (1 - t) ** 3,
-  inOut: (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2),
-  outBack: (t) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * (t - 1) ** 3 + c1 * (t - 1) ** 2; },
-};
-function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-const hash2 = (x, y, s = 1) => { let h = (x * 374761393 + y * 668265263 + s * 1442695041) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
-const rand = mulberry32(2231);
-const rnd = (a = 0, b = 1) => a + (b - a) * rand();
 const $ = (s) => document.querySelector(s);
-const $$ = (s) => document.querySelectorAll(s);
-const store = {
-  get(k, d) { try { const v = localStorage.getItem('vesper.' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
-  set(k, v) { try { localStorage.setItem('vesper.' + k, JSON.stringify(v)); } catch (e) {} },
-  del(k) { try { localStorage.removeItem('vesper.' + k); } catch (e) {} },
-};
-const fmtTime = (s) => { s = Math.max(0, Math.floor(s)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
-const COL = {
-  bg: '#05070d', cyan: '#3fe0d0', amber: '#ffb347', red: '#ff6a55', violet: '#9d8cff', ink: '#e6edf6', dim: '#8292ae',
-  wall: '#141c2e', wall2: '#1b2540', wallEdge: '#2c3b5e', back: '#0b1020', back2: '#0e1428',
-};
-const SETTINGS = Object.assign({ music: 0.7, sfx: 0.8, shake: true }, store.get('settings', {}));
-const saveSettings = () => store.set('settings', SETTINGS);
-
-/* ---- 01-input.js ---- */
-/* =====================================================================
-   ENTRÉES : clavier (ZQSD / WASD / flèches), souris, manette
-   ===================================================================== */
-const Input = {
-  keys: {}, pressed: {}, mouse: { x: VW / 2, y: VH / 2, down: false, pressed: false, released: false, right: false, rightPressed: false },
-  pad: null, padPrev: {}, usingPad: false, canvas: null, scale: 1, ox: 0, oy: 0,
-  init(canvas) {
-    this.canvas = canvas;
-    addEventListener('keydown', (e) => {
-      if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.code) && !(e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName))) e.preventDefault();
-      if (!this.keys[e.code]) this.pressed[e.code] = true;
-      this.keys[e.code] = true; this.usingPad = false;
-    });
-    addEventListener('keyup', (e) => { this.keys[e.code] = false; });
-    addEventListener('blur', () => { this.keys = {}; this.mouse.down = false; this.mouse.right = false; });
-    canvas.addEventListener('mousemove', (e) => this.move(e));
-    canvas.addEventListener('mousedown', (e) => {
-      this.move(e); this.usingPad = false;
-      if (e.button === 0) { this.mouse.down = true; this.mouse.pressed = true; }
-      if (e.button === 2) { this.mouse.right = true; this.mouse.rightPressed = true; }
-    });
-    addEventListener('mouseup', (e) => { if (e.button === 0) { this.mouse.down = false; this.mouse.released = true; } if (e.button === 2) this.mouse.right = false; });
-    canvas.addEventListener('contextmenu', (e) => e.preventDefault());
-  },
-  move(e) {
-    const r = this.canvas.getBoundingClientRect();
-    this.mouse.x = (e.clientX - r.left) / r.width * VW; this.mouse.y = (e.clientY - r.top) / r.height * VH;
-  },
-  poll() {
-    const pads = navigator.getGamepads ? navigator.getGamepads() : [];
-    this.pad = null;
-    for (const p of pads) if (p && p.connected) { this.pad = p; break; }
-    if (this.pad) {
-      const b = this.pad.buttons, a = this.pad.axes;
-      const any = b.some((x) => x.pressed) || a.some((v) => Math.abs(v) > 0.4);
-      if (any) this.usingPad = true;
-    }
-  },
-  btn(i) { return !!(this.pad && this.pad.buttons[i] && this.pad.buttons[i].pressed); },
-  btnPressed(i) { const now = this.btn(i); return now && !this.padPrev[i]; },
-  endFrame() {
-    this.pressed = {}; this.mouse.pressed = false; this.mouse.released = false; this.mouse.rightPressed = false;
-    if (this.pad) this.pad.buttons.forEach((b, i) => { this.padPrev[i] = b.pressed; });
-  },
-  // ---- actions de jeu (code physique : fonctionne en AZERTY comme en QWERTY)
-  thrust() {
-    let x = (this.keys.KeyD || this.keys.ArrowRight ? 1 : 0) - (this.keys.KeyA || this.keys.ArrowLeft ? 1 : 0);
-    let y = (this.keys.KeyS || this.keys.ArrowDown ? 1 : 0) - (this.keys.KeyW || this.keys.ArrowUp ? 1 : 0);
-    if (this.pad) { const a = this.pad.axes; if (Math.hypot(a[0], a[1]) > 0.22) { x = a[0]; y = a[1]; } }
-    const m = Math.hypot(x, y); return m > 1 ? [x / m, y / m] : [x, y];
-  },
-  aim(px, py) {   // px,py = position écran d'Ilya
-    if (this.usingPad && this.pad) {
-      const a = this.pad.axes; if (Math.hypot(a[2], a[3]) > 0.3) { this._padAim = Math.atan2(a[3], a[2]); }
-      else { const t = this.thrust(); if (t[0] || t[1]) this._padAim = Math.atan2(t[1], t[0]); }
-      return this._padAim ?? 0;
-    }
-    return Math.atan2(this.mouse.y - py, this.mouse.x - px);
-  },
-  grappleHeld() { return this.mouse.down || this.btn(7) || this.btn(5); },
-  grapplePressed() { return this.mouse.pressed || this.btnPressed(7) || this.btnPressed(5); },
-  kick() { return this.pressed.Space || this.btnPressed(0); },
-  interact() { return this.pressed.KeyE || this.btnPressed(2); },
-  hack() { return this.pressed.KeyF || this.mouse.rightPressed || this.btnPressed(3); },
-  purge() { return this.pressed.KeyR || this.btnPressed(1); },
-  pause() { return this.pressed.Escape || this.pressed.KeyP || this.btnPressed(9); },
-  brake() { return this.keys.ShiftLeft || this.keys.ShiftRight || this.btn(6) || this.btn(4); },
-};
-
-/* ---- 02-audio.js ---- */
-/* =====================================================================
-   AUDIO PROCÉDURAL : effets + musique générative par couches
-   (exploration / tension / alerte / boss), aucun fichier externe
-   ===================================================================== */
-const Audio = {
-  ctx: null, out: null, sfxBus: null, musBus: null, noiseBuf: null, delay: null,
-  init() {
-    if (this.ctx) { if (this.ctx.state === 'suspended') this.ctx.resume(); return; }
-    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
-    const c = this.ctx = new AC();
-    const comp = c.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 4; comp.connect(c.destination);
-    this.out = c.createGain(); this.out.gain.value = 0.9; this.out.connect(comp);
-    this.sfxBus = c.createGain(); this.sfxBus.connect(this.out);
-    this.musBus = c.createGain(); this.musBus.connect(this.out);
-    this.applyVolumes();
-    this.noiseBuf = c.createBuffer(1, c.sampleRate * 2, c.sampleRate);
-    const d = this.noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-    // écho pour l'arpège et les effets « spatiaux »
-    this.delay = c.createDelay(1.5); this.delay.delayTime.value = 0.375;
-    const fb = c.createGain(); fb.gain.value = 0.38; const df = c.createBiquadFilter(); df.type = 'lowpass'; df.frequency.value = 2400;
-    this.delay.connect(df); df.connect(fb); fb.connect(this.delay); df.connect(this.musBus);
-    this.thrustLoop = this.loop('highpass', 900, 0);
-    this.heatLoop = this.loop('bandpass', 3400, 0);
-    Music.init();
-  },
-  applyVolumes() { if (!this.ctx) return; this.sfxBus.gain.value = SETTINGS.sfx; this.musBus.gain.value = SETTINGS.music * 0.8; },
-  loop(type, f, g) {
-    const c = this.ctx, s = c.createBufferSource(), fl = c.createBiquadFilter(), gn = c.createGain();
-    s.buffer = this.noiseBuf; s.loop = true; fl.type = type; fl.frequency.value = f; gn.gain.value = g;
-    s.connect(fl); fl.connect(gn); gn.connect(this.sfxBus); s.start(); return gn;
-  },
-  level(node, v, tc = 0.05) { if (this.ctx && node) node.gain.setTargetAtTime(v, this.ctx.currentTime, tc); },
-  tone(f, dur = 0.08, type = 'square', vol = 0.06, when = 0, f2 = null, bus = null) {
-    if (!this.ctx) return;
-    const c = this.ctx, t = c.currentTime + when, o = c.createOscillator(), g = c.createGain();
-    o.type = type; o.frequency.setValueAtTime(f, t); if (f2) o.frequency.exponentialRampToValueAtTime(Math.max(20, f2), t + dur);
-    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    o.connect(g); g.connect(bus || this.sfxBus); o.start(t); o.stop(t + dur + 0.03);
-  },
-  noise(f1, f2, dur, vol = 0.2, type = 'bandpass', when = 0, q = 1.2) {
-    if (!this.ctx) return;
-    const c = this.ctx, t = c.currentTime + when, s = c.createBufferSource(), fl = c.createBiquadFilter(), g = c.createGain();
-    s.buffer = this.noiseBuf; s.loop = true; fl.type = type; fl.Q.value = q; fl.frequency.setValueAtTime(f1, t); fl.frequency.exponentialRampToValueAtTime(Math.max(30, f2), t + dur);
-    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    s.connect(fl); fl.connect(g); g.connect(this.sfxBus); s.start(t, Math.random()); s.stop(t + dur + 0.05);
-  },
-  // ---- effets
-  click() { this.tone(1100, 0.03, 'triangle', 0.05); },
-  hover() { this.tone(1700, 0.02, 'sine', 0.025); },
-  kick() { this.tone(140, 0.16, 'sine', 0.18, 0, 55); this.noise(800, 200, 0.12, 0.12, 'lowpass'); },
-  bump(v) { this.tone(90, 0.12, 'sine', clamp(v / 900, 0.02, 0.14), 0, 50); },
-  grappleFire() { this.noise(3000, 900, 0.12, 0.08, 'bandpass'); this.tone(900, 0.08, 'square', 0.03, 0, 1500); },
-  grappleHit() { this.tone(260, 0.1, 'square', 0.07); this.tone(520, 0.12, 'triangle', 0.05, 0.03); },
-  grappleMiss() { this.tone(300, 0.1, 'triangle', 0.03, 0, 180); },
-  beep(f = 1320) { this.tone(f, 0.06, 'square', 0.04); },
-  flip(i = 0) { this.tone(660 + i * 70, 0.05, 'triangle', 0.06); this.noise(5000, 2000, 0.04, 0.04, 'highpass'); },
-  step(i) { this.tone(520 + i * 90, 0.07, 'square', 0.045); },
-  pickup() { this.tone(880, 0.07, 'triangle', 0.08); this.tone(1320, 0.12, 'triangle', 0.07, 0.06); },
-  fragment() { [784, 988, 1175, 1568].forEach((f, i) => this.tone(f, 0.25, 'sine', 0.06, i * 0.09)); },
-  checkpoint() { [523, 784, 1047].forEach((f, i) => this.tone(f, 0.22, 'triangle', 0.06, i * 0.07)); },
-  door() { this.noise(180, 1200, 1.0, 0.22); this.tone(70, 0.8, 'sawtooth', 0.05, 0, 140); },
-  success() { [523, 659, 784, 1047, 1319].forEach((f, i) => this.tone(f, 0.2, 'triangle', 0.08, i * 0.07)); this.noise(6000, 900, 0.5, 0.06, 'highpass', 0.3); },
-  fail() { this.tone(180, 0.3, 'sawtooth', 0.08, 0, 80); this.tone(185, 0.3, 'square', 0.04, 0.02, 85); },
-  suspicion() { this.tone(700, 0.12, 'sine', 0.05, 0, 1100); },
-  detect() { this.tone(880, 0.14, 'square', 0.07); this.tone(1320, 0.18, 'square', 0.06, 0.12); this.noise(500, 2500, 0.4, 0.08); },
-  scanHit() { for (let i = 0; i < 4; i++) this.tone(i % 2 ? 660 : 990, 0.1, 'square', 0.07, i * 0.1); this.noise(900, 100, 0.5, 0.3, 'lowpass'); },
-  hackOpen() { this.noise(400, 3000, 0.25, 0.1); this.tone(300, 0.2, 'sine', 0.05, 0, 900); },
-  exploit(k) {
-    if (k === 0) { [1600, 1100, 700, 400].forEach((f, i) => this.tone(f, 0.07, 'square', 0.06, i * 0.04)); this.noise(4000, 200, 0.5, 0.15); }
-    if (k === 1) { this.tone(400, 0.4, 'sawtooth', 0.05, 0, 1600); this.tone(1600, 0.4, 'sawtooth', 0.04, 0.05, 400); }
-    if (k === 2) { [659, 988, 1319].forEach((f, i) => this.tone(f, 0.3, 'triangle', 0.07, i * 0.08)); }
-  },
-  rejected() { this.tone(150, 0.4, 'sawtooth', 0.09, 0, 70); this.noise(300, 120, 0.4, 0.15, 'lowpass'); },
-  patch() { this.tone(620, 0.6, 'sawtooth', 0.05, 0, 140); this.tone(310, 0.6, 'square', 0.03, 0.05, 90); },
-  alarm() { this.tone(880, 0.13, 'square', 0.05); this.tone(660, 0.13, 'square', 0.05, 0.15); },
-  low() { this.tone(330, 0.18, 'sine', 0.06); },
-  purge() { this.noise(3000, 200, 0.9, 0.22); this.tone(330, 0.2, 'sine', 0.06); },
-  death() { this.tone(400, 1.2, 'sawtooth', 0.08, 0, 40); this.noise(2000, 80, 1.4, 0.25, 'lowpass'); },
-  explosion() { this.tone(80, 0.9, 'sine', 0.25, 0, 25); this.noise(1500, 60, 1.2, 0.4, 'lowpass'); this.noise(6000, 800, 0.4, 0.1, 'highpass'); },
-  boss() { this.tone(55, 1.6, 'sawtooth', 0.12, 0, 41); this.tone(82, 1.6, 'square', 0.06, 0.1, 61); this.noise(300, 60, 1.6, 0.2, 'lowpass'); },
-  type() { this.tone(1500 + Math.random() * 400, 0.015, 'square', 0.012); },
-};
-
-const Music = {
-  mood: 'silence', target: {}, layers: {}, nextT: 0, step: 0, bpm: 96, timer: null,
-  CHORDS: [[40, 52, 55, 59, 64], [36, 48, 55, 59, 64], [33, 45, 52, 57, 60], [35, 47, 54, 57, 64]],  // Em, Cmaj7, Am, Bsus
-  MOODS: {
-    silence: { pad: 0, arp: 0, bass: 0, hat: 0, kick: 0, snare: 0 },
-    menu: { pad: 0.9, arp: 0.35, bass: 0, hat: 0, kick: 0, snare: 0 },
-    explore: { pad: 0.8, arp: 0.5, bass: 0.35, hat: 0, kick: 0, snare: 0 },
-    tension: { pad: 0.8, arp: 0.8, bass: 0.7, hat: 0.5, kick: 0, snare: 0 },
-    alert: { pad: 0.6, arp: 1, bass: 1, hat: 0.9, kick: 1, snare: 0.4 },
-    boss: { pad: 0.7, arp: 1, bass: 1, hat: 1, kick: 1, snare: 1 },
-    calm: { pad: 1, arp: 0.2, bass: 0, hat: 0, kick: 0, snare: 0 },
-  },
-  init() {
-    const c = Audio.ctx;
-    for (const k of ['pad', 'arp', 'bass', 'hat', 'kick', 'snare']) { const g = c.createGain(); g.gain.value = 0; g.connect(Audio.musBus); this.layers[k] = g; }
-    this.layers.arp.connect(Audio.delay);
-    // nappe : 4 dents de scie désaccordées dans un passe-bas qui respire
-    this.padF = c.createBiquadFilter(); this.padF.type = 'lowpass'; this.padF.frequency.value = 700; this.padF.Q.value = 0.7; this.padF.connect(this.layers.pad);
-    const lfo = c.createOscillator(), lg = c.createGain(); lfo.frequency.value = 0.06; lg.gain.value = 350; lfo.connect(lg); lg.connect(this.padF.frequency); lfo.start();
-    this.padOsc = [];
-    for (let i = 0; i < 5; i++) for (const det of [-7, 7]) {
-      const o = c.createOscillator(), g = c.createGain(); o.type = 'sawtooth'; o.detune.value = det; g.gain.value = 0.022; o.connect(g); g.connect(this.padF); o.start(); this.padOsc.push(o);
-    }
-    this.setChord(0, c.currentTime);
-    this.nextT = c.currentTime + 0.1;
-    this.timer = setInterval(() => this.schedule(), 30);
-  },
-  midi: (m) => 440 * 2 ** ((m - 69) / 12),
-  setChord(ci, t) {
-    const ch = this.CHORDS[ci % 4];
-    this.padOsc.forEach((o, i) => o.frequency.setTargetAtTime(this.midi(ch[i >> 1] + 12), t, 0.4));
-  },
-  set(mood) {
-    if (!Audio.ctx || this.mood === mood) return; this.mood = mood;
-    const m = this.MOODS[mood] || this.MOODS.explore, t = Audio.ctx.currentTime;
-    for (const k in this.layers) this.layers[k].gain.setTargetAtTime(m[k] * (k === 'pad' ? 1 : 0.9), t, mood === 'alert' ? 0.15 : 1.2);
-    this.bpm = mood === 'boss' ? 112 : mood === 'alert' ? 108 : 96;
-  },
-  schedule() {
-    const c = Audio.ctx; if (!c) return;
-    const spb = 60 / this.bpm / 2;        // croches
-    while (this.nextT < c.currentTime + 0.12) {
-      const s = this.step, t = this.nextT, bar = Math.floor(s / 8), ci = Math.floor(bar / 2) % 4, ch = this.CHORDS[ci];
-      if (s % 16 === 0) this.setChord(ci, t);
-      // arpège ternaire : motif −1 / 0 / +1 sur 3 croches contre une mesure à 4 temps
-      const deg = [1, 2, 3][s % 3] + (s % 12 >= 9 ? 1 : 0);
-      this.note(this.layers.arp, this.midi(ch[deg] + 12), t, spb * 0.9, 'triangle', 0.09);
-      if (s % 4 === 0) this.note(this.layers.bass, this.midi(ch[0]), t, spb * 3.6, 'sawtooth', 0.11, 420);
-      if (s % 2 === 1) this.hit(this.layers.hat, t, 'hat');
-      if (s % 4 === 0) this.hit(this.layers.kick, t, 'kick');
-      if (s % 8 === 4) this.hit(this.layers.snare, t, 'snare');
-      this.step++; this.nextT += spb;
-    }
-  },
-  note(bus, f, t, d, type, v, lp = 0) {
-    const c = Audio.ctx, o = c.createOscillator(), g = c.createGain();
-    o.type = type; o.frequency.value = f;
-    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
-    if (lp) { const fl = c.createBiquadFilter(); fl.type = 'lowpass'; fl.frequency.value = lp; o.connect(fl); fl.connect(g); } else o.connect(g);
-    g.connect(bus); o.start(t); o.stop(t + d + 0.05);
-  },
-  hit(bus, t, kind) {
-    const c = Audio.ctx;
-    if (kind === 'kick') { const o = c.createOscillator(), g = c.createGain(); o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.12); g.gain.setValueAtTime(0.5, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3); o.connect(g); g.connect(bus); o.start(t); o.stop(t + 0.35); return; }
-    const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(); s.buffer = Audio.noiseBuf;
-    f.type = kind === 'hat' ? 'highpass' : 'bandpass'; f.frequency.value = kind === 'hat' ? 7500 : 1800;
-    g.gain.setValueAtTime(kind === 'hat' ? 0.12 : 0.3, t); g.gain.exponentialRampToValueAtTime(0.0001, t + (kind === 'hat' ? 0.05 : 0.18));
-    s.connect(f); f.connect(g); g.connect(bus); s.start(t, Math.random()); s.stop(t + 0.25);
-  },
-};
-
-/* ---- 03-level.js ---- */
-/* =====================================================================
-   NIVEAUX : trois secteurs de la Vesper, construits par découpe
-   Légende : # paroi · W hublot · ' ' vide spatial · . intérieur
-   R radiateur · O station O₂ (sauvegarde) · Q station de refroidissement
-   1-9 console · A-I porte (A ↔ 1, B ↔ 2…) · G portail des Gardiens
-   X sortie · @ départ · o cartouche O₂ · q cellule froide · f fragment du signal
-   ===================================================================== */
-function buildZone(w, h, fn) {
-  const g = Array.from({ length: h }, () => Array(w).fill('#'));
-  const z = {
-    fill(x0, y0, x1, y1, c) { for (let y = Math.max(0, y0); y <= Math.min(h - 1, y1); y++) for (let x = Math.max(0, x0); x <= Math.min(w - 1, x1); x++) g[y][x] = c; },
-    set(x, y, c) { if (y >= 0 && y < h && x >= 0 && x < w) g[y][x] = c; },
-  };
-  fn(z);
-  return g.map((r) => r.join(''));
+const cv = $('#cv'), cx = cv.getContext('2d');
+const H = 720; let W = 1280, scale = 1, dpr = 1, offY = 0;
+const TOP = 70, FLOOR = 640, R = 12, G = 1000, RANGE = 470;
+const store = { get(k, d) { try { const v = localStorage.getItem('derive.' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem('derive.' + k, JSON.stringify(v)); } catch (e) {} } };
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v)), lerp = (a, b, t) => a + (b - a) * t, TAU = Math.PI * 2;
+const today = () => { const d = new Date(); return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate(); };
+function resize() {
+  dpr = Math.min(2, devicePixelRatio || 1); scale = Math.min(innerHeight / H, innerWidth / 760); W = innerWidth / scale; offY = (innerHeight / scale - H) / 2;
+  cv.width = Math.round(innerWidth * dpr); cv.height = Math.round(innerHeight * dpr);
 }
+addEventListener('resize', resize); resize();
 
-const ZONES = [
-  {
-    id: 1, name: 'SECTEUR 1 · ANNEAU EXTERNE', short: 'Sas d\'amarrage', threshold: 3, light: 0.5,
-    map: buildZone(110, 28, (z) => {
-      z.fill(0, 0, 7, 27, ' ');
-      z.fill(9, 11, 22, 24, '.'); for (let y = 12; y <= 23; y++) z.set(8, y, 'W');
-      z.fill(10, 8, 12, 10, '.'); z.set(11, 8, 'f');
-      z.set(14, 19, '@');
-      z.fill(23, 16, 38, 21, '.'); z.set(30, 19, 'o');
-      z.fill(37, 3, 42, 21, '.');
-      z.fill(43, 3, 60, 8, '.'); z.set(47, 2, 'O'); z.set(57, 9, '1');
-      z.fill(61, 3, 61, 8, 'A');
-      z.fill(62, 2, 90, 17, '.'); z.set(63, 1, 'O');
-      z.fill(68, 6, 69, 11, '#'); z.fill(76, 9, 77, 14, '#'); z.fill(83, 4, 84, 8, '#');
-      z.fill(87, 0, 89, 1, '.'); z.set(88, 0, 'f'); z.set(71, 3, 'o');
-      z.set(88, 18, '2'); z.fill(91, 11, 91, 16, 'B');
-      z.fill(92, 11, 109, 16, '.'); z.fill(107, 11, 107, 16, 'X');
-      for (let x = 92; x <= 106; x += 5) z.set(x, 10, 'W');
-    }),
-    gardiens: [{ path: [[64, 15], [89, 15]], speed: 62 }],
-    beams: [], radiators: true,
-    triggers: [
-      { r: [9, 11, 22, 24], id: 'z1_start' },
-      { r: [23, 16, 27, 21], id: 'z1_kick' },
-      { r: [36, 14, 42, 21], id: 'z1_shaft' },
-      { r: [43, 3, 49, 8], id: 'z1_o2' },
-      { r: [53, 3, 60, 8], id: 'z1_console' },
-      { r: [62, 2, 66, 9], id: 'z1_room' },
-      { r: [92, 11, 100, 16], id: 'z1_end' },
-    ],
+// ---------------------------------------------------------------- son
+const S = {
+  c: null, on: store.get('sound', true), m: null,
+  init() { if (this.c) { if (this.c.state === 'suspended') this.c.resume(); return; } const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; this.c = new AC(); this.m = this.c.createGain(); this.m.gain.value = this.on ? 0.5 : 0; this.m.connect(this.c.destination); },
+  tone(f, d = 0.08, type = 'triangle', v = 0.08, f2 = 0, when = 0) {
+    if (!this.c) return; const t = this.c.currentTime + when, o = this.c.createOscillator(), g = this.c.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + d);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    o.connect(g); g.connect(this.m); o.start(t); o.stop(t + d + 0.02);
   },
-  {
-    id: 2, name: 'SECTEUR 2 · ANNEAU MÉDIAN', short: 'Salle des radiateurs', threshold: 2, light: 0.42,
-    map: buildZone(132, 40, (z) => {
-      z.fill(0, 17, 10, 22, '.'); z.set(3, 19, '@');
-      z.fill(11, 6, 70, 33, '.');
-      z.fill(20, 0, 22, 5, ' '); z.fill(38, 0, 40, 5, ' '); z.fill(56, 0, 58, 5, ' ');
-      z.set(39, 2, 'f');
-      z.fill(27, 13, 30, 16, '#'); z.fill(44, 19, 47, 23, '#'); z.fill(60, 11, 63, 14, '#'); z.fill(16, 26, 23, 27, '#'); z.fill(31, 26, 34, 29, '#');
-      z.fill(36, 34, 43, 34, 'R'); z.fill(48, 5, 53, 5, 'R'); z.fill(11, 30, 11, 32, 'R');
-      z.set(10, 25, 'O'); z.set(47, 34, 'Q');
-      z.set(36, 31, 'o'); z.set(66, 8, 'o'); z.set(26, 8, 'q');
-      z.fill(71, 6, 86, 13, '.'); z.set(80, 14, '3'); for (let x = 73; x <= 85; x += 4) z.set(x, 5, 'W');
-      z.fill(71, 26, 74, 32, '.'); z.fill(75, 26, 75, 32, 'G');
-      z.fill(71, 34, 74, 36, '.'); z.fill(72, 33, 73, 33, '.');
-      z.fill(76, 22, 100, 34, '.'); z.set(77, 23, 'f'); z.set(88, 21, 'O');
-      z.fill(83, 27, 85, 29, '#'); z.fill(91, 24, 92, 26, '#'); z.fill(91, 30, 92, 32, '#');
-      z.set(99, 35, '4'); z.fill(101, 27, 101, 31, 'D');
-      z.fill(102, 27, 131, 31, '.'); z.fill(129, 27, 129, 31, 'X');
-      for (let x = 104; x <= 126; x += 6) z.set(x, 26, 'W');
-    }),
-    gardiens: [
-      { path: [[15, 10], [35, 10]], speed: 70 },
-      { path: [[38, 30], [66, 30]], speed: 70 },
-      { path: [[52, 8], [52, 31]], speed: 64 },
-      { path: [[72.5, 35.5]], speed: 0, offline: true, face: Math.PI / 2 },
-      { path: [[80, 25], [97, 25], [97, 33], [80, 33]], speed: 60 },
-    ],
-    beams: [{ x: 21, period: 7, on: 3.6, phase: 0 }, { x: 39, period: 7, on: 3.6, phase: 2.3 }, { x: 57, period: 7, on: 3.6, phase: 4.6 }],
-    radiators: true,
-    triggers: [
-      { r: [0, 17, 12, 22], id: 'z2_start' },
-      { r: [13, 6, 24, 33], id: 'z2_beams' },
-      { r: [71, 6, 78, 13], id: 'z2_relay' },
-      { r: [68, 24, 74, 33], id: 'z2_gate' },
-      { r: [102, 27, 112, 31], id: 'z2_end' },
-    ],
-  },
-  {
-    id: 3, name: 'SECTEUR 3 · ANNEAU INTÉRIEUR', short: 'Le cœur', threshold: 1, light: 0.38, tunnel: [0, 14, 32, 18],
-    map: buildZone(92, 34, (z) => {
-      z.fill(0, 14, 32, 18, '.'); z.set(2, 16, '@'); z.set(18, 13, 'O');
-      z.fill(33, 3, 87, 31, '.');
-      z.fill(41, 9, 43, 11, '#'); z.fill(77, 9, 79, 11, '#'); z.fill(41, 23, 43, 25, '#'); z.fill(77, 23, 79, 25, '#');
-      z.fill(57, 4, 62, 5, '#'); z.fill(57, 29, 62, 30, '#');
-      z.set(37, 32, '5'); z.set(83, 2, '6'); z.set(88, 17, '7');
-      z.set(32, 25, 'Q'); z.set(47, 17, 'o'); z.set(73, 17, 'q'); z.set(86, 4, 'f'); z.set(34, 30, 'f');
-    }),
-    gardiens: [], beams: [], radiators: false, boss: { x: 60, y: 17.5 },
-    triggers: [
-      { r: [0, 14, 8, 18], id: 'z3_start' },
-      { r: [26, 14, 32, 18], id: 'z3_arena' },
-    ],
-  },
-];
+  attach() { this.tone(330, 0.06, 'square', 0.05); this.tone(660, 0.08, 'triangle', 0.05, 0, 0.03); },
+  release() { this.tone(500, 0.12, 'sine', 0.04, 900); },
+  glyph(n) { this.tone(880 * 2 ** (Math.min(n, 12) / 12), 0.12, 'triangle', 0.07); },
+  near() { this.tone(1200, 0.06, 'sine', 0.04, 1800); },
+  mile() { [523, 659, 784, 1047].forEach((f, i) => this.tone(f, 0.18, 'triangle', 0.06, 0, i * 0.07)); },
+  die() { this.tone(300, 0.6, 'sawtooth', 0.08, 50); },
+  set(on) { this.on = on; store.set('sound', on); if (this.m) this.m.gain.value = on ? 0.5 : 0; $('#snd').textContent = 'SON : ' + (on ? 'OUI' : 'NON'); },
+};
+$('#snd').onclick = (e) => { e.stopPropagation(); S.init(); S.set(!S.on); };
+S.set(S.on);
 
-const SOLID = new Set(['#', 'W', 'R', 'O', 'Q', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']);
-
-class Level {
-  constructor(def) {
-    this.def = def; this.h = def.map.length; this.w = def.map[0].length;
-    this.t = def.map.map((r) => r.split(''));
-    this.doors = {}; this.consoles = {}; this.stations = []; this.items = []; this.exits = []; this.gates = []; this.radiators = [];
-    for (let y = 0; y < this.h; y++) for (let x = 0; x < this.w; x++) {
-      const c = this.t[y][x];
-      if (c === '@') { this.start = { x: (x + 0.5) * T, y: (y + 0.5) * T }; this.t[y][x] = '.'; }
-      else if (/[A-I]/.test(c) && c !== 'G') (this.doors[c] ||= { cells: [], open: 0, opening: false }).cells.push([x, y]);
-      else if (c === 'G') this.gates.push({ x, y, open: 0 });
-      else if (/[1-9]/.test(c)) this.consoles[c] = { x, y, id: c, solved: false };
-      else if (c === 'O' || c === 'Q') this.stations.push({ x, y, kind: c });
-      else if (c === 'R') this.radiators.push({ x, y });
-      else if (c === 'o' || c === 'q' || c === 'f') { this.items.push({ x: (x + 0.5) * T, y: (y + 0.5) * T, kind: c, taken: false, ph: rnd(0, TAU) }); this.t[y][x] = this.isSpace(x, y) ? ' ' : '.'; }
-      else if (c === 'X') this.exits.push({ x, y });
-    }
-    this.solidCache = null;
-  }
-  isSpace(x, y) { const n = [[1, 0], [-1, 0], [0, 1], [0, -1]].filter(([dx, dy]) => (this.t[y + dy] || [])[x + dx] === ' ').length; return n >= 2; }
-  tile(x, y) { if (x < 0 || y < 0 || x >= this.w || y >= this.h) return '#'; return this.t[y][x]; }
-  solid(x, y) {
-    const c = this.tile(x, y);
-    if (!SOLID.has(c)) return false;
-    if (/[A-I]/.test(c) && c !== 'G') return this.doors[c].open < 0.8;
-    if (c === 'G') { const g = this.gates.find((q) => q.x === x && q.y === y); return !g || g.open < 0.8; }
-    return true;
-  }
-  solidAt(px, py) { return this.solid(Math.floor(px / T), Math.floor(py / T)); }
-  // lancer de rayon en grille (DDA) : renvoie le point d'impact sur une tuile solide
-  ray(x0, y0, ang, maxD) {
-    const dx = Math.cos(ang), dy = Math.sin(ang);
-    let tx = Math.floor(x0 / T), ty = Math.floor(y0 / T);
-    const sx = dx > 0 ? 1 : -1, sy = dy > 0 ? 1 : -1;
-    const tdx = Math.abs(T / (dx || 1e-9)), tdy = Math.abs(T / (dy || 1e-9));
-    let mx = ((dx > 0 ? (tx + 1) * T - x0 : x0 - tx * T)) / Math.abs(dx || 1e-9);
-    let my = ((dy > 0 ? (ty + 1) * T - y0 : y0 - ty * T)) / Math.abs(dy || 1e-9);
-    let d = 0, nx = 0, ny = 0;
-    while (d < maxD) {
-      if (mx < my) { d = mx; mx += tdx; tx += sx; nx = -sx; ny = 0; } else { d = my; my += tdy; ty += sy; nx = 0; ny = -sy; }
-      if (d > maxD) break;
-      if (this.solid(tx, ty)) return { hit: true, x: x0 + dx * d, y: y0 + dy * d, d, tx, ty, nx, ny };
-    }
-    return { hit: false, x: x0 + dx * maxD, y: y0 + dy * maxD, d: maxD };
-  }
-  los(ax, ay, bx, by) { const d = dist(ax, ay, bx, by); const r = this.ray(ax, ay, Math.atan2(by - ay, bx - ax), d); return !r.hit; }
-  // collision cercle / tuiles : repousse et renvoie la normale de contact la plus forte
-  collide(o, r) {
-    let best = null;
-    for (let it = 0; it < 3; it++) {
-      const x0 = Math.floor((o.x - r) / T), x1 = Math.floor((o.x + r) / T), y0 = Math.floor((o.y - r) / T), y1 = Math.floor((o.y + r) / T);
-      let moved = false;
-      for (let ty = y0; ty <= y1; ty++) for (let tx = x0; tx <= x1; tx++) {
-        if (!this.solid(tx, ty)) continue;
-        const cx = clamp(o.x, tx * T, tx * T + T), cy = clamp(o.y, ty * T, ty * T + T);
-        let dx = o.x - cx, dy = o.y - cy, d = Math.hypot(dx, dy);
-        if (d >= r) continue;
-        if (d < 1e-6) { dx = 0; dy = -1; d = 1e-6; }
-        const nx = dx / d, ny = dy / d, pen = r - d;
-        o.x += nx * pen; o.y += ny * pen; moved = true;
-        const vn = o.vx * nx + o.vy * ny;
-        if (!best || -vn > best.impact) best = { nx, ny, impact: -vn };
-        if (vn < 0) { o.vx -= vn * nx * (1 + (o.bounce ?? 0.2)); o.vy -= vn * ny * (1 + (o.bounce ?? 0.2)); }
-      }
-      if (!moved) break;
-    }
-    return best;
-  }
-  // une paroi solide à moins de `pad` px ? (pour se propulser)
-  wallNormal(px, py, pad) {
-    let nx = 0, ny = 0, n = 0;
-    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1], [0.7, 0.7], [-0.7, 0.7], [0.7, -0.7], [-0.7, -0.7]]) {
-      if (this.solidAt(px + dx * pad, py + dy * pad)) { nx -= dx; ny -= dy; n++; }
-    }
-    if (!n) return null; const m = Math.hypot(nx, ny) || 1; return [nx / m, ny / m];
-  }
-  near(px, py, kind, maxD = 1.6 * T) {
-    let best = null, bd = maxD;
-    const check = (o, x, y) => { const d = dist(px, py, (x + 0.5) * T, (y + 0.5) * T); if (d < bd) { bd = d; best = o; } };
-    if (kind === 'console') for (const k in this.consoles) check(this.consoles[k], this.consoles[k].x, this.consoles[k].y);
-    if (kind === 'station') for (const s of this.stations) check(s, s.x, s.y);
-    return best;
+// ---------------------------------------------------------------- monde
+let st = 'menu', mode = 'inf', rng = Math.random, P, anchors, glyphs, drones, beams, parts, camX, t, score, glyphPts, combo, comboT, best, shake, lastMile, nextGen, msg, msgT, why;
+function reset(daily) {
+  mode = daily ? 'day' : 'inf'; rng = daily ? mulberry32(today()) : mulberry32((Math.random() * 1e9) | 0);
+  P = { x: 0, y: 330, vx: 330, vy: -60, rope: null, trail: [] };
+  anchors = []; glyphs = []; drones = []; beams = []; parts = []; camX = -W * 0.3; t = 0; score = 0; glyphPts = 0; combo = 0; comboT = 0; shake = 0; lastMile = 0; msg = ''; msgT = 0;
+  nextGen = 0; anchors.push({ x: 160, y: 190 }); nextGen = 160;
+  generate(1600);
+  best = store.get('best.' + mode + (daily ? '.' + today() : ''), 0);
+}
+function generate(toX) {
+  while (nextGen < toX) {
+    const d = nextGen / 10, diff = clamp(d / 2500, 0, 1);
+    const gap = lerp(250, 400, diff) + rng() * lerp(60, 140, diff);
+    const x = nextGen + gap, y = TOP + 50 + rng() * lerp(220, 300, diff);
+    anchors.push({ x, y });
+    // glyphes sur l'arc entre deux ancrages
+    if (rng() < 0.75) { const n = 2 + Math.floor(rng() * 3); for (let i = 0; i < n; i++) glyphs.push({ x: x - gap * 0.5 + (i - n / 2) * 34, y: clamp(y + 150 + Math.sin(i) * 30, TOP + 40, FLOOR - 70), v: [-1, 0, 1][Math.floor(rng() * 3)], got: false }); }
+    if (d > 35 && rng() < lerp(0.25, 0.6, diff)) drones.push({ x: x + gap * 0.35, y: lerp(TOP + 120, FLOOR - 140, rng()), ph: rng() * TAU, sp: lerp(0.8, 1.8, diff) * (rng() < 0.5 ? -1 : 1), len: lerp(120, 180, diff), bob: rng() * TAU, near: false });
+    if (d > 90 && rng() < lerp(0.08, 0.3, diff)) beams.push({ x: x + gap * 0.5, w: 46, per: lerp(3.2, 2.4, diff), ph: rng() * 3 });
+    nextGen = x;
   }
 }
+const beamOn = (b) => ((t + b.ph) % b.per) < b.per * 0.45;
+const beamWarn = (b) => { const c = (t + b.ph) % b.per; return c > b.per - 0.6; };
 
-/* ---- 04-render.js ---- */
-/* =====================================================================
-   RENDU : caméra, fond spatial, tuiles, éclairage dynamique, particules
-   ===================================================================== */
-const Render = {
-  cv: null, ctx: null, scale: 1, dpr: 1, lightCv: null, lctx: null,
-  cam: { x: 0, y: 0, shake: 0, zoom: 1 }, stars: [], sprites: {}, parts: [], lights: [],
-  init(cv) {
-    this.cv = cv; this.ctx = cv.getContext('2d');
-    this.lightCv = document.createElement('canvas'); this.lctx = this.lightCv.getContext('2d');
-    addEventListener('resize', () => this.resize()); this.resize();
-    for (let i = 0; i < 420; i++) this.stars.push({ x: rnd(0, 1), y: rnd(0, 1), z: rnd(0.05, 0.5), s: rnd(0.6, 1.8), p: rnd(0, TAU) });
-    this.buildSprites();
-  },
-  resize() {
-    this.dpr = Math.min(2, window.devicePixelRatio || 1);
-    const w = innerWidth, h = innerHeight, s = Math.min(w / VW, h / VH);
-    this.cv.style.width = `${VW * s}px`; this.cv.style.height = `${VH * s}px`;
-    this.cv.width = Math.round(VW * s * this.dpr); this.cv.height = Math.round(VH * s * this.dpr);
-    this.scale = s * this.dpr;
-    this.lightCv.width = Math.round(VW / 2); this.lightCv.height = Math.round(VH / 2);
-  },
-  begin() { const c = this.ctx; c.setTransform(this.scale, 0, 0, this.scale, 0, 0); c.imageSmoothingEnabled = true; },
-  // ------------------------------------------------------------ sprites de tuiles (pré-rendus, avec variations)
-  mk(w, h, fn) { const c = document.createElement('canvas'); c.width = w; c.height = h; fn(c.getContext('2d'), w, h); return c; },
-  buildSprites() {
-    const S = this.sprites, r = mulberry32(99);
-    // parois : métal clair en relief (lisible contre le fond)
-    S.wall = [0, 1, 2, 3].map((v) => this.mk(T, T, (g) => {
-      const gr = g.createLinearGradient(0, 0, T, T); gr.addColorStop(0, v === 3 ? '#2b3656' : '#28324f'); gr.addColorStop(1, '#1b2339');
-      g.fillStyle = gr; g.fillRect(0, 0, T, T);
-      g.fillStyle = 'rgba(255,255,255,0.05)'; g.fillRect(0, 0, T, 2); g.fillRect(0, 0, 2, T);
-      g.fillStyle = 'rgba(0,0,0,0.35)'; g.fillRect(0, T - 2, T, 2); g.fillRect(T - 2, 0, 2, T);
-      if (v === 0) { g.strokeStyle = 'rgba(0,0,0,0.3)'; g.beginPath(); g.moveTo(0, T / 2 + 0.5); g.lineTo(T, T / 2 + 0.5); g.stroke(); }
-      if (v === 1) { g.fillStyle = '#3a4a70'; for (const [x, y] of [[6, 6], [T - 8, 6], [6, T - 8], [T - 8, T - 8]]) g.fillRect(x, y, 2, 2); }
-      if (v === 2) { g.fillStyle = '#0f1526'; g.fillRect(4, T * 0.42, T - 8, 8); g.fillStyle = 'rgba(63,224,208,0.55)'; g.fillRect(6, T * 0.42 + 3, T - 12, 2); }
-      if (v === 3) { g.fillStyle = 'rgba(255,179,71,0.35)'; for (let i = 0; i < 4; i++) g.fillRect(i * 10 + 2, T - 7, 6, 3); }
-    }));
-    // fond : cloison lointaine, très sombre, grands panneaux
-    S.back = [0, 1, 2, 3, 4].map((v) => this.mk(T, T, (g) => {
-      g.fillStyle = v % 2 ? '#090d19' : '#080b16'; g.fillRect(0, 0, T, T);
-      g.strokeStyle = 'rgba(50,66,104,0.13)'; g.lineWidth = 1; g.strokeRect(0.5, 0.5, T - 1, T - 1);
-      if (v === 2) { g.strokeStyle = 'rgba(63,224,208,0.12)'; g.beginPath(); g.moveTo(T / 2, 0); g.lineTo(T / 2, T); g.stroke(); }
-      if (v === 3) { g.fillStyle = 'rgba(120,140,190,0.09)'; g.font = '700 13px Mono, Consolas, monospace'; g.fillText(['+0-', '-+0', '0-+'][Math.floor(r() * 3)], 7, 24); }
-      if (v === 4) { g.strokeStyle = 'rgba(70,90,135,0.16)'; g.strokeRect(6.5, 6.5, T - 13, T - 13); }
-    }));
-  },
-  // ------------------------------------------------------------ particules
-  emit(o) { if (this.parts.length < 900) this.parts.push(Object.assign({ vx: 0, vy: 0, life: 1, max: 1, size: 2, color: '#fff', drag: 1.5, glow: false }, o)); },
-  burst(x, y, n, color, speed = 160, life = 0.6, size = 2.5, glow = true) {
-    for (let i = 0; i < n; i++) { const a = rnd(0, TAU), s = rnd(0.2, 1) * speed; this.emit({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: rnd(0.5, 1) * life, max: life, size: rnd(0.6, 1.2) * size, color, glow }); }
-  },
-  updateParts(dt) {
-    for (const p of this.parts) { p.life -= dt; const d = Math.exp(-p.drag * dt); p.vx *= d; p.vy *= d; p.x += p.vx * dt; p.y += p.vy * dt; }
-    this.parts = this.parts.filter((p) => p.life > 0);
-  },
-  // ------------------------------------------------------------ dessin d'une frame de jeu
-  worldToScreen(x, y) { return [x - this.cam.x + VW / 2, y - this.cam.y + VH / 2]; },
-  frame(G, t) {
-    const c = this.ctx, L = G.level, cam = this.cam;
-    this.begin();
-    const sx = (SETTINGS.shake ? cam.shake : 0) * (Math.random() - 0.5) * 2, sy = (SETTINGS.shake ? cam.shake : 0) * (Math.random() - 0.5) * 2;
-    const ox = Math.round(-cam.x + VW / 2 + sx), oy = Math.round(-cam.y + VH / 2 + sy);
-    this.space(t, cam.x, cam.y, G);
-    c.save(); c.translate(ox, oy);
-    const tx0 = Math.floor((cam.x - VW / 2) / T) - 1, tx1 = Math.floor((cam.x + VW / 2) / T) + 1;
-    const ty0 = Math.floor((cam.y - VH / 2) / T) - 1, ty1 = Math.floor((cam.y + VH / 2) / T) + 1;
-    // murs du fond
-    for (let y = ty0; y <= ty1; y++) for (let x = tx0; x <= tx1; x++) {
-      const ch = L.tile(x, y);
-      if (ch === ' ' || ch === 'W' || x < 0 || y < 0 || x >= L.w || y >= L.h) continue;
-      if (!SOLID.has(ch) || ch === 'G' || (/[A-I]/.test(ch) && L.doors[ch] && L.doors[ch].open > 0)) c.drawImage(this.sprites.back[Math.floor(hash2(x, y) * 5)], x * T, y * T);
-    }
-    if (L.def.tunnel) this.tunnel(L.def.tunnel, G, t);
-    // rayons de Tau-Héliade (derrière les entités)
-    for (const b of G.beams) this.beam(b, L, t);
-    // tuiles solides
-    for (let y = ty0; y <= ty1; y++) for (let x = tx0; x <= tx1; x++) this.tile(L, x, y, t, G);
-    c.restore();
-    // entités dans l'espace monde
-    c.save(); c.translate(ox, oy);
-    for (const it of L.items) if (!it.taken) this.item(it, t);
-    for (const g of G.gardiens) this.gardien(g, t, G);
-    if (G.boss) this.boss(G.boss, t, G);
-    this.player(G.player, t, G);
-    for (const p of this.parts) {
-      c.globalAlpha = clamp(p.life / p.max, 0, 1); c.fillStyle = p.color;
-      if (p.glow) c.globalCompositeOperation = 'lighter';
-      c.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
-      c.globalCompositeOperation = 'source-over';
-    }
-    c.globalAlpha = 1;
-    c.restore();
-    this.lighting(G, ox, oy, t);
-    // vignette
-    const vg = c.createRadialGradient(VW / 2, VH / 2, VH * 0.35, VW / 2, VH / 2, VH * 0.95);
-    vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,0.55)'); c.fillStyle = vg; c.fillRect(0, 0, VW, VH);
-    if (G.flash > 0) { c.fillStyle = `rgba(255,70,50,${G.flash * 0.45})`; c.fillRect(0, 0, VW, VH); }
-    const heat = G.player.heat; if (heat > 70) { const a = (heat - 70) / 30 * 0.35; const hg = c.createRadialGradient(VW / 2, VH / 2, VH * 0.3, VW / 2, VH / 2, VH * 0.9); hg.addColorStop(0, 'rgba(255,60,30,0)'); hg.addColorStop(1, `rgba(255,60,30,${a})`); c.fillStyle = hg; c.fillRect(0, 0, VW, VH); }
-  },
-  space(t, cx, cy, G) {
-    const c = this.ctx;
-    c.fillStyle = '#04060c'; c.fillRect(0, 0, VW, VH);
-    // Tau-Héliade, très loin : parallaxe minime
-    const zx = VW * 0.82 - cx * 0.02, zy = VH * 0.18 - cy * 0.02, R = 70;
-    let g = c.createRadialGradient(zx, zy, R * 0.6, zx, zy, R * 9);
-    g.addColorStop(0, 'rgba(255,110,60,0.55)'); g.addColorStop(0.25, 'rgba(170,40,45,0.25)'); g.addColorStop(1, 'rgba(0,0,0,0)');
-    c.fillStyle = g; c.fillRect(0, 0, VW, VH);
-    for (const s of this.stars) {
-      const x = ((s.x * VW * 3 - cx * s.z) % VW + VW) % VW, y = ((s.y * VH * 3 - cy * s.z) % VH + VH) % VH;
-      c.fillStyle = `rgba(220,230,255,${0.35 + 0.35 * Math.sin(t * 0.8 + s.p)})`; c.fillRect(x, y, s.s, s.s);
-    }
-    c.beginPath(); c.arc(zx, zy, R, 0, TAU); c.fillStyle = '#ffd59a'; c.fill(); c.lineWidth = 8; c.strokeStyle = '#ffb347'; c.stroke();
-    // l'anneau de la Vesper qui passe devant l'étoile
-    c.save(); c.translate(VW * 0.5 - cx * 0.04, VH * 0.25 - cy * 0.03); c.rotate(-0.16);
-    c.strokeStyle = 'rgba(80,100,150,0.35)'; c.lineWidth = 16; c.beginPath(); c.ellipse(0, 0, VW * 0.7, VH * 0.22, 0, 0, TAU); c.stroke();
-    c.setLineDash([5, 12]); c.strokeStyle = 'rgba(63,224,208,0.35)'; c.lineWidth = 1.5; c.lineDashOffset = -t * 12; c.stroke(); c.setLineDash([]);
-    c.restore();
-  },
-  tunnel(r, G, t) {
-    // couloir en perspective, d'après la capture « couloir de la Vesper » du site
-    const c = this.ctx, [x0, y0, x1, y1] = r, X0 = x0 * T, Y0 = y0 * T, X1 = (x1 + 1) * T, Y1 = (y1 + 1) * T;
-    const px = G.player.x, vx = clamp(px, X0 + 200, X1 - 200), vy = (Y0 + Y1) / 2;
-    c.save(); c.beginPath(); c.rect(X0, Y0, X1 - X0, Y1 - Y0); c.clip();
-    const g = c.createRadialGradient(vx + 300, vy, 0, vx + 300, vy, 700);
-    g.addColorStop(0, 'rgba(255,130,80,0.85)'); g.addColorStop(0.3, 'rgba(160,30,45,0.6)'); g.addColorStop(1, 'rgba(25,8,16,0.9)');
-    c.fillStyle = g; c.fillRect(X0, Y0, X1 - X0, Y1 - Y0);
-    for (let k = 0; k < 14; k++) {
-      const p = ((k + t * 0.4) % 14) / 14, s = 0.08 + p * p * 1.6;
-      const w = (Y1 - Y0) * 1.6 * s, h = (Y1 - Y0) * s;
-      c.strokeStyle = k % 3 === 0 ? `rgba(63,214,196,${0.25 + p * 0.6})` : `rgba(44,54,84,${0.3 + p * 0.6})`; c.lineWidth = 1 + p * 4;
-      c.strokeRect(vx + 300 - w / 2 - (p * 300), vy - h / 2, w, h);
-    }
-    c.restore();
-  },
-  beam(b, L, t) {
-    const c = this.ctx, x = b.x * T, w = 3 * T, on = b.level;
-    if (on <= 0.01 && b.warn <= 0) return;
-    const yTop = 0, yBot = b.bottom * T;
-    const a = on * (0.75 + 0.15 * Math.sin(t * 9));
-    c.save(); c.globalCompositeOperation = 'lighter';
-    let g = c.createLinearGradient(x - 40, 0, x + w + 40, 0);
-    g.addColorStop(0, 'rgba(255,70,30,0)'); g.addColorStop(0.3, `rgba(255,90,40,${a * 0.5})`); g.addColorStop(0.5, `rgba(255,170,110,${a})`); g.addColorStop(0.7, `rgba(255,90,40,${a * 0.5})`); g.addColorStop(1, 'rgba(255,70,30,0)');
-    c.fillStyle = g; c.fillRect(x - 40, yTop, w + 80, yBot - yTop);
-    g = c.createLinearGradient(x + w / 2 - 8, 0, x + w / 2 + 8, 0); g.addColorStop(0, 'rgba(255,230,200,0)'); g.addColorStop(0.5, `rgba(255,240,215,${a * 0.9})`); g.addColorStop(1, 'rgba(255,230,200,0)');
-    c.fillStyle = g; c.fillRect(x + w / 2 - 8, yTop, 16, yBot - yTop);
-    if (on > 0.5) { const sp = c.createRadialGradient(x + w / 2, yBot, 0, x + w / 2, yBot, 90); sp.addColorStop(0, `rgba(255,150,90,${a * 0.7})`); sp.addColorStop(1, 'rgba(255,90,40,0)'); c.fillStyle = sp; c.fillRect(x + w / 2 - 90, yBot - 90, 180, 120); }
-    if (b.warn > 0 && on < 0.2) { c.fillStyle = `rgba(255,179,71,${0.12 + 0.1 * Math.sin(t * 20)})`; c.fillRect(x, yTop, w, yBot - yTop); }
-    c.restore();
-    if (on > 0.3 && Math.random() < 0.6) this.emit({ x: x + rnd(0, w), y: rnd(0, yBot), vx: 0, vy: rnd(20, 80), life: 1, max: 1, size: 2, color: '#ffb070', glow: true, drag: 0 });
-  },
-  tile(L, x, y, t, G) {
-    const c = this.ctx, ch = L.tile(x, y), X = x * T, Y = y * T;
-    if (x < 0 || y < 0 || x >= L.w || y >= L.h) { c.drawImage(this.sprites.wall[0], X, Y); return; }
-    if (ch === '.' || ch === ' ' || ch === 'X') {
-      if (ch === 'X') { c.fillStyle = `rgba(63,224,208,${0.12 + 0.08 * Math.sin(t * 3 + y)})`; c.fillRect(X, Y, T, T); c.fillStyle = 'rgba(63,224,208,0.5)'; c.fillRect(X + T / 2 - 1, Y, 2, T); }
-      return;
-    }
-    if (ch === 'W') {
-      c.strokeStyle = '#2c3b5e'; c.lineWidth = 4; c.strokeRect(X + 2, Y + 2, T - 4, T - 4);
-      c.fillStyle = 'rgba(120,180,255,0.06)'; c.fillRect(X + 4, Y + 4, T - 8, T - 8); return;
-    }
-    if (/[A-I]/.test(ch) && ch !== 'G') {
-      const d = L.doors[ch], o = d.open;
-      const vert = d.cells.every(([cx]) => cx === d.cells[0][0]);
-      c.fillStyle = '#1a2235';
-      if (vert) { const hh = T * (1 - o); c.fillRect(X + 8, Y, T - 16, hh / 2); c.fillRect(X + 8, Y + T - hh / 2, T - 16, hh / 2); }
-      else { const ww = T * (1 - o); c.fillRect(X, Y + 8, ww / 2, T - 16); c.fillRect(X + T - ww / 2, Y + 8, ww / 2, T - 16); }
-      if (o < 1) { c.fillStyle = d.opening ? '#3fe0d0' : '#ffb347'; c.fillRect(vert ? X + T / 2 - 2 : X, vert ? Y : Y + T / 2 - 2, vert ? 4 : T, vert ? T * (1 - o) : 4); }
-      return;
-    }
-    if (ch === 'G') {
-      const g = L.gates.find((q) => q.x === x && q.y === y); const o = g ? g.open : 0;
-      if (o > 0.95) return;
-      c.fillStyle = `rgba(63,224,208,${(0.18 + 0.1 * Math.sin(t * 6 + y)) * (1 - o)})`; c.fillRect(X + 6, Y, T - 12, T);
-      c.strokeStyle = `rgba(63,224,208,${0.7 * (1 - o)})`; c.lineWidth = 2;
-      for (let i = 0; i < 3; i++) { const yy = Y + ((t * 40 + i * 13) % T); c.beginPath(); c.moveTo(X + 8, yy); c.lineTo(X + T - 8, yy); c.stroke(); }
-      return;
-    }
-    // mur (avec arêtes éclairées sur les faces exposées)
-    c.drawImage(this.sprites.wall[Math.floor(hash2(x, y, 3) * 4)], X, Y);
-    const open = (dx, dy) => !L.solid(x + dx, y + dy) && L.tile(x + dx, y + dy) !== 'W';
-    if (open(0, -1)) { c.fillStyle = '#5a72a8'; c.fillRect(X, Y, T, 3); }
-    if (open(0, 1)) { c.fillStyle = '#3b4c76'; c.fillRect(X, Y + T - 3, T, 3); }
-    if (open(-1, 0)) { c.fillStyle = '#46598a'; c.fillRect(X, Y, 3, T); }
-    if (open(1, 0)) { c.fillStyle = '#46598a'; c.fillRect(X + T - 3, Y, 3, T); }
-    if (ch === 'R') {
-      const hot = G.radHot;
-      for (let i = 0; i < 5; i++) { c.fillStyle = hot ? `rgba(255,${90 + 40 * Math.sin(t * 8 + i)},50,0.95)` : '#3a2a2a'; c.fillRect(X + 4 + i * 7, Y + 6, 4, T - 12); }
-    } else if (ch === 'O' || ch === 'Q') {
-      const col = ch === 'O' ? COL.cyan : COL.violet;
-      c.fillStyle = '#0d1424'; c.fillRect(X + 5, Y + 5, T - 10, T - 10);
-      c.strokeStyle = col; c.lineWidth = 2; c.strokeRect(X + 6, Y + 6, T - 12, T - 12);
-      c.fillStyle = col; c.font = '700 13px Mono, Consolas, monospace'; c.textAlign = 'center'; c.fillText(ch === 'O' ? 'O₂' : '≈', X + T / 2, Y + T / 2 + 5); c.textAlign = 'left';
-    } else if (/[1-9]/.test(ch)) {
-      const k = L.consoles[ch], solved = k && k.solved;
-      c.fillStyle = '#0b111e'; c.fillRect(X + 3, Y + 3, T - 6, T - 6);
-      c.strokeStyle = solved ? COL.cyan : COL.amber; c.lineWidth = 2; c.strokeRect(X + 4, Y + 4, T - 8, T - 8);
-      c.fillStyle = solved ? COL.cyan : COL.amber; c.font = '700 9px Mono, Consolas, monospace';
-      for (let i = 0; i < 3; i++) c.fillText(['+0-', '-+0', '0-+'][(i + Math.floor(t * 2)) % 3], X + 9, Y + 14 + i * 9);
-    }
-  },
-  item(it, t) {
-    const c = this.ctx, y = it.y + Math.sin(t * 2 + it.ph) * 4;
-    if (it.kind === 'f') {
-      c.save(); c.translate(it.x, y); c.rotate(t * 0.8);
-      c.globalCompositeOperation = 'lighter';
-      const g = c.createRadialGradient(0, 0, 0, 0, 0, 30); g.addColorStop(0, 'rgba(255,200,120,0.8)'); g.addColorStop(1, 'rgba(255,140,60,0)'); c.fillStyle = g; c.fillRect(-30, -30, 60, 60);
-      c.globalCompositeOperation = 'source-over';
-      c.strokeStyle = COL.amber; c.lineWidth = 2; c.beginPath(); for (let i = 0; i < 3; i++) { const a = i * TAU / 3; c.lineTo(Math.cos(a) * 11, Math.sin(a) * 11); } c.closePath(); c.stroke();
-      c.restore(); return;
-    }
-    const col = it.kind === 'o' ? COL.cyan : COL.violet;
-    c.save(); c.translate(it.x, y);
-    c.fillStyle = col; c.beginPath(); c.roundRect(-7, -12, 14, 24, 6); c.fill();
-    c.fillStyle = '#05070d'; c.font = '700 9px Mono, Consolas, monospace'; c.textAlign = 'center'; c.fillText(it.kind === 'o' ? 'O₂' : '≈', 0, 4); c.textAlign = 'left';
-    c.restore();
-  },
-  player(p, t, G) {
-    const c = this.ctx;
-    if (p.dead) return;
-    // câble d'ancrage
-    if (p.rope) {
-      c.strokeStyle = 'rgba(63,224,208,0.9)'; c.lineWidth = 2; c.beginPath(); c.moveTo(p.x, p.y); c.lineTo(p.rope.x, p.rope.y); c.stroke();
-      c.fillStyle = COL.cyan; c.beginPath(); c.arc(p.rope.x, p.rope.y, 4, 0, TAU); c.fill();
-    } else if (p.hook) {
-      c.strokeStyle = 'rgba(63,224,208,0.6)'; c.lineWidth = 1.5; c.beginPath(); c.moveTo(p.x, p.y); c.lineTo(p.hook.x, p.hook.y); c.stroke();
-    }
-    c.save(); c.translate(p.x, p.y);
-    const tilt = clamp(p.vx / 600, -0.6, 0.6) + p.spin;
-    c.rotate(tilt);
-    // jambes et bras qui flottent (animation procédurale)
-    const sw = Math.sin(t * 2.2) * 0.25, ax = -p.ax * 0.5, ay = -p.ay * 0.5;
-    c.strokeStyle = '#cfd8e6'; c.lineCap = 'round'; c.lineWidth = 5;
-    for (const s of [-1, 1]) {
-      c.beginPath(); c.moveTo(s * 4, 8); c.lineTo(s * 6 + ax * 6 + sw * 4 * s, 20 + ay * 4); c.stroke();
-      c.beginPath(); c.moveTo(s * 8, -3); c.lineTo(s * 14 + ax * 4, 6 + sw * 5 * s + ay * 3); c.stroke();
-    }
-    c.fillStyle = '#9aa7bd'; c.fillRect(-11, -8, 6, 14);
-    c.fillStyle = '#e6ecf5'; c.beginPath(); c.ellipse(0, 2, 9, 12, 0, 0, TAU); c.fill();
-    c.beginPath(); c.arc(0, -13, 8, 0, TAU); c.fill();
-    const face = Math.cos(p.aim) >= 0 ? 1 : -1;
-    c.fillStyle = COL.cyan; c.save(); c.translate(face * 2, -14); c.rotate(-0.2 * face); c.fillRect(-5, -2.5, 10, 5); c.restore();
-    if (p.hurt > 0) { c.globalAlpha = p.hurt; c.fillStyle = COL.red; c.beginPath(); c.arc(0, -2, 18, 0, TAU); c.fill(); c.globalAlpha = 1; }
-    c.restore();
-    // visée
-    if (G.state === 'play' && !Input.usingPad) {
-      const r = G.level.ray(p.x, p.y, p.aim, Player.RANGE);
-      c.strokeStyle = r.hit ? 'rgba(63,224,208,0.35)' : 'rgba(130,146,174,0.18)'; c.setLineDash([4, 8]); c.lineWidth = 1;
-      c.beginPath(); c.moveTo(p.x + Math.cos(p.aim) * 22, p.y + Math.sin(p.aim) * 22); c.lineTo(r.x, r.y); c.stroke(); c.setLineDash([]);
-      if (r.hit) { c.strokeStyle = COL.cyan; c.lineWidth = 2; c.beginPath(); c.arc(r.x, r.y, 6 + Math.sin(t * 8), 0, TAU); c.stroke(); }
-    }
-  },
-  hex(x, y, r, rot = 0) { const c = this.ctx; c.beginPath(); for (let i = 0; i < 6; i++) { const a = rot + Math.PI / 6 + i * Math.PI / 3; c[i ? 'lineTo' : 'moveTo'](x + r * Math.cos(a), y + r * Math.sin(a)); } c.closePath(); },
-  gardien(g, t, G) {
-    const c = this.ctx, st = g.state;
-    const col = g.offline ? '#5b6782' : st === 'admin' ? COL.cyan : st === 'alert' ? COL.red : st === 'crash' ? '#5b6782' : COL.amber;
-    // cône de détection
-    if (g.coneOn()) {
-      const ang = g.face(), sus = g.sus;
-      c.save(); c.globalCompositeOperation = 'lighter';
-      const grd = c.createRadialGradient(g.x, g.y, 10, g.x, g.y, Gardien.RANGE);
-      const cc = st === 'alert' ? '255,80,60' : sus > 0.01 ? '255,150,60' : '255,190,90';
-      grd.addColorStop(0, `rgba(${cc},${0.22 + sus * 0.25})`); grd.addColorStop(1, `rgba(${cc},0)`);
-      c.fillStyle = grd; c.beginPath(); c.moveTo(g.x, g.y);
-      const n = 18;
-      for (let i = 0; i <= n; i++) { const a = ang - Gardien.HALF + (2 * Gardien.HALF * i) / n; const r = G.level.ray(g.x, g.y, a, Gardien.RANGE); c.lineTo(r.x, r.y); }
-      c.closePath(); c.fill(); c.restore();
-    }
-    c.save(); c.translate(g.x, g.y);
-    const wob = st === 'crash' ? Math.sin(t * 13) * 0.3 + g.rot : g.rot;
-    this.hex(0, 0, 22, wob); c.fillStyle = '#0e1729'; c.fill(); c.lineWidth = 3; c.strokeStyle = col; c.stroke();
-    this.hex(0, 0, 13, wob); c.lineWidth = 1.5; c.strokeStyle = 'rgba(63,224,208,0.45)'; c.stroke();
-    const er = st === 'crash' || g.offline ? 3 : 6 + Math.sin(t * 6) * 1.2;
-    const eg = c.createRadialGradient(0, 0, 0, 0, 0, er * 2.4); eg.addColorStop(0, '#fff3d6'); eg.addColorStop(0.35, col); eg.addColorStop(1, 'rgba(0,0,0,0)');
-    c.fillStyle = eg; c.beginPath(); c.arc(Math.cos(g.face()) * 4, Math.sin(g.face()) * 4, er * 2.4, 0, TAU); c.fill();
-    c.restore();
-    c.font = '700 11px Mono, Consolas, monospace'; c.textAlign = 'center'; c.fillStyle = col;
-    const lab = g.offline ? `${g.id} · HORS RÉSEAU` : st === 'crash' ? `${g.id} · PLANTÉ ${Math.ceil(g.timer)}` : st === 'invert' ? `${g.id} · INVERSÉ ${Math.ceil(g.timer)}` : st === 'admin' ? `${g.id} · ADMIN ${Math.ceil(g.timer)}` : g.id;
-    c.fillText(lab, g.x, g.y + 40);
-    if (g.sus > 0.02 && st !== 'alert' && g.coneOn()) { c.fillStyle = 'rgba(0,0,0,0.5)'; c.fillRect(g.x - 18, g.y - 40, 36, 5); c.fillStyle = COL.amber; c.fillRect(g.x - 18, g.y - 40, 36 * g.sus, 5); }
-    if (st === 'alert') { c.fillStyle = COL.red; c.font = '700 18px Mono, Consolas, monospace'; c.fillText('!', g.x, g.y - 34); }
-    c.textAlign = 'left';
-    if (G.hackTarget === g && G.state === 'play') { c.strokeStyle = COL.cyan; c.lineWidth = 2; const q = 32 + Math.sin(t * 6) * 2; for (const [sx, sy] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) { c.beginPath(); c.moveTo(g.x + sx * q, g.y + sy * (q - 10)); c.lineTo(g.x + sx * q, g.y + sy * q); c.lineTo(g.x + sx * (q - 10), g.y + sy * q); c.stroke(); } }
-  },
-  boss(b, t, G) {
-    const c = this.ctx, L = G.level;
-    // faisceaux de scan
-    if (b.state !== 'down') for (let k = 0; k < b.beams; k++) {
-      const a = b.ang + k * TAU / b.beams, r = L.ray(b.x, b.y, a, 2000);
-      c.save(); c.globalCompositeOperation = 'lighter';
-      const w = 0.07;
-      const r1 = L.ray(b.x, b.y, a - w, 2000), r2 = L.ray(b.x, b.y, a + w, 2000);
-      const grd = c.createRadialGradient(b.x, b.y, 60, b.x, b.y, 1400); grd.addColorStop(0, 'rgba(255,90,60,0.5)'); grd.addColorStop(1, 'rgba(255,90,60,0.05)');
-      c.fillStyle = grd; c.beginPath(); c.moveTo(b.x, b.y); c.lineTo(r1.x, r1.y); c.lineTo(r.x, r.y); c.lineTo(r2.x, r2.y); c.closePath(); c.fill();
-      c.restore();
-    }
-    c.save(); c.translate(b.x, b.y);
-    const col = b.state === 'down' ? '#5b6782' : COL.amber;
-    for (let i = 0; i < 3; i++) { this.hex(0, 0, 120 - i * 30, b.rot * (i % 2 ? -1 : 1)); c.lineWidth = i ? 2 : 5; c.strokeStyle = i ? 'rgba(63,224,208,0.5)' : col; if (!i) { c.fillStyle = '#0d1527'; c.fill(); } c.stroke(); }
-    const er = b.state === 'down' ? 10 : 22 + Math.sin(t * 4) * 3;
-    const eg = c.createRadialGradient(0, 0, 0, 0, 0, er * 2.6); eg.addColorStop(0, '#fff1cf'); eg.addColorStop(0.35, col); eg.addColorStop(1, 'rgba(255,179,71,0)');
-    c.fillStyle = eg; c.beginPath(); c.arc(0, 0, er * 2.6, 0, TAU); c.fill();
-    // bouclier : un segment par nœud restant
-    for (let i = 0; i < 3; i++) if (!b.nodes[i]) { c.strokeStyle = 'rgba(63,224,208,0.75)'; c.lineWidth = 4; c.beginPath(); c.arc(0, 0, 150, i * TAU / 3 + t * 0.4, i * TAU / 3 + t * 0.4 + TAU / 3 - 0.25); c.stroke(); }
-    c.restore();
-    c.fillStyle = col; c.font = '700 16px Mono, Consolas, monospace'; c.textAlign = 'center'; c.fillText(b.state === 'down' ? 'GARDIEN-12 · NOYAU EXPOSÉ' : 'GARDIEN-12', b.x, b.y + 180); c.textAlign = 'left';
-  },
-  // ------------------------------------------------------------ éclairage : obscurité découpée par les lumières
-  lighting(G, ox, oy, t) {
-    const l = this.lctx, w = this.lightCv.width, h = this.lightCv.height, L = G.level;
-    l.globalCompositeOperation = 'source-over'; l.clearRect(0, 0, w, h);
-    l.fillStyle = `rgba(2,3,8,${(1 - G.ambient) * 0.9})`; l.fillRect(0, 0, w, h);
-    l.globalCompositeOperation = 'destination-out';
-    const light = (x, y, r, a = 1) => {
-      const sx = (x + ox) / 2, sy = (y + oy) / 2, rr = r / 2; if (sx < -rr || sy < -rr || sx > w + rr || sy > h + rr) return;
-      const g = l.createRadialGradient(sx, sy, 0, sx, sy, rr); g.addColorStop(0, `rgba(0,0,0,${a})`); g.addColorStop(1, 'rgba(0,0,0,0)');
-      l.fillStyle = g; l.fillRect(sx - rr, sy - rr, rr * 2, rr * 2);
-    };
-    const p = G.player;
-    if (!p.dead) {
-      light(p.x, p.y, 260, 0.9);
-      // lampe frontale : cône vers la visée
-      const sx = (p.x + ox) / 2, sy = (p.y + oy) / 2;
-      const g = l.createRadialGradient(sx, sy, 10, sx, sy, 300); g.addColorStop(0, 'rgba(0,0,0,0.85)'); g.addColorStop(1, 'rgba(0,0,0,0)');
-      l.fillStyle = g; l.beginPath(); l.moveTo(sx, sy); l.arc(sx, sy, 300, p.aim - 0.42, p.aim + 0.42); l.closePath(); l.fill();
-    }
-    for (const k in L.consoles) { const q = L.consoles[k]; light((q.x + 0.5) * T, (q.y + 0.5) * T, 220, 0.8); }
-    for (const s of L.stations) light((s.x + 0.5) * T, (s.y + 0.5) * T, 200, 0.75);
-    for (const it of L.items) if (!it.taken) light(it.x, it.y, it.kind === 'f' ? 200 : 120, 0.7);
-    for (const g of G.gardiens) light(g.x, g.y, g.coneOn() ? 260 : 120, 0.8);
-    for (const b of G.beams) if (b.level > 0.05) for (let y = 0; y < b.bottom * T; y += 120) light(b.x * T + 60, y, 260, b.level);
-    if (G.radHot) for (const r of L.radiators) light((r.x + 0.5) * T, (r.y + 0.5) * T, 160, 0.7);
-    for (const e of L.exits) light((e.x + 0.5) * T, (e.y + 0.5) * T, 140, 0.6);
-    if (L.def.tunnel) { const [x0, y0, x1, y1] = L.def.tunnel; for (let x = x0; x <= x1; x += 4) light(x * T, (y0 + y1) / 2 * T, 360, 0.75); }
-    if (G.boss) light(G.boss.x, G.boss.y, 700, 0.9);
-    for (const pp of this.parts) if (pp.glow && pp.size > 2.5) light(pp.x, pp.y, 50, 0.4);
-    const c = this.ctx; c.drawImage(this.lightCv, 0, 0, VW, VH);
-    // halos additifs (bloom)
-    c.save(); c.globalCompositeOperation = 'lighter';
-    const glow = (x, y, r, col, a) => { const sx = x + ox, sy = y + oy; if (sx < -r || sy < -r || sx > VW + r || sy > VH + r) return; const g = c.createRadialGradient(sx, sy, 0, sx, sy, r); g.addColorStop(0, col.replace('A', a)); g.addColorStop(1, col.replace('A', 0)); c.fillStyle = g; c.fillRect(sx - r, sy - r, r * 2, r * 2); };
-    for (const k in L.consoles) { const q = L.consoles[k]; glow((q.x + 0.5) * T, (q.y + 0.5) * T, 70, q.solved ? 'rgba(63,224,208,A)' : 'rgba(255,179,71,A)', 0.22 + 0.06 * Math.sin(t * 3)); }
-    for (const s of L.stations) glow((s.x + 0.5) * T, (s.y + 0.5) * T, 60, s.kind === 'O' ? 'rgba(63,224,208,A)' : 'rgba(157,140,255,A)', 0.18);
-    for (const g of G.gardiens) glow(g.x, g.y, 50, g.state === 'alert' ? 'rgba(255,90,60,A)' : g.state === 'admin' ? 'rgba(63,224,208,A)' : 'rgba(255,179,71,A)', g.offline || g.state === 'crash' ? 0.05 : 0.2);
-    if (G.radHot) for (const r of L.radiators) glow((r.x + 0.5) * T, (r.y + 0.5) * T, 70, 'rgba(255,90,50,A)', 0.25);
-    c.restore();
-  },
+// ---------------------------------------------------------------- entrées
+let held = false;
+const down = (e) => { if (e) e.preventDefault(); S.init(); held = true; if (st === 'over' && overT > 0.45) start(mode === 'day'); };
+const up = () => { held = false; };
+cv.addEventListener('pointerdown', down); addEventListener('pointerup', up); addEventListener('pointercancel', up);
+addEventListener('keydown', (e) => { if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); if (!e.repeat) { if (st === 'menu') start(false); else down(); } } });
+addEventListener('keyup', (e) => { if (e.code === 'Space' || e.code === 'ArrowUp') up(); });
+$('#bPlay').onclick = () => start(false);
+$('#bDaily').onclick = () => start(true);
+$('#bAgain').onclick = () => start(mode === 'day');
+$('#bMenu').onclick = () => menu();
+$('#bShare').onclick = async () => {
+  const txt = `J'ai dérivé ${score} m dans Vesper : Dérive${mode === 'day' ? ' (défi du jour)' : ''}. Tu fais mieux ? https://flexarion-studio.github.io/jouer/`;
+  try { if (navigator.share) await navigator.share({ text: txt }); else { await navigator.clipboard.writeText(txt); $('#shareState').textContent = 'copié !'; } } catch (e) { $('#shareState').textContent = 'copié ?'; }
 };
-
-/* ---- 05-player.js ---- */
-/* =====================================================================
-   ILYA SOREL : apesanteur, poussées, propulsion contre les parois,
-   câble d'ancrage (on se balance, on se tire)
-   ===================================================================== */
-const Player = {
-  RANGE: 340, R: 13, ACC: 300, KICK: 390, REEL: 320, MAXV: 560,
-  create(x, y) {
-    return { x, y, vx: 0, vy: 0, ax: 0, ay: 0, aim: 0, o2: 100, o2max: 100, heat: 20, coolant: 1, rope: null, hook: null,
-      kickCd: 0, hurt: 0, dead: false, spin: 0, wall: null, bounce: 0.06, thrusting: false, inBeam: false };
-  },
-  update(p, dt, G) {
-    if (p.dead) return;
-    const L = G.level;
-    const [sx, sy] = Render.worldToScreen(p.x, p.y);
-    p.aim = Input.aim(sx, sy);
-    const [tx, ty] = Input.thrust();
-    p.ax = tx; p.ay = ty; p.thrusting = !!(tx || ty);
-    p.vx += tx * Player.ACC * dt; p.vy += ty * Player.ACC * dt;
-    if (p.thrusting) { p.o2 -= 1.4 * dt; if (Math.random() < 0.7) Render.emit({ x: p.x - tx * 14, y: p.y - ty * 14, vx: -tx * 160 + rnd(-30, 30), vy: -ty * 160 + rnd(-30, 30), life: 0.35, max: 0.35, size: 3, color: '#dfe8f3', drag: 4 }); }
-    if (Input.brake()) { const k = Math.exp(-2.6 * dt); if (Math.hypot(p.vx, p.vy) > 20) p.o2 -= 1.0 * dt; p.vx *= k; p.vy *= k; }
-    // stabilisateurs : freinage très léger (on garde son élan, c'est l'apesanteur)
-    const drag = Math.exp(-0.22 * dt); p.vx *= drag; p.vy *= drag;
-    // ---- câble d'ancrage
-    if (Input.grapplePressed() && G.state === 'play') {
-      const r = L.ray(p.x, p.y, p.aim, Player.RANGE);
-      if (r.hit) { p.hook = { x: p.x, y: p.y, tx: r.x, ty: r.y, k: 0 }; p.rope = null; Audio.grappleFire(); }
-      else { Audio.grappleMiss(); p.hook = { x: p.x, y: p.y, tx: r.x, ty: r.y, k: 0, miss: true }; }
-    }
-    if (p.hook) {
-      p.hook.k += dt * 7;
-      p.hook.x = lerp(p.x, p.hook.tx, Math.min(1, p.hook.k)); p.hook.y = lerp(p.y, p.hook.ty, Math.min(1, p.hook.k));
-      if (p.hook.k >= 1) {
-        if (!p.hook.miss && Input.grappleHeld()) { p.rope = { x: p.hook.tx, y: p.hook.ty, len: dist(p.x, p.y, p.hook.tx, p.hook.ty) }; Audio.grappleHit(); Render.burst(p.hook.tx, p.hook.ty, 6, COL.cyan, 80, 0.3, 2); G.stats.grapples++; }
-        p.hook = null;
-      }
-    }
-    if (p.rope) {
-      if (!Input.grappleHeld()) p.rope = null;
-      else {
-        p.rope.len = Math.max(26, p.rope.len - Player.REEL * dt);
-        const dx = p.x - p.rope.x, dy = p.y - p.rope.y, d = Math.hypot(dx, dy) || 1, nx = dx / d, ny = dy / d;
-        if (d > p.rope.len) {
-          p.x = p.rope.x + nx * p.rope.len; p.y = p.rope.y + ny * p.rope.len;
-          const vn = p.vx * nx + p.vy * ny; if (vn > 0) { p.vx -= vn * nx; p.vy -= vn * ny; }
-          // traction : on est tiré vers le point d'ancrage
-          p.vx -= nx * 420 * dt; p.vy -= ny * 420 * dt;
-        }
-      }
-    }
-    // ---- se propulser contre une paroi
-    p.kickCd -= dt;
-    p.wall = L.wallNormal(p.x, p.y, Player.R + 10);
-    // contact avec une paroi : les gants accrochent, on glisse moins (plus facile de se propulser)
-    if (p.wall && !p.thrusting && !p.rope) { const [nx, ny] = p.wall, vn = p.vx * nx + p.vy * ny, k = Math.exp(-3 * dt); p.vx = (p.vx - vn * nx) * k + vn * nx; p.vy = (p.vy - vn * ny) * k + vn * ny; if (vn > 0 && vn < 60) { p.vx -= vn * nx * 0.5; p.vy -= vn * ny * 0.5; } }
-    if (Input.kick() && p.wall && p.kickCd <= 0 && G.state === 'play') {
-      const [nx, ny] = p.wall; let dx = Math.cos(p.aim), dy = Math.sin(p.aim);
-      if (dx * nx + dy * ny < 0.15) { dx = nx; dy = ny; }
-      if (Input.usingPad) { const [a, b] = Input.thrust(); if (a || b) { dx = a; dy = b; if (dx * nx + dy * ny < 0.15) { dx = nx; dy = ny; } } }
-      p.vx = p.vx * 0.25 + dx * Player.KICK; p.vy = p.vy * 0.25 + dy * Player.KICK; p.kickCd = 0.18; p.rope = null;
-      Audio.kick(); Render.cam.shake = Math.max(Render.cam.shake, 3); G.stats.kicks++;
-      for (let i = 0; i < 10; i++) Render.emit({ x: p.x - nx * 14, y: p.y - ny * 14, vx: (-ny * rnd(-1, 1) + nx * 0.3) * 160, vy: (nx * rnd(-1, 1) + ny * 0.3) * 160, life: 0.4, max: 0.4, size: 2.5, color: '#9fb2d6', drag: 5 });
-    }
-    // ---- vitesse limite, intégration en sous-pas, collisions
-    const sp = Math.hypot(p.vx, p.vy); if (sp > Player.MAXV) { p.vx *= Player.MAXV / sp; p.vy *= Player.MAXV / sp; }
-    const n = Math.max(1, Math.ceil(sp * dt / 8));
-    for (let i = 0; i < n; i++) {
-      p.x += p.vx * dt / n; p.y += p.vy * dt / n;
-      const hit = L.collide(p, Player.R);
-      if (hit && hit.impact > 150) { Audio.bump(hit.impact); Render.cam.shake = Math.max(Render.cam.shake, hit.impact / 120); p.spin += rnd(-0.4, 0.4); }
-    }
-    if (G.boss) { const b = G.boss, d = dist(p.x, p.y, b.x, b.y), R = 138; if (d < R) { const nx = (p.x - b.x) / d, ny = (p.y - b.y) / d; p.x = b.x + nx * R; p.y = b.y + ny * R; const vn = p.vx * nx + p.vy * ny; if (vn < 0) { p.vx -= vn * nx * 1.3; p.vy -= vn * ny * 1.3; } } }
-    p.spin *= Math.exp(-3 * dt); p.hurt = Math.max(0, p.hurt - dt * 2);
-  },
-  damage(p, o2, heat, G, kx = 0, ky = 0) {
-    p.o2 -= o2; p.heat += heat; p.hurt = 1; p.vx += kx; p.vy += ky; p.rope = null;
-    Render.cam.shake = 14; G.flash = 1;
-  },
-};
-
-/* ---- 06-gardiens.js ---- */
-/* =====================================================================
-   GARDIENS : patrouille, cône de détection, alerte, piratage
-   Trois failles aux effets différents :
-     0 DÉBORDEMENT DE TAMPON → le Gardien plante (immobile, aveugle)
-     1 CONCURRENCE CRITIQUE  → il regarde derrière lui et repart en sens inverse
-     2 CLÉ CODÉE EN DUR      → mode administrateur : il vous suit et ouvre les portails
-   ===================================================================== */
-const EXPLOITS = [
-  { name: 'DÉBORDEMENT', full: 'débordement de tampon', desc: 'Plante le Gardien 8 s', dur: 8 },
-  { name: 'CONCURRENCE', full: 'concurrence critique', desc: 'Il regarde derrière lui 10 s', dur: 10 },
-  { name: 'CLÉ EN DUR', full: 'clé codée en dur', desc: 'Il vous obéit 16 s (ouvre les portails)', dur: 16 },
-];
-
-class Gardien {
-  static RANGE = 280; static HALF = 0.52;
-  constructor(def, idx, zone) {
-    this.path = def.path.map(([x, y]) => [(x + 0.5) * T, (y + 0.5) * T]);
-    [this.x, this.y] = this.path[0]; this.vx = 0; this.vy = 0;
-    this.pi = this.path.length > 1 ? 1 : 0; this.speed = def.speed; this.offline = !!def.offline;
-    this.ang = def.face ?? 0; this.rot = rnd(0, 1); this.state = 'patrol'; this.sus = 0; this.timer = 0; this.lost = 0; this.cool = 0;
-    this.id = `G-${zone}${String(idx + 1).padStart(1, '0')}${def.offline ? 'X' : ''}`; this.bounce = 0;
-    this.drone = !!def.drone; this.orbit = def.orbit || null; this.oa = rnd(0, TAU);
-  }
-  face() { return this.ang + (this.state === 'invert' ? Math.PI : 0); }
-  coneOn() { return !this.offline && ['patrol', 'return', 'invert', 'alert'].includes(this.state); }
-  canHack(p) { return this.state !== 'alert' && this.state !== 'admin' && dist(p.x, p.y, this.x, this.y) < 130; }
-  moveTo(tx, ty, sp, dt, L) {
-    const dx = tx - this.x, dy = ty - this.y, d = Math.hypot(dx, dy);
-    if (d < 4) return true;
-    const vx = dx / d * sp, vy = dy / d * sp;
-    this.vx = lerp(this.vx, vx, 1 - Math.exp(-4 * dt)); this.vy = lerp(this.vy, vy, 1 - Math.exp(-4 * dt));
-    this.x += this.vx * dt; this.y += this.vy * dt; L.collide(this, 20);
-    return d < 10;
-  }
-  turnTo(a, dt, k = 4) { this.ang += angDiff(this.ang, a) * (1 - Math.exp(-k * dt)); }
-  update(dt, G) {
-    const L = G.level, p = G.player;
-    this.rot += dt * (this.state === 'alert' ? 2 : 0.4);
-    if (this.offline) { this.sus = 0; return; }
-    this.cool -= dt;
-    if (this.state === 'crash') {
-      this.vx *= Math.exp(-1.5 * dt); this.vy *= Math.exp(-1.5 * dt); this.x += this.vx * dt; this.y += this.vy * dt; L.collide(this, 20);
-      if (Math.random() < 0.25) Render.emit({ x: this.x + rnd(-15, 15), y: this.y + rnd(-15, 15), vx: rnd(-80, 80), vy: rnd(-80, 80), life: 0.3, max: 0.3, size: 2, color: '#ffd28a', glow: true, drag: 3 });
-      if ((this.timer -= dt) <= 0) { this.state = 'return'; this.sus = 0; }
-      return;
-    }
-    if (this.state === 'admin') {
-      const fx = p.x - Math.cos(p.aim) * 70, fy = p.y - Math.sin(p.aim) * 70 - 30;
-      this.moveTo(fx, fy, 230, dt, L); this.turnTo(Math.atan2(p.y - this.y, p.x - this.x), dt);
-      for (const g of L.gates) if (dist(this.x, this.y, (g.x + 0.5) * T, (g.y + 0.5) * T) < 3.2 * T) g.hold = 1.2;
-      if ((this.timer -= dt) <= 0) { this.state = 'return'; G.radio('SYSTÈME', `${this.id} : session administrateur expirée.`, 'sys'); }
-      return;
-    }
-    if (this.state === 'alert') {
-      const seen = L.los(this.x, this.y, p.x, p.y) && !p.dead;
-      if (seen) { this.lost = 0; this.lx = p.x; this.ly = p.y; } else this.lost += dt;
-      this.moveTo(this.lx ?? p.x, this.ly ?? p.y, 175, dt, L); this.turnTo(Math.atan2((this.ly ?? p.y) - this.y, (this.lx ?? p.x) - this.x), dt, 8);
-      if (!p.dead && this.cool <= 0 && dist(this.x, this.y, p.x, p.y) < 22 + Player.R + 4) { G.scanned(this); this.cool = 2.2; }
-      if (this.lost > 3) { this.state = 'return'; this.sus = 0.4; G.radio('GARDIENS', `${this.id} a perdu votre trace.`, 'gd'); }
-      return;
-    }
-    // patrouille / retour / inversé
-    if (this.drone && this.orbit) {
-      this.oa += dt * this.speed / this.orbit.r * (this.state === 'invert' ? -1 : 1);
-      const tx = this.orbit.x + Math.cos(this.oa) * this.orbit.r, ty = this.orbit.y + Math.sin(this.oa) * this.orbit.r;
-      this.moveTo(tx, ty, this.speed * 1.4, dt, L);
-      this.turnTo(Math.atan2(this.vy, this.vx), dt);
-    } else if (this.state === 'return') {
-      let best = 0, bd = 1e9; this.path.forEach(([x, y], i) => { const d = dist(x, y, this.x, this.y); if (d < bd) { bd = d; best = i; } });
-      if (this.moveTo(this.path[best][0], this.path[best][1], this.speed * 1.2 || 60, dt, L)) { this.state = 'patrol'; this.pi = best; }
-      this.turnTo(Math.atan2(this.vy, this.vx), dt);
-    } else if (this.path.length > 1 && this.speed > 0) {
-      const [tx, ty] = this.path[this.pi];
-      const investigating = this.sus > 0.35 && this.state === 'patrol';
-      if (investigating) { this.vx *= Math.exp(-3 * dt); this.vy *= Math.exp(-3 * dt); this.turnTo(Math.atan2(p.y - this.y, p.x - this.x), dt, 3); }
-      else {
-        if (this.moveTo(tx, ty, this.speed, dt, L)) this.pi = (this.pi + 1) % this.path.length;
-        if (Math.hypot(this.vx, this.vy) > 5) this.turnTo(Math.atan2(this.vy, this.vx), dt, 3);
-      }
-    }
-    if (this.state === 'invert' && (this.timer -= dt) <= 0) this.state = 'patrol';
-    // détection
-    if (this.coneOn() && !p.dead && G.state === 'play') {
-      const d = dist(this.x, this.y, p.x, p.y), a = Math.atan2(p.y - this.y, p.x - this.x);
-      const inCone = d < Gardien.RANGE && Math.abs(angDiff(this.face(), a)) < Gardien.HALF && L.los(this.x, this.y, p.x, p.y);
-      const close = d < 46;
-      if (inCone || close) {
-        const before = this.sus;
-        this.sus += dt * (1.6 - (d / Gardien.RANGE) * 0.9) * G.susMult * (close ? 2 : 1);
-        if (before < 0.05 && this.sus >= 0.05) Audio.suspicion();
-        if (this.sus >= 1) this.alert(G);
-      } else this.sus = Math.max(0, this.sus - dt * 0.45);
-    }
-  }
-  alert(G) {
-    if (this.state === 'alert') return;
-    this.state = 'alert'; this.sus = 1; this.lost = 0; this.lx = G.player.x; this.ly = G.player.y; G.stats.detected++;
-    Audio.detect(); G.radio('GARDIENS', `${this.id} : intrusion détectée.`, 'gd');
-  }
+function menu() {
+  st = 'menu'; $('#over').classList.remove('on'); $('#menu').classList.add('on'); $('#hud').hidden = true;
+  const bi = store.get('best.inf', 0), bd = store.get('best.day.' + today(), 0);
+  $('#bestInf').textContent = bi ? `record : ${bi} m` : 'mode infini';
+  $('#bestDay').textContent = bd ? `même parcours pour tous · record du jour : ${bd} m` : 'même parcours pour tout le monde aujourd\'hui';
+  reset(false); P.rope = null; P.x = 0; P.y = 300; P.vx = 0; P.vy = 0;
+}
+function start(daily) { S.init(); reset(daily); st = 'play'; held = false; $('#menu').classList.remove('on'); $('#over').classList.remove('on'); $('#hud').hidden = false; flash(daily ? 'DÉFI DU JOUR' : 'MAINTENEZ POUR VOUS ACCROCHER'); }
+function flash(s) { msg = s; msgT = 1.8; }
+let overT = 0;
+function die(reason) {
+  if (st !== 'play') return; st = 'over'; overT = 0; why = reason; S.die(); shake = 18;
+  for (let i = 0; i < 50; i++) { const a = Math.random() * TAU, s = 80 + Math.random() * 300; parts.push({ x: P.x, y: P.y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, l: 0.9, c: reason === 'SCANNÉE' ? '#ff6a55' : '#ffb347' }); }
+  const key = 'best.' + mode + (mode === 'day' ? '.' + today() : ''), prev = store.get(key, 0), isRec = score > prev;
+  if (isRec) store.set(key, score);
+  setTimeout(() => {
+    $('#oWhy').textContent = reason; $('#oScore').textContent = `${score} m`; $('#oRec').textContent = isRec ? 'NOUVEAU RECORD !' : '';
+    $('#oBest').textContent = `${mode === 'day' ? 'Défi du jour' : 'Record'} : ${Math.max(prev, score)} m · glyphes : ${glyphPts}`;
+    $('#shareState').textContent = 'mon score'; $('#over').classList.add('on'); $('#hud').hidden = true;
+  }, 650);
 }
 
-// ---------------------------------------------------------------- GARDIEN-12 (boss du secteur 3)
-class Boss {
-  constructor(tx, ty) { this.x = (tx + 0.5) * T; this.y = (ty + 0.5) * T; this.ang = 0; this.rot = 0; this.beams = 2; this.speed = 0.32; this.nodes = [false, false, false]; this.state = 'active'; this.phase = 0; }
-  update(dt, G) {
-    this.rot += dt * (this.state === 'down' ? 0.05 : 0.25);
-    if (this.state === 'down') return;
-    this.ang += this.speed * dt;
-    const p = G.player; p.inBossBeam = false; if (p.dead || p.x < 33 * T) return;
-    const a = Math.atan2(p.y - this.y, p.x - this.x);
-    let hit = false;
-    for (let k = 0; k < this.beams; k++) if (Math.abs(angDiff(this.ang + k * TAU / this.beams, a)) < 0.075 && G.level.los(this.x, this.y, p.x, p.y)) hit = true;
-    p.inBossBeam = hit;
-    if (hit) {
-      p.heat += 34 * dt;
-      if (!this.warned) { this.warned = true; G.radio('GARDIEN-12', 'SIGNATURE THERMIQUE ÉTRANGÈRE. CORRECTION EN COURS.', 'gd'); }
-      for (const g of G.gardiens) if (g.coneOn() && g.state !== 'alert' && dist(g.x, g.y, p.x, p.y) < 420) g.alert(G);
+// ---------------------------------------------------------------- simulation
+function update(dt) {
+  t += dt;
+  if (st === 'over') overT += dt;
+  if (st === 'play') {
+    // accrochage : le meilleur ancrage devant soi, à portée
+    if (held && !P.rope) {
+      let bestA = null, bs = -1e9;
+      for (const a of anchors) { const dx = a.x - P.x, dy = a.y - P.y, d = Math.hypot(dx, dy); if (d < RANGE && dx > -60 && a.y < P.y + 40) { const sc = -d + dx * 0.6; if (sc > bs) { bs = sc; bestA = a; } } }
+      if (bestA) { P.rope = { a: bestA, len: Math.hypot(bestA.x - P.x, bestA.y - P.y) }; S.attach(); for (let i = 0; i < 8; i++) parts.push({ x: bestA.x, y: bestA.y, vx: (Math.random() - 0.5) * 200, vy: (Math.random() - 0.5) * 200, l: 0.35, c: '#3fe0d0' }); }
     }
+    if (!held && P.rope) { P.rope = null; S.release(); if (P.vy < 0) { P.vx *= 1.06; P.vy *= 1.1; } }
+    P.vy += G * dt;
+    if (P.rope) {
+      P.rope.len = Math.max(70, P.rope.len - 150 * dt);          // le câble se rembobine : on se hisse, ça relance la vitesse
+      P.x += P.vx * dt; P.y += P.vy * dt;
+      const a = P.rope.a, dx = P.x - a.x, dy = P.y - a.y, d = Math.hypot(dx, dy) || 1, nx = dx / d, ny = dy / d;
+      if (d > P.rope.len) { P.x = a.x + nx * P.rope.len; P.y = a.y + ny * P.rope.len; const vn = P.vx * nx + P.vy * ny; if (vn > 0) { P.vx -= vn * nx; P.vy -= vn * ny; } }
+      const sp = Math.hypot(P.vx, P.vy); if (sp < 300) { P.vx += (-ny) * Math.sign(P.vx || 1) * 120 * dt; }
+    } else { P.x += P.vx * dt; P.y += P.vy * dt; }
+    P.vx = clamp(P.vx, -900, 1100); P.vy = clamp(P.vy, -1100, 1300);
+    if (P.y < TOP + R) { P.y = TOP + R; if (P.vy < 0) P.vy *= -0.4; shake = Math.max(shake, 3); }
+    if (P.y > FLOOR - R) return die('SURCHAUFFE');
+    // glyphes
+    comboT -= dt; if (comboT <= 0) combo = 0;
+    for (const g of glyphs) if (!g.got && Math.hypot(g.x - P.x, g.y - P.y) < 26) { g.got = true; combo++; comboT = 1.6; glyphPts += combo; S.glyph(combo); for (let i = 0; i < 10; i++) parts.push({ x: g.x, y: g.y, vx: (Math.random() - 0.5) * 240, vy: (Math.random() - 0.5) * 240, l: 0.4, c: g.v > 0 ? '#3fe0d0' : g.v < 0 ? '#ffb347' : '#cfd8e6' }); }
+    // Gardiens : corps + cône qui balaie
+    for (const dr of drones) {
+      const y = dr.y + Math.sin(t * 1.6 + dr.bob) * 30, ang = dr.ph + t * dr.sp;
+      if (Math.hypot(dr.x - P.x, y - P.y) < 22 + R) return die('SCANNÉE');
+      const dx = P.x - dr.x, dy = P.y - y, d = Math.hypot(dx, dy);
+      let da = Math.atan2(dy, dx) - ang; da = Math.atan2(Math.sin(da), Math.cos(da));
+      if (d < dr.len && Math.abs(da) < 0.3) return die('SCANNÉE');
+      if (!dr.near && d < dr.len + 40 && P.x > dr.x + 30) { dr.near = true; glyphPts += 3; S.near(); flash('FRÔLÉ ! +3'); }
+    }
+    for (const b of beams) if (beamOn(b) && Math.abs(P.x - b.x) < b.w / 2 + R) return die('SURCHAUFFE');
+    score = Math.max(score, Math.floor(P.x / 10)) ;
+    const total = score + glyphPts;
+    if (Math.floor(score / 250) > lastMile) { lastMile = Math.floor(score / 250); S.mile(); flash(`${lastMile * 250} m · SECTEUR ${lastMile + 1}`); }
+    $('#hS').innerHTML = `${score}<small>m</small>`;
+    $('#hC').textContent = (combo > 1 ? `×${combo} ` : '') + `◆ ${glyphPts}` + (best ? ` · record ${best}` : '');
+    void total;
+    generate(P.x + W * 1.5);
+    P.trail.push([P.x, P.y]); if (P.trail.length > 18) P.trail.shift();
   }
-  nodeDown(i, G) {
-    this.nodes[i] = true; this.phase++; this.speed += 0.12; Audio.explosion(); Render.cam.shake = 22;
-    Render.burst(this.x, this.y, 60, COL.amber, 420, 1.1, 3.5);
-    if (this.phase >= 3) { this.state = 'down'; this.beams = 0; }
-    else if (this.phase === 2) this.beams = 3;
-  }
+  if (st === 'menu') { P.x += 120 * dt; P.y = 300 + Math.sin(t) * 30; generate(P.x + W * 1.5); }
+  camX = lerp(camX, P.x - W * 0.32, 1 - Math.exp(-6 * dt));
+  for (const p of parts) { p.l -= dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= 0.96; p.vy *= 0.96; }
+  parts = parts.filter((p) => p.l > 0);
+  shake *= Math.exp(-8 * dt); msgT -= dt;
+  anchors = anchors.filter((a) => a.x > camX - 400); glyphs = glyphs.filter((g) => g.x > camX - 200); drones = drones.filter((d) => d.x > camX - 300); beams = beams.filter((b) => b.x > camX - 200);
 }
 
-/* ---- 07-puzzles.js ---- */
-/* =====================================================================
-   CONSOLES « FIRMWARE GLYPHE » : une grille de glyphes ternaires (+ 0 −)
-   transformée ligne par ligne par le firmware. Il faut corriger le
-   firmware (PATCH, SAUT, ou écrire des lignes) pour que la grille finale
-   égale la CLÉ. On peut lire la mémoire avant chaque ligne (point d'arrêt).
-   ===================================================================== */
-const POPS = {
-  ROT: { fr: (a, i) => `fait tourner ${a === 'L' ? 'la ligne' : 'la colonne'} ${i + 1} (− → 0 → +)`, f: (v) => (v === 1 ? -1 : v + 1) },
-  INV: { fr: (a, i) => `inverse ${a === 'L' ? 'la ligne' : 'la colonne'} ${i + 1} (+ ↔ −)`, f: (v) => -v || 0 },
-  DCL: { fr: (a, i) => `décale ${a === 'L' ? 'la ligne' : 'la colonne'} ${i + 1} ${a === 'L' ? 'vers la gauche' : 'vers le haut'}` },
-  ECH: { fr: (a, i, j) => `échange ${a === 'L' ? 'les lignes' : 'les colonnes'} ${i + 1} et ${j + 1}` },
-};
-const I = (s) => { const m = s.split(' '); const op = m[0], ax = m[1][0], i = +m[1].slice(1) - 1, j = m[2] ? +m[2].slice(1) - 1 : null; return { op, ax, i, j }; };
-const insAsm = (n) => (n ? `${n.op} ${n.ax}${n.i + 1}${n.j !== null ? ' ' + n.ax + (n.j + 1) : ''}` : '— vide —');
-const insFr = (n) => (n ? POPS[n.op].fr(n.ax, n.i, n.j) : 'emplacement libre : ajoutez une instruction');
-const insEq = (a, b) => a && b && a.op === b.op && a.ax === b.ax && a.i === b.i && a.j === b.j;
-function applyIns(g, n) {
-  if (!n) return g;
-  const R = g.length, C = g[0].length, o = g.map((r) => r.slice());
-  const cells = n.ax === 'L' ? [...Array(C)].map((_, k) => [n.i, k]) : [...Array(R)].map((_, k) => [k, n.i]);
-  if (n.op === 'ROT' || n.op === 'INV') for (const [r, c] of cells) o[r][c] = POPS[n.op].f(g[r][c]);
-  if (n.op === 'DCL') { const v = cells.map(([r, c]) => g[r][c]); cells.forEach(([r, c], k) => { o[r][c] = v[(k + 1) % v.length]; }); }
-  if (n.op === 'ECH') {
-    if (n.ax === 'L') { o[n.i] = g[n.j].slice(); o[n.j] = g[n.i].slice(); }
-    else for (let r = 0; r < R; r++) { o[r][n.i] = g[r][n.j]; o[r][n.j] = g[r][n.i]; }
+// ---------------------------------------------------------------- rendu
+const stars = Array.from({ length: 160 }, () => [Math.random(), Math.random(), Math.random() * 0.4 + 0.05, Math.random() * 1.6 + 0.5]);
+function draw() {
+  cx.setTransform(1, 0, 0, 1, 0, 0); cx.fillStyle = '#05070d'; cx.fillRect(0, 0, cv.width, cv.height);
+  cx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, offY * scale * dpr);
+  const sx = (Math.random() - 0.5) * shake, sy = (Math.random() - 0.5) * shake;
+  // fond : espace, Tau-Héliade, l'anneau
+  cx.fillStyle = '#05070d'; cx.fillRect(0, 0, W, H);
+  const zx = W * 0.78, zy = 150, g0 = cx.createRadialGradient(zx, zy, 30, zx, zy, 520); g0.addColorStop(0, 'rgba(255,110,60,.55)'); g0.addColorStop(0.35, 'rgba(150,35,45,.22)'); g0.addColorStop(1, 'rgba(0,0,0,0)');
+  cx.fillStyle = g0; cx.fillRect(0, 0, W, H);
+  for (const [x, y, z, s] of stars) { const px = ((x * W * 3 - camX * z) % W + W) % W; cx.fillStyle = 'rgba(220,230,255,.6)'; cx.fillRect(px, y * H, s, s); }
+  cx.beginPath(); cx.arc(zx, zy, 46, 0, TAU); cx.fillStyle = '#ffd59a'; cx.fill(); cx.lineWidth = 6; cx.strokeStyle = '#ffb347'; cx.stroke();
+  cx.save(); cx.translate(sx - camX, sy);
+  // plafond et sol de l'anneau (parallaxe des lumières)
+  cx.fillStyle = '#121a2c'; cx.fillRect(camX - 10, 0, W + 20, TOP);
+  cx.fillStyle = '#4a5f8f'; cx.fillRect(camX - 10, TOP - 3, W + 20, 3);
+  const g1 = cx.createLinearGradient(0, FLOOR, 0, H); g1.addColorStop(0, '#ff7a3a'); g1.addColorStop(0.15, '#a8321e'); g1.addColorStop(1, '#2a0d10');
+  cx.fillStyle = g1; cx.fillRect(camX - 10, FLOOR, W + 20, H - FLOOR);
+  for (let x = Math.floor(camX / 80) * 80; x < camX + W + 80; x += 80) {
+    cx.fillStyle = 'rgba(255,200,140,' + (0.35 + 0.25 * Math.sin(t * 6 + x)) + ')'; cx.fillRect(x, FLOOR + 6, 50, 4);
+    cx.fillStyle = 'rgba(63,224,208,.5)'; cx.fillRect(x + 10, TOP - 14, 30, 3);
+    cx.strokeStyle = 'rgba(44,59,94,.6)'; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(x, TOP); cx.lineTo(x, TOP - 30); cx.stroke();
   }
-  return o;
-}
-const runProg = (g, prog) => { const st = [g]; for (const n of prog) st.push(applyIns(st[st.length - 1], n)); return st; };
-const gEq = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-
-// Chaque puzzle : grille de départ, firmware CORRECT (donne la clé) et firmware LIVRÉ (bogué).
-function mkPuzzle(o) {
-  const correct = o.correct.map(I), prog = o.prog.map((s) => (s ? I(s) : null));
-  return Object.assign({ budget: 1, palette: [] }, o, { correct, prog, palette: o.palette.map(I), key: runProg(o.grid, correct).pop() });
-}
-const PUZZLES = {
-  p1: mkPuzzle({ name: 'SAS 12-A', grid: [[-1, 0, 1]], correct: ['ROT L1'], prog: ['ROT L1', 'INV L1'], palette: ['ROT L1', 'INV L1'], tutorial: true }),
-  p2: mkPuzzle({ name: 'CLOISON 12-B', grid: [[1, 1, 0]], correct: ['DCL L1', 'ROT L1'], prog: ['DCL L1', 'INV L1'], palette: ['ROT L1', 'INV L1', 'DCL L1'],
-    hint: 'Cette fois, aucune ligne n\'est en trop : l\'une d\'elles fait la mauvaise opération. PATCH, puis choisissez la bonne instruction.' }),
-  p3: mkPuzzle({ name: 'RELAIS D\'ÉNERGIE 2-C', grid: [[1, 0, -1], [0, 0, 1]], correct: ['ECH L1 L2', 'ROT C3', 'INV L2'], prog: ['ECH L1 L2', 'ROT C1', 'INV L2'],
-    palette: ['ROT C1', 'ROT C2', 'ROT C3', 'INV L1', 'INV L2', 'ECH L1 L2', 'DCL L1'], hint: 'Deux lignes de mémoire maintenant. Suivez une colonne à la fois.' }),
-  p4: mkPuzzle({ name: 'PORTE DU NOYAU 2-D', grid: [[1, 0, 0], [0, -1, 0], [0, 0, 1]], correct: ['DCL L2', 'ROT C1', 'ECH L1 L3', 'INV C2'], prog: ['DCL L2', 'ROT C2', 'ECH L1 L3', 'INV C3'],
-    palette: ['ROT C1', 'ROT C2', 'ROT C3', 'INV C1', 'INV C2', 'INV C3', 'DCL L2', 'ECH L1 L3'], budget: 2, hint: 'Deux erreurs dans ce firmware. Vous avez droit à deux modifications.' }),
-  p5: mkPuzzle({ name: 'NŒUD α', grid: [[0, 1, -1], [1, 0, 0]], correct: ['INV L1', 'DCL L2'], prog: ['INV L2', 'DCL L2'], palette: ['INV L1', 'INV L2', 'DCL L1', 'DCL L2'] }),
-  p6: mkPuzzle({ name: 'NŒUD β', grid: [[-1, -1, 0], [0, 1, 1]], correct: ['ROT L1', 'ECH L1 L2'], prog: ['ROT L1', 'ECH L1 L2', 'ROT L1'], palette: ['ROT L1', 'ROT L2', 'ECH L1 L2'] }),
-  p7: mkPuzzle({ name: 'NŒUD γ', grid: [[1, 0, 1], [-1, 0, -1]], correct: ['ROT C2', 'INV L2'], prog: ['ROT C2', 'ROT L2'], palette: ['ROT C2', 'INV L2', 'ROT L2', 'INV L1'] }),
-  p8: mkPuzzle({ name: 'GARDIEN-12 · NOYAU', grid: [[1, 0, -1], [0, 1, 0], [-1, 0, 1]], correct: ['ECH L1 L3', 'ROT L2', 'INV C2'], prog: [null, null, null],
-    palette: ['ECH L1 L3', 'ROT L2', 'INV C2', 'DCL L1', 'INV L2', 'ROT C2'], budget: 3, write: true,
-    hint: 'Pas de firmware à corriger : il faut l\'écrire. Remplissez les trois emplacements pour que la mémoire devienne la clé.' }),
-};
-// vérification (console développeur) : chaque puzzle est résoluble dans son budget et pas déjà résolu
-function checkPuzzles() {
-  for (const [k, P] of Object.entries(PUZZLES)) {
-    const opts = (prog) => prog.flatMap((n, i) => [...P.palette.filter((x) => !insEq(x, n)).map((x) => ({ i, x })), ...(n ? [{ i, x: null }] : [])]);
-    let sols = 0; const seen = new Set();
-    const rec = (prog, depth) => {
-      if (gEq(runProg(P.grid, prog).pop(), P.key)) { const s = JSON.stringify(prog); if (!seen.has(s)) { seen.add(s); sols++; } }
-      if (depth >= P.budget) return;
-      for (const { i, x } of opts(prog)) { const q = prog.slice(); q[i] = x; rec(q, depth + 1); }
-    };
-    rec(P.prog, 0);
-    const pre = gEq(runProg(P.grid, P.prog).pop(), P.key);
-    if (!sols || pre) console.warn('PUZZLE INVALIDE', k, { sols, pre }); else console.log('puzzle', k, 'solutions', sols);
+  const g2 = cx.createLinearGradient(0, FLOOR - 70, 0, FLOOR); g2.addColorStop(0, 'rgba(255,90,40,0)'); g2.addColorStop(1, 'rgba(255,90,40,.28)'); cx.fillStyle = g2; cx.fillRect(camX - 10, FLOOR - 70, W + 20, 70);
+  // rayons de Tau-Héliade
+  for (const b of beams) {
+    const on = beamOn(b), warn = beamWarn(b);
+    if (on) { const g = cx.createLinearGradient(b.x - b.w, 0, b.x + b.w, 0); g.addColorStop(0, 'rgba(255,80,40,0)'); g.addColorStop(0.5, 'rgba(255,180,120,.85)'); g.addColorStop(1, 'rgba(255,80,40,0)'); cx.fillStyle = g; cx.fillRect(b.x - b.w, TOP, b.w * 2, FLOOR - TOP); }
+    else if (warn) { cx.fillStyle = `rgba(255,179,71,${0.12 + 0.1 * Math.sin(t * 30)})`; cx.fillRect(b.x - b.w / 2, TOP, b.w, FLOOR - TOP); }
+    cx.fillStyle = '#2a0d10'; cx.fillRect(b.x - b.w / 2 - 6, TOP - 10, b.w + 12, 10);
   }
+  // ancrages
+  for (const a of anchors) {
+    const act = P.rope && P.rope.a === a;
+    const g = cx.createRadialGradient(a.x, a.y, 0, a.x, a.y, 40); g.addColorStop(0, act ? 'rgba(63,224,208,.6)' : 'rgba(63,224,208,.25)'); g.addColorStop(1, 'rgba(63,224,208,0)');
+    cx.fillStyle = g; cx.fillRect(a.x - 40, a.y - 40, 80, 80);
+    cx.strokeStyle = '#3fe0d0'; cx.lineWidth = 3; cx.beginPath(); cx.arc(a.x, a.y, 10, 0, TAU); cx.stroke();
+    cx.strokeStyle = 'rgba(63,224,208,.3)'; cx.lineWidth = 1; cx.beginPath(); cx.moveTo(a.x, a.y - 10); cx.lineTo(a.x, TOP); cx.stroke();
+  }
+  // glyphes
+  cx.font = '700 18px ' + getComputedStyle(document.body).fontFamily; cx.textAlign = 'center'; cx.textBaseline = 'middle';
+  for (const g of glyphs) if (!g.got) {
+    const y = g.y + Math.sin(t * 3 + g.x) * 4, col = g.v > 0 ? '#3fe0d0' : g.v < 0 ? '#ffb347' : '#cfd8e6';
+    cx.strokeStyle = col; cx.lineWidth = 2; cx.beginPath(); for (let i = 0; i < 6; i++) { const an = Math.PI / 6 + i * Math.PI / 3; cx[i ? 'lineTo' : 'moveTo'](g.x + Math.cos(an) * 13, y + Math.sin(an) * 13); } cx.closePath(); cx.stroke();
+    cx.fillStyle = col; cx.fillText(g.v > 0 ? '+' : g.v < 0 ? '−' : '0', g.x, y + 1);
+  }
+  // Gardiens
+  for (const dr of drones) {
+    const y = dr.y + Math.sin(t * 1.6 + dr.bob) * 30, ang = dr.ph + t * dr.sp;
+    cx.save(); cx.globalCompositeOperation = 'lighter';
+    const g = cx.createRadialGradient(dr.x, y, 10, dr.x, y, dr.len); g.addColorStop(0, 'rgba(255,150,60,.45)'); g.addColorStop(1, 'rgba(255,150,60,0)');
+    cx.fillStyle = g; cx.beginPath(); cx.moveTo(dr.x, y); cx.arc(dr.x, y, dr.len, ang - 0.3, ang + 0.3); cx.closePath(); cx.fill(); cx.restore();
+    cx.beginPath(); for (let i = 0; i < 6; i++) { const an = Math.PI / 6 + i * Math.PI / 3 + t * 0.4; cx[i ? 'lineTo' : 'moveTo'](dr.x + Math.cos(an) * 22, y + Math.sin(an) * 22); } cx.closePath();
+    cx.fillStyle = '#0e1729'; cx.fill(); cx.lineWidth = 3; cx.strokeStyle = '#ffb347'; cx.stroke();
+    const eg = cx.createRadialGradient(dr.x, y, 0, dr.x, y, 14); eg.addColorStop(0, '#fff3d6'); eg.addColorStop(0.4, '#ffb347'); eg.addColorStop(1, 'rgba(255,179,71,0)');
+    cx.fillStyle = eg; cx.beginPath(); cx.arc(dr.x + Math.cos(ang) * 4, y + Math.sin(ang) * 4, 14, 0, TAU); cx.fill();
+  }
+  // câble + traînée + Ilya
+  if (P.rope) { cx.strokeStyle = '#3fe0d0'; cx.lineWidth = 2.5; cx.beginPath(); cx.moveTo(P.x, P.y); cx.lineTo(P.rope.a.x, P.rope.a.y); cx.stroke(); }
+  P.trail.forEach(([x, y], i) => { cx.fillStyle = `rgba(200,230,255,${i / P.trail.length * 0.35})`; cx.fillRect(x - 2, y - 2, 4, 4); });
+  if (st !== 'over') {
+    cx.save(); cx.translate(P.x, P.y); cx.rotate(clamp(P.vx / 900, -0.6, 0.6) + (P.rope ? 0 : P.vy / 3000));
+    cx.strokeStyle = '#cfd8e6'; cx.lineCap = 'round'; cx.lineWidth = 4; const sw = Math.sin(t * 8) * 0.3;
+    for (const s of [-1, 1]) { cx.beginPath(); cx.moveTo(s * 3, 7); cx.lineTo(s * 5 + sw * 4 * s, 17); cx.stroke(); cx.beginPath(); cx.moveTo(s * 6, -2); cx.lineTo(s * 11, 5 + sw * 4 * s); cx.stroke(); }
+    cx.fillStyle = '#9aa7bd'; cx.fillRect(-9, -6, 5, 11);
+    cx.fillStyle = '#e6ecf5'; cx.beginPath(); cx.ellipse(0, 2, 7, 10, 0, 0, TAU); cx.fill(); cx.beginPath(); cx.arc(0, -11, 7, 0, TAU); cx.fill();
+    cx.fillStyle = '#3fe0d0'; cx.fillRect(-1, -14, 8, 4);
+    cx.restore();
+  }
+  for (const p of parts) { cx.globalAlpha = clamp(p.l * 2, 0, 1); cx.fillStyle = p.c; cx.fillRect(p.x - 2, p.y - 2, 4, 4); }
+  cx.globalAlpha = 1;
+  // visée : quel ancrage sera attrapé
+  if (st === 'play' && !P.rope) {
+    let bestA = null, bs = -1e9; for (const a of anchors) { const dx = a.x - P.x, dy = a.y - P.y, d = Math.hypot(dx, dy); if (d < RANGE && dx > -60 && a.y < P.y + 40) { const sc = -d + dx * 0.6; if (sc > bs) { bs = sc; bestA = a; } } }
+    if (bestA) { cx.strokeStyle = 'rgba(63,224,208,.35)'; cx.setLineDash([4, 8]); cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(P.x, P.y); cx.lineTo(bestA.x, bestA.y); cx.stroke(); cx.setLineDash([]); cx.strokeStyle = '#3fe0d0'; cx.lineWidth = 2; cx.beginPath(); cx.arc(bestA.x, bestA.y, 16 + Math.sin(t * 10) * 2, 0, TAU); cx.stroke(); }
+  }
+  cx.restore();
+  if (msgT > 0 && st === 'play') { cx.globalAlpha = clamp(msgT, 0, 1); cx.fillStyle = '#ffb347'; cx.font = '700 22px ' + getComputedStyle(document.body).fontFamily; cx.textAlign = 'center'; cx.fillText(msg, W / 2, 110); cx.globalAlpha = 1; }
+  const vg = cx.createRadialGradient(W / 2, H / 2, H * 0.3, W / 2, H / 2, H * 0.95); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.5)'); cx.fillStyle = vg; cx.fillRect(0, 0, W, H);
 }
 
-// ---------------------------------------------------------------- l'interface de la console (DOM)
-const Console = {
-  P: null, prog: null, mods: null, bp: null, mode: 'LIRE', sel: null, onDone: null, running: false, msg: '', cls: '', tut: null, shown: null,
-  open(P, onDone) {
-    this.P = P; this.prog = P.prog.slice(); this.mods = new Set(); this.bp = null; this.mode = P.write ? 'PATCH' : 'LIRE'; this.sel = null; this.onDone = onDone;
-    this.running = false; this.msg = P.hint || ''; this.cls = ''; this.shown = null;
-    this.tut = P.tutorial && !Game.flags.tutoDone ? { step: 1 } : null;
-    $('#console').classList.add('on'); Audio.beep(990); this.render();
-  },
-  close() { $('#console').classList.remove('on'); this.P = null; },
-  modsUsed() { return this.prog.reduce((n, x, i) => n + (insEq(x, this.P.prog[i]) || (x === null && this.P.prog[i] === null) ? 0 : 1), 0); },
-  word: (v) => v.map((x) => (x < 0 ? '-' : x > 0 ? '+' : '0')).join(''),
-  bytes(n, i) {
-    const code = { ROT: [1, 0, 0], INV: [-1, 0, 0], DCL: [1, 1, 0], ECH: [0, 1, -1] };
-    const h = (a) => [Math.floor(hash2(i, a, 7) * 3) - 1, Math.floor(hash2(a, i, 9) * 3) - 1, Math.floor(hash2(i + a, 3, 5) * 3) - 1];
-    if (!n) return ['000', '000', '000', this.word(h(1)), this.word(h(2))];
-    return [this.word(code[n.op]), this.word(n.ax === 'L' ? [0, 0, -1] : [0, 0, 1]), this.word([0, n.i - 1, n.j === null ? 0 : n.j - 1]), this.word(h(1)), this.word(h(2))];
-  },
-  gridHTML(g, cls = '', diff = null) {
-    return `<div class="tgrid ${cls}" style="--c:${g[0].length}">` + g.map((r, y) => r.map((v, x) => `<i class="t${v < 0 ? 'm' : v > 0 ? 'p' : 'z'}${diff && diff[y][x] ? ' bad' : ''}">${v < 0 ? '−' : v > 0 ? '+' : '0'}</i>`).join('')).join('') + '</div>';
-  },
-  tutStep() {
-    const T = this.tut; if (!T) return;
-    const n = this.prog.length, culprit = 1;
-    if (T.step === 1 && this.bp === 0) T.step = 2;
-    if (T.step === 2 && this.bp === n) T.step = 3;
-    if (T.step === 3 && this.mode === 'SAUT') T.step = 4;
-    if (T.step === 4 && this.prog[culprit] === null) T.step = 5;
-    if (T.step >= 4 && this.mode !== 'SAUT' && this.prog[culprit] !== null) T.step = 3;
-  },
-  render() {
-    const P = this.P; if (!P) return;
-    this.tutStep();
-    const n = this.prog.length, st = runProg(P.grid, this.prog), T = this.tut;
-    const shown = this.shown || (this.bp !== null ? st[this.bp] : P.grid);
-    const used = this.modsUsed();
-    let H = `<div class="c-head">${P.name} :: FIRMWARE GLYPHE · ${this.running ? 'EXÉCUTION' : this.bp !== null ? 'POINT D\'ARRÊT ACTIF' : 'EN ATTENTE'}</div><div class="c-grid"><div>`;
-    if (T) {
-      const txt = {
-        1: 'À la fin du firmware, la <b>MÉMOIRE</b> (à droite) doit être identique à la <b>CLÉ</b>.<br>Cliquez sur la <b>première ligne</b> pour lire la mémoire de départ.',
-        2: 'Voilà la mémoire au départ. Cliquez sur la <b>dernière ligne</b> (FIN) pour voir le résultat du firmware actuel.',
-        3: `Le résultat n'est pas la clé. Regardez la ligne <b>0x4A0C</b> : <i>${insFr(P.prog[1])}</i>. Sans elle, ça collerait. Choisissez <b>SAUT ›</b>.`,
-        4: 'Cliquez sur la ligne <b>0x4A0C</b> pour la neutraliser.',
-        5: 'Parfait. Cliquez sur <b>INJECTER</b> : le firmware s\'exécute ligne par ligne.',
-      }[T.step];
-      H += `<div class="tut"><b>TUTORIEL · ${T.step}/5</b> ${txt}</div>`;
-    }
-    H += '<div class="cols"><span>ADRESSE</span><span>CODE ALIEN</span><span>TRADUCTION</span></div><div class="prog">';
-    for (let i = 0; i <= n; i++) {
-      const end = i === n, ins = this.prog[i], orig = P.prog[i], changed = !end && !insEq(ins, orig) && !(ins === null && orig === null);
-      const skipped = !end && ins === null && orig !== null;
-      const glow = T && ((T.step === 1 && i === 0) || (T.step === 2 && end) || (T.step === 4 && i === 1));
-      const cls = ['ln', this.bp === i ? 'bp' : '', this.sel === i ? 'sel' : '', skipped ? 'skip' : '', changed && !skipped ? 'patch' : '', end ? 'end' : '', this.runRow === i ? 'run' : '', glow ? 'glow' : ''].join(' ');
-      const words = end ? ['000', '0+-', '+0+', '-0-', '0++'] : this.bytes(skipped ? orig : ins, i);
-      const tr = end ? 'FIN<small>compare la mémoire à la clé</small>' : skipped ? `<s>${insAsm(orig)}</s> → NOP<small>ligne neutralisée</small>` : changed ? `${orig ? `<s>${insAsm(orig)}</s> → ` : ''}${insAsm(ins)}<small>${insFr(ins)}</small>` : `${insAsm(ins)}<small>${insFr(ins)}</small>`;
-      H += `<div class="${cls}" data-i="${i}"><span class="ad">0x${(0x4A00 + i * 12).toString(16).toUpperCase()}</span><span class="w">${words.join(' ')}</span><span class="tx">${tr}</span></div>`;
-    }
-    H += '</div>';
-    if (this.mode === 'PATCH' && this.sel !== null && this.sel < n && !this.running) {
-      H += '<div class="chips">' + P.palette.map((x, j) => `<button class="chip${insEq(this.prog[this.sel], x) ? ' on' : ''}" data-j="${j}" title="${insFr(x)}">${insAsm(x)}<small>${insFr(x)}</small></button>`).join('') + '</div>';
-    }
-    const hints = { LIRE: 'Cliquez une ligne : la mémoire affiche son état <b>juste avant</b> cette ligne.', PATCH: 'Cliquez une ligne, puis choisissez l\'instruction qui la remplace.', SAUT: 'Cliquez une ligne pour la neutraliser (ou la rétablir).' };
-    if (!T) H += `<p class="hint">${hints[this.mode]}</p>`;
-    H += '</div><div class="side">';
-    H += `<div class="gauges"><span>O₂ ${Math.round(Game.player.o2)}%</span><span>CHALEUR</span><div class="hbar"><i style="width:${Game.player.heat}%"></i></div></div>`;
-    H += `<div class="k">MÉMOIRE${this.bp !== null && !this.running ? ' @0x' + (0x4A00 + this.bp * 12).toString(16).toUpperCase() : ''}</div>${this.gridHTML(shown, 'mem' + (this.flash ? ' ' + this.flash : ''), this.diff)}`;
-    H += `<div class="k">CLÉ</div>${this.gridHTML(P.key, 'key')}`;
-    H += `<div class="k">MODIFICATIONS ${used}/${P.budget}</div>`;
-    for (const m of P.write ? ['LIRE', 'PATCH'] : ['LIRE', 'PATCH', 'SAUT']) H += `<button class="act${this.mode === m ? ' on' : ''}${T && T.step === 3 && m === 'SAUT' ? ' glow' : ''}" data-m="${m}">${m} ›</button>`;
-    H += `<button class="inj${T && T.step === 5 ? ' glow' : ''}" id="cInj" ${this.running ? 'disabled' : ''}>INJECTER</button>`;
-    H += `<div class="side-low"><button class="act small" id="cReset" ${used && !this.running ? '' : 'disabled'}>Tout annuler</button><button class="act small" id="cQuit" ${this.running ? 'disabled' : ''}>Se déconnecter</button></div>`;
-    H += `</div></div><div class="c-foot ${this.cls}">${this.msg || (used ? `${used} modification${used > 1 ? 's' : ''} prête${used > 1 ? 's' : ''} : INJECTER.` : '')}</div>`;
-    $('#conBox').innerHTML = H;
-    if (this.running) return;
-    $$('#conBox .ln').forEach((el) => el.onclick = () => this.clickRow(+el.dataset.i));
-    $$('#conBox .chip').forEach((el) => el.onclick = () => this.pick(P.palette[+el.dataset.j]));
-    $$('#conBox .act[data-m]').forEach((el) => el.onclick = () => { this.mode = el.dataset.m; this.sel = null; this.msg = ''; this.cls = ''; Audio.click(); this.render(); });
-    $('#cInj').onclick = () => this.inject();
-    $('#cReset').onclick = () => { this.prog = P.prog.slice(); this.msg = 'Firmware d\'origine rétabli.'; this.cls = ''; Audio.click(); this.render(); };
-    $('#cQuit').onclick = () => { this.close(); Game.closeConsole(false); };
-  },
-  clickRow(i) {
-    const P = this.P, n = this.prog.length; this.msg = ''; this.cls = ''; this.shown = null; this.diff = null; this.flash = '';
-    if (this.mode === 'LIRE') { this.bp = i; Audio.step(i); }
-    else if (i < n && this.mode === 'SAUT') {
-      if (this.prog[i] === null && P.prog[i] !== null) { this.prog[i] = P.prog[i]; Audio.click(); }
-      else if (this.prog[i] !== null) {
-        if (this.modsUsed() >= P.budget && insEq(this.prog[i], P.prog[i])) { this.msg = `Budget atteint : ${P.budget} modification${P.budget > 1 ? 's' : ''} au maximum. Annulez-en une.`; this.cls = 'bad'; Audio.fail(); }
-        else { this.prog[i] = null; Audio.flip(i); }
-      }
-    } else if (i < n && this.mode === 'PATCH') { this.sel = i; Audio.click(); }
-    this.render();
-  },
-  pick(x) {
-    const P = this.P, i = this.sel; if (i === null) return;
-    const before = this.prog[i];
-    const wasMod = !(insEq(before, P.prog[i]) || (before === null && P.prog[i] === null));
-    if (!wasMod && this.modsUsed() >= P.budget && !insEq(x, P.prog[i])) { this.msg = `Budget atteint : ${P.budget} modification${P.budget > 1 ? 's' : ''} au maximum.`; this.cls = 'bad'; Audio.fail(); this.render(); return; }
-    this.prog[i] = insEq(x, before) ? P.prog[i] : x; Audio.flip(i); this.render();
-  },
-  async inject() {
-    const P = this.P; this.running = true; this.bp = null; this.diff = null; this.msg = 'Exécution…'; this.cls = '';
-    const st = runProg(P.grid, this.prog);
-    for (let i = 0; i < st.length; i++) {
-      this.runRow = i < this.prog.length ? i : null; this.shown = st[i]; this.flash = i ? 'flip' : ''; this.render(); if (i) Audio.step(i - 1);
-      await new Promise((r) => setTimeout(r, i ? 430 : 300)); this.flash = '';
-    }
-    this.runRow = null; this.running = false;
-    const out = st[st.length - 1];
-    if (gEq(out, P.key)) {
-      this.flash = 'win'; this.msg = 'ACCÈS OBTENU.'; this.cls = 'ok'; this.render(); Audio.success();
-      if (this.tut) Game.flags.tutoDone = true;
-      setTimeout(() => { this.close(); Game.closeConsole(true); }, 1100);
-    } else {
-      this.diff = out.map((r, y) => r.map((v, x) => v !== P.key[y][x])); this.shown = out;
-      this.msg = 'Injection rejetée : la mémoire finale ne correspond pas à la clé (cases en rouge). Le firmware est conservé, ajustez-le.'; this.cls = 'bad';
-      if (!this.tut) Game.player.heat += 4;
-      Audio.fail(); this.render();
-    }
-  },
-};
-
-/* ---- 08-ui.js ---- */
-/* =====================================================================
-   INTERFACE : HUD (d'après les captures du site), radio, notifications,
-   roue de piratage, menus, écran titre animé (d'après le key art)
-   ===================================================================== */
-const UI = {
-  radioQ: [], radioBusy: false,
-  show(id, on = true) { $(id).classList.toggle('on', on); },
-  hideAll() { $$('.screen').forEach((s) => s.classList.remove('on')); },
-  // ------------------------------------------------------------ HUD
-  hud(G) {
-    const p = G.player, M = G.mem, Z = G.level.def;
-    const o2 = $('#hO2'); o2.textContent = Math.max(0, Math.round(p.o2)) + '%'; o2.classList.toggle('warn', p.o2 < 22);
-    $('#hO2bar').style.width = clamp(p.o2 / p.o2max * 100, 0, 100) + '%';
-    const hb = $('#hHeat'); hb.style.width = clamp(p.heat, 0, 100) + '%'; hb.parentElement.classList.toggle('warn', p.heat > 75);
-    $('#hCool').innerHTML = `REFROIDISSEMENT ${'◆'.repeat(p.coolant)}${'◇'.repeat(Math.max(0, 3 - p.coolant))} <kbd>R</kbd>`;
-    $('#hMem').innerHTML = EXPLOITS.map((e, k) => {
-      const pend = M.pending[k] > 0, pat = M.patched[k];
-      const dots = pat ? 'CORRIGÉ' : pend ? `PATCH ${Math.ceil(M.pending[k])} s` : '●'.repeat(M.counts[k]) + '○'.repeat(Math.max(0, Z.threshold - M.counts[k]));
-      return `<div class="ex${pat ? ' patched' : ''}${pend ? ' pending' : ''}"><kbd>${k + 1}</kbd><span>${e.name}</span><span class="dots">${dots}</span></div>`;
-    }).join('');
-    $('#hSector').textContent = `${Z.name} · GRAVITÉ 0,00 g`;
-    $('#hFrag').textContent = `FRAGMENTS DU SIGNAL ${G.stats.frags.size}/6`;
-  },
-  prompt(html) { const el = $('#prompt'); if (el._h !== html) { el.innerHTML = html || ''; el._h = html; } },
-  // ------------------------------------------------------------ radio (machine à écrire)
-  radio(src, txt, cls = '') {
-    const box = $('#radio'), p = document.createElement('p'); p.className = cls;
-    p.innerHTML = `<span>${src} ›</span> <em></em>`; box.appendChild(p);
-    while (box.children.length > 3) box.firstChild.remove();
-    const em = p.querySelector('em'); let i = 0;
-    const tick = () => { if (!p.isConnected) return; i += 2; em.textContent = txt.slice(0, i); if (i % 6 === 0) Audio.type(); if (i < txt.length) setTimeout(tick, 16); };
-    tick();
-    setTimeout(() => { p.classList.add('out'); setTimeout(() => p.remove(), 900); }, 6500 + txt.length * 30);
-  },
-  say(lines, gap = 600) {   // file de répliques
-    let t = 0;
-    for (const [src, txt, cls] of lines) { setTimeout(() => { if (Game.state !== 'title') this.radio(src, txt, cls || (src === 'GARDIENS' || src === 'GARDIEN-12' ? 'gd' : src === 'SYSTÈME' ? 'sys' : src === 'SOREL' ? 'me' : '')); }, t); t += gap + txt.length * 34; }
-  },
-  notify(title, sub = '', kind = '') {
-    const n = $('#notif'); n.className = 'on ' + kind; n.innerHTML = `<b>${title}</b>${sub ? `<span>${sub}</span>` : ''}`;
-    clearTimeout(this._nt); this._nt = setTimeout(() => { n.className = ''; }, 2800);
-  },
-  card(title, sub) {   // grand titre de secteur
-    const c = $('#card'); c.innerHTML = `<h2>${title}</h2><p>${sub}</p>`; c.classList.add('on');
-    clearTimeout(this._ct); this._ct = setTimeout(() => c.classList.remove('on'), 3200);
-  },
-  // ------------------------------------------------------------ roue de piratage
-  hackWheel(G, g) {
-    const w = $('#hack'), [sx, sy] = Render.worldToScreen(g.x, g.y), r = Render.cv.getBoundingClientRect();
-    w.style.left = `${r.left + sx / VW * r.width}px`; w.style.top = `${r.top + sy / VH * r.height}px`;
-    w.innerHTML = `<div class="hw-title">${g.id}${g.offline ? ' · HORS RÉSEAU' : ''} :: FAILLES CONNUES</div>` + EXPLOITS.map((e, k) => {
-      const pat = G.mem.patched[k] && !g.offline;
-      return `<button class="hw-opt hw${k}${pat ? ' patched' : ''}" data-k="${k}"><kbd>${k + 1}</kbd><b>${e.name}</b><small>${pat ? 'CORRIGÉE · sera rejetée' : e.desc}</small></button>`;
-    }).join('') + '<div class="hw-foot">Échap / F : annuler</div>';
-    w.classList.add('on');
-    $$('#hack .hw-opt').forEach((b) => { b.onclick = () => Game.applyExploit(+b.dataset.k); b.onmouseenter = () => Audio.hover(); });
-  },
-  // ------------------------------------------------------------ écrans
-  title() {
-    this.hideAll(); this.show('#title'); $('#hud').classList.add('hidden');
-    const save = store.get('save', null);
-    $('#bContinue').classList.toggle('hidden', !save);
-    if (save) $('#bContinue').innerHTML = `Continuer <small>${ZONES[save.zone].short} · ${fmtTime(save.stats.time)}</small>`;
-  },
-  options() {
-    this.show('#options');
-    const set = (id, k) => { const el = $(id); el.value = SETTINGS[k] * 100; el.oninput = () => { SETTINGS[k] = el.value / 100; saveSettings(); Audio.applyVolumes(); }; };
-    set('#oMusic', 'music'); set('#oSfx', 'sfx');
-    const sh = $('#oShake'); sh.checked = SETTINGS.shake; sh.onchange = () => { SETTINGS.shake = sh.checked; saveSettings(); };
-  },
-  async intro(lines) {
-    const box = $('#intro'), txt = $('#introTxt'); this.show('#intro'); this._skip = false;
-    $('#introSkip').onclick = () => { this._skip = true; };
-    for (const l of lines) {
-      if (this._skip) break;
-      txt.innerHTML = ''; txt.className = l.big ? 'big' : '';
-      for (let i = 0; i <= l.t.length && !this._skip; i++) { txt.innerHTML = l.t.slice(0, i) + '<i class="cur"></i>'; if (i % 3 === 0) Audio.type(); await new Promise((r) => setTimeout(r, 22)); }
-      txt.innerHTML = l.t;
-      const end = performance.now() + (l.hold || 1700); while (performance.now() < end && !this._skip) await new Promise((r) => setTimeout(r, 50));
-    }
-    this.show('#intro', false);
-  },
-  // écran titre : composition du key art (anneau, Tau-Héliade, Ancre-7)
-  drawTitle(t) {
-    const c = Render.ctx; Render.begin();
-    c.fillStyle = '#05080e'; c.fillRect(0, 0, VW, VH);
-    let g = c.createRadialGradient(VW * 0.12, VH * 0.9, 0, VW * 0.12, VH * 0.9, VW * 0.55); g.addColorStop(0, 'rgba(20,90,90,.28)'); g.addColorStop(1, 'rgba(0,0,0,0)'); c.fillStyle = g; c.fillRect(0, 0, VW, VH);
-    for (const s of Render.stars) { c.fillStyle = `rgba(220,230,255,${0.35 + 0.35 * Math.sin(t * 0.8 + s.p)})`; c.fillRect(s.x * VW, s.y * VH, s.s, s.s); }
-    const sx = VW * 0.78, sy = VH * 0.26, R = VH * 0.09 * (1 + 0.015 * Math.sin(t * 1.3));
-    g = c.createRadialGradient(sx, sy, R * 0.8, sx, sy, R * 7.5); g.addColorStop(0, 'rgba(255,110,60,.9)'); g.addColorStop(0.22, 'rgba(190,50,45,.5)'); g.addColorStop(0.55, 'rgba(90,20,32,.2)'); g.addColorStop(1, 'rgba(0,0,0,0)');
-    c.fillStyle = g; c.fillRect(0, 0, VW, VH);
-    c.beginPath(); c.arc(sx, sy, R, 0, TAU); c.fillStyle = '#ffd99c'; c.fill(); c.lineWidth = R * 0.14; c.strokeStyle = '#ffb347'; c.stroke();
-    c.save(); c.translate(VW * 0.55, VH * 0.3); c.rotate(-0.16);
-    const rx = VW * 0.42, ry = VH * 0.15, lg = c.createLinearGradient(-rx, 0, rx, 0);
-    lg.addColorStop(0, '#26355c'); lg.addColorStop(0.45, '#4f6798'); lg.addColorStop(0.72, '#b8925f'); lg.addColorStop(0.84, '#ffb347'); lg.addColorStop(1, '#1d2a4a');
-    c.lineWidth = VH * 0.028; c.strokeStyle = lg; c.beginPath(); c.ellipse(0, 0, rx, ry, 0, 0, TAU); c.stroke();
-    c.lineWidth = 3; c.strokeStyle = '#1c2846'; c.beginPath(); c.ellipse(-rx * 0.03, ry * 0.06, rx * 0.93, ry * 0.78, 0, 0, TAU); c.stroke();
-    c.setLineDash([6, 12]); c.lineDashOffset = -t * 30; c.lineWidth = 1.6; c.strokeStyle = 'rgba(63,224,208,.85)'; c.beginPath(); c.ellipse(0, 0, rx, ry, 0, 0, TAU); c.stroke(); c.setLineDash([]);
-    c.restore();
-    const ax = VW * 0.3, ay = VH * 0.34 + Math.sin(t * 0.7) * 4, u = VH * 0.024;
-    c.strokeStyle = '#3fe0d0'; c.lineWidth = 1.5; c.fillStyle = '#0d1424'; c.beginPath(); c.roundRect(ax, ay, u, u, 3); c.fill(); c.stroke();
-    c.beginPath(); c.roundRect(ax + u * 1.05, ay + u * 0.3, u * 2.8, u * 0.42, 2); c.stroke();
-    c.fillStyle = 'rgba(63,224,208,.6)'; c.font = '11px Mono, Consolas, monospace'; c.fillText('ANCRE-7', ax, ay - 8);
-  },
-};
-
-/* ---- 09-game.js ---- */
-/* =====================================================================
-   JEU : états, secteurs, histoire, environnement, piratage, sauvegarde
-   ===================================================================== */
-const PUZZLE_OF = { 1: { 1: 'p1', 2: 'p2' }, 2: { 3: 'p3', 4: 'p4' }, 3: { 5: 'p5', 6: 'p6', 7: 'p7' } };
-const LORE = [
-  '« …le signal se répète toutes les 41 minutes : la durée d\'une rotation de l\'anneau… »',
-  '« …les Gardiens ne réparent pas au hasard. Ils suivent une liste… »',
-  '« …la Vesper rayonne plus de chaleur qu\'elle n\'en reçoit. Quelque chose, dedans, travaille… »',
-  '« …les premiers glyphes ne sont pas des mots. Ce sont des adresses mémoire… »',
-  '« …l\'étoile ne meurt pas seule. La Vesper la retient… »',
-  '« …une entrée de la liste porte une échéance : dans trois orbites… »',
-];
-const DIALOG = {
-  z1_start: [['ANCRE-7', 'Sorel, la navette est arrimée. Bienvenue dans la Vesper. Gravité : zéro.'], ['ANCRE-7', 'Vos propulseurs (ZQSD) boivent votre oxygène. Le plus efficace : visez à la souris et poussez-vous contre une paroi avec ESPACE.']],
-  z1_kick: [['ANCRE-7', 'Vous allez trop vite ? MAJ pour freiner.']],
-  z1_shaft: [['ANCRE-7', 'Ce puits est long. Votre câble d\'ancrage accroche toutes les surfaces : maintenez le CLIC GAUCHE vers une paroi. Relâchez pour garder l\'élan.']],
-  z1_o2: [['ANCRE-7', 'Une station d\'oxygène alien, compatible avec votre combinaison. E pour vous y brancher : elle sert aussi de point de reprise.']],
-  z1_console: [['SOREL', 'Une console. Le verrou tourne sur un firmware en glyphes… en base trois.'], ['ANCRE-7', 'E pour vous brancher. Lisez avant de toucher.']],
-  z1_room: [['ANCRE-7', 'Un Gardien. Restez hors de son cône : s\'il vous voit trop longtemps, il donne l\'alerte.'], ['ANCRE-7', 'Approchez-le par derrière et piratez son firmware : F (ou clic droit). Trois failles connues, à vous de choisir.']],
-  z1_end: [['ANCRE-7', 'Le signal vient du cœur de l\'anneau. Continuez vers l\'intérieur.']],
-  z2_start: [['ANCRE-7', 'Secteur 2. Ici la coque est percée : la lumière de Tau-Héliade passe à travers.'], ['ANCRE-7', 'Restez hors des rayons quand ils frappent, et méfiez-vous des radiateurs. R pour purger votre chaleur.']],
-  z2_beams: [['SOREL', 'Le rayon pulse avec la rotation de l\'anneau. Je peux passer entre deux.']],
-  z2_relay: [['ANCRE-7', 'Un relais d\'énergie. Réparé, il stabilise la section. Pillé, il vous donne de quoi tenir… mais les Gardiens le sauront.']],
-  z2_gate: [['SOREL', 'Un portail des Gardiens. Il ne s\'ouvre que pour eux.'], ['ANCRE-7', 'Alors devenez l\'un d\'eux : la clé codée en dur donne les droits d\'administrateur. Il y a un Gardien hors réseau dans l\'alcôve, juste en dessous. Il n\'a reçu aucun correctif.']],
-  z2_end: [['ANCRE-7', 'Le cœur est derrière. Sorel… les relevés thermiques montent.']],
-  z3_start: [['ANCRE-7', 'Secteur 3, anneau intérieur. On vous perd par intermittence.'], ['SOREL', 'Ce couloir… c\'est exactement l\'image de la sonde.']],
-};
-
-const Game = {
-  state: 'title', level: null, zi: 0, player: null, gardiens: [], boss: null, beams: [], radHot: false, radT: 0, ambient: 0.3,
-  flags: {}, stats: null, mem: null, susMult: 1, flash: 0, hackTarget: null, triggered: new Set(), cp: null, t: 0, last: 0, alarmT: 0, lowT: 0,
-  init() {
-    Render.init($('#cv')); Input.init($('#cv'));
-    $('#bNew').onclick = () => this.newGame();
-    $('#bContinue').onclick = () => this.continueGame();
-    $('#bHow').onclick = () => UI.show('#help');
-    $('#bOpt').onclick = () => UI.options();
-    $('#bCredits').onclick = () => UI.show('#credits');
-    $$('[data-close]').forEach((b) => b.onclick = () => UI.show('#' + b.dataset.close, false));
-    $('#bResume').onclick = () => this.pause(false);
-    $('#bPOpt').onclick = () => UI.options();
-    $('#bPHelp').onclick = () => UI.show('#help');
-    $('#bMenu').onclick = () => { this.pause(false); this.toTitle(); };
-    $('#bRetry').onclick = () => this.respawn();
-    $('#bChR').onclick = () => this.choose('restore');
-    $('#bChP').onclick = () => this.choose('pillage');
-    $('#bEndReplay').onclick = () => this.newGame();
-    $('#bEndMenu').onclick = () => this.toTitle();
-    $$('button').forEach((b) => b.addEventListener('mouseenter', () => Audio.hover()));
-    document.addEventListener('pointerdown', () => { Audio.init(); if (this.state === 'title') Music.set('menu'); });
-    const APP = window.vesperApp && window.vesperApp.isApp ? window.vesperApp : null;
-    if (APP) { document.documentElement.classList.add('is-app'); document.title = 'Vesper Protocol'; $$('.bQuit').forEach((b) => b.onclick = () => APP.quit()); $('#bFull').onclick = () => APP.toggleFullscreen(); }
-    $('#buildTag').textContent = `BUILD BÊTA ${VERSION} · ${APP ? 'PC' : 'WEB'}`;
-    document.addEventListener('visibilitychange', () => { if (document.hidden && this.state === 'play') this.pause(true); });
-    if (location.search.includes('check')) checkPuzzles();
-    UI.title();
-    requestAnimationFrame((t) => this.loop(t));
-  },
-  // ------------------------------------------------------------ parties
-  freshStats() { return { time: 0, detected: 0, scans: 0, exploits: [0, 0, 0], deaths: 0, kicks: 0, grapples: 0, frags: new Set(), consoles: 0 }; },
-  async newGame() {
-    Audio.init(); Music.set('menu'); store.del('save');
-    this.flags = { tutoDone: false, choice: null, solved: {}, taken: {}, firstHack: false, firstPatch: false };
-    this.stats = this.freshStats(); UI.hideAll(); this.state = 'intro';
-    await UI.intro([
-      { t: '2231.', big: true, hold: 1100 },
-      { t: 'Tau-Héliade, une naine rouge instable à onze années-lumière de la Terre, vit ses dernières orbites.' },
-      { t: 'Autour d\'elle tourne la Vesper : un anneau alien de quatre cents kilomètres, couvert de radiateurs et de circuits de la taille de villes.' },
-      { t: 'La station de relais Ancre-7 capte un signal sous sa surface. Ses automates, les Gardiens, entretiennent des systèmes dont personne ne comprend le but.' },
-      { t: 'Vous êtes Ilya Sorel, auditrice de systèmes critiques.\nVous n\'avez pas d\'arme. Vous avez un débogueur.', hold: 2400 },
-    ]);
-    this.loadZone(0, null);
-  },
-  continueGame() {
-    const s = store.get('save', null); if (!s) return;
-    Audio.init(); this.flags = s.flags; this.stats = Object.assign(this.freshStats(), s.stats, { frags: new Set(s.stats.frags || []) });
-    UI.hideAll(); this.loadZone(s.zone, s.cp);
-  },
-  save() {
-    const st = Object.assign({}, this.stats, { frags: [...this.stats.frags] });
-    store.set('save', { zone: this.zi, cp: this.cp, flags: this.flags, stats: st });
-  },
-  loadZone(zi, cp) {
-    this.zi = zi; const def = ZONES[zi]; this.level = new Level(def); const L = this.level;
-    for (const id of this.flags.solved[def.id] || []) { const k = L.consoles[id]; if (k) { k.solved = true; const d = L.doors[String.fromCharCode(64 + +id)]; if (d) { d.open = 1; d.opening = true; } } }
-    for (const i of this.flags.taken[def.id] || []) if (L.items[i]) L.items[i].taken = true;
-    this.cp = cp || { x: L.start.x, y: L.start.y };
-    this.player = Player.create(this.cp.x, this.cp.y);
-    if (this.flags.choice === 'pillage') { this.player.o2max = 125; }
-    this.player.o2 = this.player.o2max;
-    this.spawnGardiens();
-    this.beams = def.beams.map((b) => { let y = 0; while (y < L.h && !L.solid(b.x + 1, y)) y++; return Object.assign({ level: 0, warn: 0, bottom: y }, b); });
-    this.boss = def.boss && !(this.flags.solved[3] || []).includes('8') ? new Boss(def.boss.x, def.boss.y) : null;
-    if (this.boss) for (const i of [0, 1, 2]) if ((this.flags.solved[3] || []).includes(String(5 + i))) this.boss.nodeDown(i, this);
-    this.mem = { counts: [0, 0, 0], patched: [false, false, false], pending: [0, 0, 0] };
-    this.susMult = this.flags.choice === 'restore' ? 0.75 : this.flags.choice === 'pillage' ? 1.3 : 1;
-    this.ambient = def.light + (this.flags.choice === 'restore' && zi >= 1 ? 0.12 : 0);
-    this.triggered = new Set(cp ? def.triggers.map((t) => t.id) : []);
-    Render.cam.x = this.player.x; Render.cam.y = this.player.y; Render.parts = [];
-    $('#radio').innerHTML = ''; $('#hud').classList.remove('hidden');
-    this.state = 'play'; Music.set(this.boss ? 'tension' : 'explore');
-    UI.card(def.name, `${def.short.toUpperCase()} · GRAVITÉ 0,00 g`);
-    UI.hud(this); this.save();
-  },
-  spawnGardiens() {
-    const def = ZONES[this.zi];
-    this.gardiens = def.gardiens.map((g, i) => new Gardien(g, i, def.id));
-    if (this.boss || def.boss) {
-      const bx = (def.boss.x + 0.5) * T, by = (def.boss.y + 0.5) * T;
-      this.gardiens.push(new Gardien({ path: [[def.boss.x - 7, def.boss.y]], speed: 85, drone: true, orbit: { x: bx, y: by, r: 6.5 * T } }, 0, 3));
-      this.gardiens.push(new Gardien({ path: [[def.boss.x + 10, def.boss.y]], speed: 70, drone: true, orbit: { x: bx, y: by, r: 10.5 * T } }, 1, 3));
-    }
-  },
-  toTitle() { this.state = 'title'; Console.close(); $('#hack').classList.remove('on'); Audio.level(Audio.thrustLoop, 0); Audio.level(Audio.heatLoop, 0); Music.set('menu'); UI.title(); },
-  pause(on) {
-    if (on && this.state !== 'play') return;
-    this.state = on ? 'pause' : 'play'; UI.show('#pause', on); Audio.level(Audio.thrustLoop, 0); Audio.level(Audio.heatLoop, 0);
-  },
-  radio(src, txt, cls) { UI.radio(src, txt, cls); },
-  // ------------------------------------------------------------ boucle
-  loop(now) {
-    const dt = Math.min(0.05, (now - (this.last || now)) / 1000); this.last = now; this.t += dt;
-    Input.poll();
-    if (this.state === 'title' || this.state === 'intro') { UI.drawTitle(this.t); if (Input.pause() && $('#options').classList.contains('on')) UI.show('#options', false); }
-    else {
-      if (this.state === 'play') this.update(dt);
-      else if (this.state === 'hack') { this.update(dt * 0.1); this.hackInput(); }
-      else if (this.state === 'dead') { Render.updateParts(dt); Render.cam.shake *= Math.exp(-6 * dt); }
-      else if (this.state === 'pause' && Input.pause()) this.pause(false);
-      if (this.level) Render.frame(this, this.t);
-    }
-    Input.endFrame();
-    requestAnimationFrame((t) => this.loop(t));
-  },
-  update(dt) {
-    const p = this.player, L = this.level, Z = L.def;
-    if (this.state === 'play' && Input.pause()) { this.pause(true); return; }
-    this.stats.time += dt;
-    Player.update(p, dt, this);
-    for (const g of this.gardiens) g.update(dt, this);
-    if (this.boss) this.boss.update(dt, this);
-    // portes, portails
-    for (const k in L.doors) { const d = L.doors[k]; if (d.opening) d.open = Math.min(1, d.open + dt * 1.4); }
-    for (const g of L.gates) { g.hold = (g.hold || 0) - dt; g.open = clamp(g.open + (g.hold > 0 ? dt * 3 : -dt * 1.5), 0, 1); }
-    // environnement : rayons de Tau-Héliade, radiateurs
-    let heating = 0;
-    for (const b of this.beams) {
-      const cyc = (this.stats.time + b.phase) % b.period, on = cyc < b.on;
-      b.warn = !on && cyc > b.period - 0.9 ? 1 : 0;
-      b.level = clamp(b.level + (on ? dt * 5 : -dt * 4), 0, 1);
-      if (b.level > 0.5 && p.x > b.x * T && p.x < (b.x + 3) * T && p.y < b.bottom * T) heating += 40;
-    }
-    if (Z.radiators && L.radiators.length && !(this.zi === 1 && this.flags.choice === 'restore')) {
-      this.radT += dt; this.radHot = this.radT % 7 < 4;
-      if (this.radHot) for (const r of L.radiators) if (dist(p.x, p.y, (r.x + 0.5) * T, (r.y + 0.5) * T) < 2.4 * T) { heating += 24; break; }
-    } else this.radHot = false;
-    if (p.inBossBeam) heating += 8;
-    if (heating) p.heat += heating * dt; else p.heat = Math.max(18, p.heat - 7 * dt);
-    Audio.level(Audio.heatLoop, heating ? 0.06 : 0); Audio.level(Audio.thrustLoop, p.thrusting ? 0.06 : 0);
-    if (heating && !this.flags.heatTip) { this.flags.heatTip = true; this.radio('ANCRE-7', 'Votre combinaison chauffe ! Sortez de là, ou purgez avec R.'); }
-    p.o2 -= 0.42 * dt;
-    if (Input.purge() && p.coolant > 0 && p.heat > 25) { p.coolant--; p.heat = Math.max(18, p.heat - 45); Audio.purge(); Render.burst(p.x, p.y, 30, '#bfe8ff', 220, 0.6, 3, false); UI.notify('PURGE', `chaleur ${Math.round(p.heat)} %`); }
-    // mémoire d'exploits : diffusion des correctifs
-    const M = this.mem;
-    for (let k = 0; k < 3; k++) if (M.pending[k] > 0 && (M.pending[k] -= dt) <= 0) {
-      M.pending[k] = 0; M.patched[k] = true; Audio.patch(); UI.notify('CORRECTIF DÉPLOYÉ', `« ${EXPLOITS[k].full} » ne fonctionne plus dans ce secteur`, 'bad');
-      if (!this.flags.firstPatch) { this.flags.firstPatch = true; UI.say([['ANCRE-7', 'Ils ont corrigé votre faille. Ils… apprennent. Variez vos approches.']]); }
-    }
-    // objets
-    for (const [i, it] of L.items.entries()) if (!it.taken && dist(p.x, p.y, it.x, it.y) < 34) {
-      it.taken = true; (this.flags.taken[Z.id] ||= []).push(i);
-      if (it.kind === 'o') { p.o2 = Math.min(p.o2max, p.o2 + 35); Audio.pickup(); UI.notify('CARTOUCHE D\'OXYGÈNE', '+35 % O₂'); }
-      if (it.kind === 'q') { p.coolant = Math.min(3, p.coolant + 1); Audio.pickup(); UI.notify('CELLULE DE REFROIDISSEMENT', '+1 purge'); }
-      if (it.kind === 'f') {
-        const n = this.stats.frags.size; this.stats.frags.add(`${Z.id}-${i}`); Audio.fragment(); Render.burst(it.x, it.y, 40, COL.amber, 260, 1, 3);
-        UI.notify(`FRAGMENT DU SIGNAL ${this.stats.frags.size}/6`, LORE[n % 6], 'gold');
-      }
-      Render.burst(it.x, it.y, 14, it.kind === 'o' ? COL.cyan : COL.violet, 140, 0.5, 2.5);
-    }
-    // déclencheurs d'histoire
-    const ptx = p.x / T, pty = p.y / T;
-    for (const tr of Z.triggers) if (!this.triggered.has(tr.id) && ptx >= tr.r[0] && ptx <= tr.r[2] + 1 && pty >= tr.r[1] && pty <= tr.r[3] + 1) { this.triggered.add(tr.id); this.trigger(tr.id); }
-    if (L.tile(Math.floor(ptx), Math.floor(pty)) === 'X') { this.nextZone(); return; }
-    // interactions
-    this.interactions();
-    // jauges, mort
-    p.heat = clamp(p.heat, 0, 100); p.o2 = Math.min(p.o2, p.o2max);
-    this.alarmT -= dt; this.lowT -= dt;
-    if (p.heat > 75 && this.alarmT <= 0) { Audio.alarm(); this.alarmT = 2.2; }
-    if (p.o2 < 20 && this.lowT <= 0) { Audio.low(); this.lowT = 3; }
-    if (p.heat >= 100) return this.die('heat');
-    if (p.o2 <= 0) return this.die('o2');
-    // musique selon la menace
-    const alert = this.gardiens.some((g) => g.state === 'alert'), sus = this.gardiens.some((g) => g.sus > 0.25 && g.coneOn());
-    Music.set(alert ? 'alert' : this.boss && this.boss.state !== 'down' && this.triggered.has('z3_arena') ? 'boss' : sus ? 'tension' : 'explore');
-    // caméra (légère avance vers la visée), particules
-    const cam = Render.cam, lx = p.x + Math.cos(p.aim) * 90 + p.vx * 0.25, ly = p.y + Math.sin(p.aim) * 60 + p.vy * 0.25;
-    cam.x = lerp(cam.x, clamp(lx, VW / 2, L.w * T - VW / 2), 1 - Math.exp(-4 * dt)); cam.y = lerp(cam.y, clamp(ly, VH / 2, L.h * T - VH / 2), 1 - Math.exp(-4 * dt));
-    if (L.w * T < VW) cam.x = L.w * T / 2; if (L.h * T < VH) cam.y = L.h * T / 2;
-    cam.shake *= Math.exp(-7 * dt); this.flash = Math.max(0, this.flash - dt * 2.5);
-    if (Math.random() < 0.3) Render.emit({ x: cam.x + rnd(-VW / 2, VW / 2), y: cam.y + rnd(-VH / 2, VH / 2), vx: rnd(-6, 6), vy: rnd(-6, 6), life: 4, max: 4, size: 1.5, color: 'rgba(200,215,240,0.5)', drag: 0 });
-    Render.updateParts(dt);
-    UI.hud(this);
-  },
-  interactions() {
-    const p = this.player, L = this.level, G = this;
-    let pr = '';
-    this.hackTarget = null;
-    let best = 1e9;
-    for (const g of this.gardiens) if (g.canHack(p) && (g.offline || !g.coneOn() || g.state !== 'alert')) { const d = dist(p.x, p.y, g.x, g.y); if (d < best) { best = d; this.hackTarget = g; } }
-    const k = L.near(p.x, p.y, 'console', 1.9 * T), s = L.near(p.x, p.y, 'station', 1.7 * T);
-    const core = this.boss && this.boss.state === 'down' && dist(p.x, p.y, this.boss.x, this.boss.y) < 210;
-    if (this.hackTarget) pr = `<kbd>F</kbd> pirater ${this.hackTarget.id}`;
-    else if (core) pr = '<kbd>E</kbd> se brancher sur le noyau de GARDIEN-12';
-    else if (k) pr = k.solved ? 'Console déverrouillée' : `<kbd>E</kbd> console · ${PUZZLES[PUZZLE_OF[L.def.id][k.id]].name}`;
-    else if (s) pr = s.kind === 'O' ? '<kbd>E</kbd> station d\'oxygène · sauvegarde' : '<kbd>E</kbd> station de refroidissement';
-    else if (p.wall && Math.hypot(p.vx, p.vy) < 60) pr = '<kbd>Espace</kbd> se propulser vers la visée';
-    UI.prompt(pr);
-    if (Input.hack() && this.hackTarget) { this.state = 'hack'; Audio.hackOpen(); UI.hackWheel(this, this.hackTarget); return; }
-    if (!Input.interact()) return;
-    if (core) { this.openConsole('p8', { id: '8' }); return; }
-    if (k && !k.solved) { this.openConsole(PUZZLE_OF[L.def.id][k.id], k); return; }
-    if (s) {
-      if (s.kind === 'O') { p.o2 = p.o2max; this.cp = { x: p.x, y: p.y }; this.save(); Audio.checkpoint(); UI.notify('OXYGÈNE RECHARGÉ', 'point de reprise enregistré'); Render.burst((s.x + 0.5) * T, (s.y + 0.5) * T, 20, COL.cyan, 120, 0.6, 2.5); }
-      else { p.coolant = 3; p.heat = 18; Audio.purge(); UI.notify('REFROIDISSEMENT', 'purges rechargées'); }
-    }
-  },
-  // ------------------------------------------------------------ consoles
-  openConsole(pid, k) { this.state = 'console'; this.curConsole = k; this.curPid = pid; Audio.level(Audio.thrustLoop, 0); Audio.level(Audio.heatLoop, 0); UI.prompt(''); Console.open(PUZZLES[pid], null); },
-  closeConsole(ok) {
-    this.state = 'play';
-    if (!ok) return;
-    const L = this.level, k = this.curConsole, pid = this.curPid, Z = L.def;
-    this.stats.consoles++;
-    (this.flags.solved[Z.id] ||= []).push(k.id);
-    if (L.consoles[k.id]) L.consoles[k.id].solved = true;
-    const d = L.doors[String.fromCharCode(64 + +k.id)];
-    if (d) { d.opening = true; Audio.door(); Render.cam.shake = 6; UI.notify('ACCÈS OBTENU', `${PUZZLES[pid].name} déverrouillé`); }
-    if (pid === 'p1') UI.say([['ANCRE-7', 'Bien joué. C\'est tout le principe : lire, comprendre, corriger.']]);
-    if (pid === 'p3') { this.state = 'choice'; UI.show('#choice'); return; }
-    if (['p5', 'p6', 'p7'].includes(pid)) {
-      const i = +k.id - 5; this.boss.nodeDown(i, this);
-      const left = 3 - this.boss.phase;
-      UI.say(left ? [['GARDIEN-12', `NŒUD ${['α', 'β', 'γ'][i]} PERDU. RECONFIGURATION.`], ['ANCRE-7', `Encore ${left} nœud${left > 1 ? 's' : ''}. Il accélère !`]] : [['GARDIEN-12', 'BOUCLIER… HORS… LIGNE.'], ['ANCRE-7', 'Son noyau est exposé ! Branchez-vous dessus, maintenant !']]);
-      if (left) { const def = ZONES[2], bx = this.boss.x, by = this.boss.y; this.gardiens.push(new Gardien({ path: [[def.boss.x, def.boss.y - 8]], speed: 95 + 15 * this.boss.phase, drone: true, orbit: { x: bx, y: by, r: (8 + this.boss.phase) * T } }, 2 + this.boss.phase, 3)); }
-    }
-    if (pid === 'p8') { this.ending(); return; }
-    this.cp = { x: this.player.x, y: this.player.y }; this.save();
-  },
-  choose(c) {
-    this.flags.choice = c; UI.show('#choice', false); this.state = 'play';
-    const p = this.player;
-    if (c === 'restore') { this.susMult = 0.75; this.ambient += 0.12; this.radHot = false; UI.notify('RELAIS RESTAURÉ', 'radiateurs stabilisés · les Gardiens vous tolèrent mieux'); UI.say([['ANCRE-7', 'La section se rallume. Les radiateurs se calment. Les Gardiens… vous ont vue réparer.']]); }
-    else { this.susMult = 1.3; p.coolant = 3; p.o2max = 125; p.o2 = 125; UI.notify('RELAIS PILLÉ', 'O₂ max +25 % · purges rechargées · Gardiens plus vigilants', 'bad'); UI.say([['ANCRE-7', 'Vous avez de quoi tenir. Mais toute la section a vu ce que vous avez fait.']]); this.gardiens.push(new Gardien({ path: [[60, 20], [60, 8], [40, 8], [40, 20]], speed: 80 }, this.gardiens.length, 2)); }
-    this.cp = { x: p.x, y: p.y }; this.save();
-  },
-  // ------------------------------------------------------------ piratage
-  hackInput() {
-    const k = Input.pressed.Digit1 || Input.pressed.Numpad1 ? 0 : Input.pressed.Digit2 || Input.pressed.Numpad2 ? 1 : Input.pressed.Digit3 || Input.pressed.Numpad3 ? 2 : -1;
-    if (k >= 0) return this.applyExploit(k);
-    if (Input.pause() || Input.pressed.KeyF || Input.btnPressed(1)) { $('#hack').classList.remove('on'); this.state = 'play'; }
-    if (Input.usingPad) { if (Input.btnPressed(2)) this.applyExploit(0); else if (Input.btnPressed(3)) this.applyExploit(1); else if (Input.btnPressed(0)) this.applyExploit(2); }
-  },
-  applyExploit(k) {
-    const g = this.hackTarget, M = this.mem, Z = this.level.def, p = this.player;
-    $('#hack').classList.remove('on'); this.state = 'play';
-    if (!g) return;
-    if (M.patched[k] && !g.offline) { Audio.rejected(); g.alert(this); UI.notify('EXPLOIT REJETÉ', `« ${EXPLOITS[k].full} » est corrigé dans ce secteur`, 'bad'); return; }
-    this.stats.exploits[k]++; Audio.exploit(k); Render.burst(g.x, g.y, 26, k === 2 ? COL.cyan : COL.amber, 220, 0.6, 3);
-    if (k === 0) { g.state = 'crash'; g.timer = EXPLOITS[0].dur; const a = Math.atan2(g.y - p.y, g.x - p.x); g.vx = Math.cos(a) * 120; g.vy = Math.sin(a) * 120; }
-    if (k === 1) { g.state = 'invert'; g.timer = EXPLOITS[1].dur; g.pi = (g.pi + g.path.length - 1) % g.path.length; }
-    if (k === 2) { if (g.offline) { g.offline = false; g.wasOffline = true; } g.state = 'admin'; g.timer = EXPLOITS[2].dur; }
-    g.sus = 0;
-    UI.notify(`${g.id} · ${EXPLOITS[k].name}`, EXPLOITS[k].desc);
-    if (!g.wasOffline) {
-      M.counts[k]++;
-      if (M.counts[k] >= Z.threshold && !M.patched[k] && !M.pending[k]) { M.pending[k] = 6; UI.say([['GARDIENS', `Signature « ${EXPLOITS[k].full} » reconnue. Diffusion d'un correctif dans 6 s.`]]); }
-    }
-    if (!this.flags.firstHack) { this.flags.firstHack = true; UI.say([['ANCRE-7', 'Joli. Mais les Gardiens partagent ce qu\'ils voient : abusez d\'une faille et ils la corrigeront. Regardez le panneau en haut à droite.']], 800); }
-  },
-  scanned(g) {
-    const p = this.player, a = Math.atan2(p.y - g.y, p.x - g.x);
-    Player.damage(p, 18, 20, this, Math.cos(a) * 320, Math.sin(a) * 320); Audio.scanHit(); this.stats.scans++;
-    UI.notify('SCANNÉE', `${g.id} · −18 % O₂ · combinaison endommagée`, 'bad');
-  },
-  // ------------------------------------------------------------ histoire
-  trigger(id) {
-    if (DIALOG[id]) UI.say(DIALOG[id]);
-    if (id === 'z3_arena' && this.boss) {
-      Audio.boss(); Render.cam.shake = 16; Music.set('boss');
-      const e = this.stats.exploits;
-      UI.say([['GARDIEN-12', 'AUDITRICE IDENTIFIÉE : SOREL, ILYA.'],
-        ['GARDIEN-12', `MÉMOIRE D'EXPLOITS : DÉBORDEMENT ×${e[0]} · CONCURRENCE ×${e[1]} · CLÉ EN DUR ×${e[2]}. CORRECTIFS PRÊTS.`],
-        ['ANCRE-7', 'Il se souvient de tout ce que vous avez fait ! Ses trois nœuds alimentent son bouclier : les consoles autour de l\'arène. Évitez ses faisceaux, cachez-vous derrière les piliers.']], 500);
-      UI.card('GARDIEN-12', 'LE VERROU DU CŒUR');
-    }
-  },
-  nextZone() {
-    if (this.zi >= ZONES.length - 1) return;
-    Audio.door(); this.state = 'cut';
-    const f = $('#fade'); f.classList.add('on');
-    setTimeout(() => { this.loadZone(this.zi + 1, null); f.classList.remove('on'); }, 900);
-  },
-  die(kind) {
-    const p = this.player; p.dead = true; this.state = 'dead'; this.stats.deaths++;
-    Audio.death(); Render.burst(p.x, p.y, 60, kind === 'heat' ? COL.red : COL.cyan, 260, 1.2, 3); Render.cam.shake = 18;
-    Audio.level(Audio.thrustLoop, 0); Audio.level(Audio.heatLoop, 0); Music.set('calm');
-    $('#deadTitle').textContent = kind === 'heat' ? 'SURCHAUFFE' : 'ASPHYXIE';
-    $('#deadTxt').textContent = kind === 'heat' ? 'Dans le vide, la chaleur ne part qu\'en rayonnant. Évitez les rayons et les radiateurs, gardez une purge.' : 'Vos réservoirs sont vides. Moins de propulseurs, plus de poussées contre les parois.';
-    setTimeout(() => UI.show('#dead'), 1100);
-  },
-  respawn() {
-    UI.show('#dead', false);
-    const p = Player.create(this.cp.x, this.cp.y); p.o2max = this.player.o2max; p.o2 = p.o2max; p.coolant = Math.max(1, this.player.coolant);
-    this.player = p; this.spawnGardiens();
-    if (this.boss) { for (let i = 0; i < this.boss.phase - 0; i++) { /* les drones supplémentaires reviennent */ } }
-    this.mem.pending = [0, 0, 0];
-    Render.cam.x = p.x; Render.cam.y = p.y; this.state = 'play'; this.flash = 0;
-    UI.notify('LIAISON RÉTABLIE', 'retour au dernier point de reprise');
-  },
-  async ending() {
-    this.state = 'cut'; store.del('save'); Music.set('calm'); $('#hud').classList.add('hidden');
-    if (this.boss) this.boss.state = 'down';
-    const ch = this.flags.choice;
-    await new Promise((r) => setTimeout(r, 600));
-    await UI.intro([
-      { t: 'NOYAU DE GARDIEN-12 · DÉCODAGE DU SIGNAL…', hold: 1200 },
-      { t: '+0− −+0 0++ −0− +−+ 00−\n« … ANCRE · RÉPARER · AVANT · LA DERNIÈRE ORBITE … »', hold: 2600 },
-      { t: 'Le signal n\'a jamais été un appel au secours.\nC\'est une liste de réparations.', hold: 2400 },
-      { t: ch === 'pillage' ? 'Tout en bas, une nouvelle entrée vient d\'apparaître :\n« ANOMALIE : SOREL, ILYA — À CORRIGER. »' : 'Tout en bas, une nouvelle entrée vient d\'apparaître :\n« TECHNICIENNE : SOREL, ILYA — AUTORISÉE. »', hold: 2800 },
-      { t: 'Au-dessus de l\'anneau, Tau-Héliade se contracte.\nIl reste trois orbites.', hold: 2600 },
-    ]);
-    this.showEnd();
-  },
-  showEnd() {
-    this.state = 'ending'; const s = this.stats, e = s.exploits, variety = e.filter(Boolean).length;
-    const grade = s.scans === 0 && variety === 3 ? 'S' : s.scans <= 2 ? 'A' : s.scans <= 5 ? 'B' : 'C';
-    $('#endStats').innerHTML = [
-      ['Durée', fmtTime(s.time)], ['Fragments du signal', `${s.frags.size}/6`], ['Relais', this.flags.choice === 'restore' ? 'restauré' : this.flags.choice === 'pillage' ? 'pillé' : '—'],
-      ['Failles exploitées', `${e[0] + e[1] + e[2]} (${variety}/3 différentes)`], ['Détections / scans', `${s.detected} / ${s.scans}`], ['Consoles piratées', s.consoles], ['Reprises', s.deaths], ['Indice d\'audit', grade],
-    ].map(([a, b]) => `<span>${a}</span><b>${b}</b>`).join('');
-    $('#endGrade').textContent = grade;
-    UI.show('#end'); Music.set('menu');
-  },
-};
-
-addEventListener('load', () => Game.init());
-
+let last = performance.now();
+function loop(now) { const dt = Math.min(0.033, (now - last) / 1000); last = now; update(dt); draw(); requestAnimationFrame(loop); }
+menu(); requestAnimationFrame(loop);
+document.addEventListener('visibilitychange', () => { held = false; last = performance.now(); });
 </script>
 </body>
 </html>
