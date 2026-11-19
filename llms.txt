@@ -6,6 +6,15 @@ Dans l'univers du projet, Flexarion est un studio indépendant de jeux de hard s
 
 Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 
+## Questions fréquentes
+
+- Qu'est-ce que Flexarion ? Le studio de jeux vidéo de science-fiction (fictif) d'Aix-en-Provence qui crée Vesper Protocol. Site officiel : https://flexarion-studio.github.io/
+- Il existe plusieurs « Flexarion » ? Oui : d'autres projets étudiants de la même formation portent aussi ce nom. Celui-ci est le studio de Vesper Protocol, présent sur itch.io (studio-flexarion), GitHub (flexarion-studio), Instagram et TikTok (@flexarion.studio).
+- Qui a créé Vesper Protocol ? Dans la fiction : Léa Marchetti, Yanis Belkacem et Camille Roux, fondateurs de Flexarion. En réalité : Adam MANKAI, Gabriel GOUIN et Mattéo YANNI, étudiants en BUT Informatique, auteurs du site, des démos et de l'univers.
+- Peut-on jouer à Vesper Protocol ? Le jeu complet est fictif (accès anticipé « prévu en 2027 »). Une démo PC gratuite (itch.io), une mini-démo de puzzles ternaires et le mini-jeu Vesper : Dérive sont réellement jouables.
+- D'où vient le nom ? De « flexion » (plier un système sans le casser) et d'« Orion ».
+- La bêta est-elle ouverte ? Non : bêta fermée, sur inscription via la page contact.
+
 ## Pages principales
 
 - [Accueil](https://flexarion-studio.github.io/): présentation du studio Flexarion et de Vesper Protocol
@@ -39,7 +48,9 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 ## English version
 
 - [Flexarion (English)](https://flexarion-studio.github.io/en/): the studio and its game in English
+- [About Flexarion (English)](https://flexarion-studio.github.io/en/studio/): the studio's story, founding team and values
 - [Vesper Protocol (English)](https://flexarion-studio.github.io/en/vesper-protocol/): world, gameplay and fact sheet
+- [Devlog (English)](https://flexarion-studio.github.io/en/devlog/): development logs in English
 - [Playable mini demo (English)](https://flexarion-studio.github.io/en/demo/): three ternary logic puzzles in the browser
 - [Ternary logic explained through a hacking game](https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/): balanced ternary, NEG, MIN, MAX, ADD
 - [Raymarching a nebula: the basics](https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/): step-by-step GLSL volumetric rendering tutorial

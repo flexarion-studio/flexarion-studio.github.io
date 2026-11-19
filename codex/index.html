@@ -25,9 +25,7 @@
 <meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" href="../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://flexarion-studio.github.io/"},{"@type":"ListItem","position":2,"name":"Codex","item":"https://flexarion-studio.github.io/codex/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Codex de l'univers de Vesper Protocol","url":"https://flexarion-studio.github.io/codex/","inLanguage":"fr","publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/vesper-protocol/"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"La Vesper","url":"https://flexarion-studio.github.io/codex/la-vesper/"},{"@type":"ListItem","position":2,"name":"Ancre-7","url":"https://flexarion-studio.github.io/codex/ancre-7/"},{"@type":"ListItem","position":3,"name":"Ilya Sorel","url":"https://flexarion-studio.github.io/codex/ilya-sorel/"},{"@type":"ListItem","position":4,"name":"Les Gardiens","url":"https://flexarion-studio.github.io/codex/gardiens/"},{"@type":"ListItem","position":5,"name":"La logique ternaire","url":"https://flexarion-studio.github.io/codex/logique-ternaire/"},{"@type":"ListItem","position":6,"name":"Tau-Héliade, l'étoile mourante","url":"https://flexarion-studio.github.io/codex/tau-heliade/"}]}}</script>
@@ -51,36 +49,41 @@
   <h1>Le codex de Vesper Protocol</h1>
   <p class="lead">Lieux, personnages, machines et concepts : le codex rassemble tout ce que l'équipage d'Ancre-7 sait
   de la Vesper et de son étoile. Une bonne lecture avant de brancher votre console.</p>
+  <p>Ce codex est l'encyclopédie de l'univers de Vesper Protocol, le jeu d'exploration spatiale et de hacking du
+  studio Flexarion. Chaque fiche présente un lieu, un personnage, une faction ou un concept de l'an 2231, puis
+  explique son rôle concret dans le jeu : gestion de l'oxygène et de la chaleur, puzzles de logique ternaire,
+  Gardiens qui apprennent vos exploits, choix entre réparer et piller. Les fiches se lisent dans n'importe quel
+  ordre et renvoient les unes aux autres.</p>
   <div class="cards">
     <article class="card">
       <p class="meta">Lieu</p>
       <h2 class="h3"><a href="la-vesper/">La Vesper</a></h2>
-      <p>La Vesper, anneau alien de 400 km en orbite autour de Tau-Héliade, ses radiateurs, ses segments et le signal qu'elle émet.</p>
+      <p>Un anneau de quatre cents kilomètres bâti par une civilisation disparue : sa respiration thermique, ses segments numérotés et le signal qu'il lance depuis que son étoile s'effondre.</p>
     </article>
     <article class="card">
       <p class="meta">Lieu</p>
       <h2 class="h3"><a href="ancre-7/">Ancre-7</a></h2>
-      <p>Ancre-7, la station de relais humaine qui a détecté le signal de la Vesper en 2231 et qui guide Ilya Sorel dans l'anneau.</p>
+      <p>Le poste avancé de l'humanité, arrimé à la coque : réserve d'oxygène, voix dans le casque d'Ilya Sorel et première oreille à avoir capté l'appel de l'anneau, en 2231.</p>
     </article>
     <article class="card">
       <p class="meta">Personnage</p>
       <h2 class="h3"><a href="ilya-sorel/">Ilya Sorel</a></h2>
-      <p>Ilya Sorel, auditrice de systèmes critiques et héroïne de Vesper Protocol, chargée de comprendre les machines de la Vesper.</p>
+      <p>L'héroïne que vous incarnez : une auditrice qui n'a pour arme qu'une console de débogage, et qui jongle entre oxygène, chaleur et le choix de réparer ou de piller.</p>
     </article>
     <article class="card">
       <p class="meta">Faction</p>
       <h2 class="h3"><a href="gardiens/">Les Gardiens</a></h2>
-      <p>Les Gardiens, automates aliens qui entretiennent la Vesper, mémorisent les exploits du joueur et publient des correctifs.</p>
+      <p>Les automates de maintenance de l'anneau : ils partagent la mémoire de vos intrusions et finissent par colmater les failles que vous réutilisez trop souvent.</p>
     </article>
     <article class="card">
       <p class="meta">Concept</p>
       <h2 class="h3"><a href="logique-ternaire/">La logique ternaire</a></h2>
-      <p>La logique ternaire des machines de la Vesper, ses trois états (−1, 0, +1), ses glyphes et ses instructions NEG, CPY, MIN, MAX et ADD.</p>
+      <p>Trois états au lieu de deux : comment les machines aliens comptent en −1, 0 et +1, à quoi ressemblent leurs glyphes et ce que font NEG, CPY, MIN, MAX et ADD.</p>
     </article>
     <article class="card">
       <p class="meta">Lieu</p>
       <h2 class="h3"><a href="tau-heliade/">Tau-Héliade, l'étoile mourante</a></h2>
-      <p>Tau-Héliade, la naine rouge instable autour de laquelle tourne la Vesper, sa nébuleuse et le mystère de son effondrement.</p>
+      <p>Une naine rouge qui n'aurait jamais dû mourir : l'étoile qui alimente l'anneau, fait surchauffer les combinaisons et s'enveloppe d'une nébuleuse écarlate.</p>
     </article>
   </div>
   <p>Vous découvrez le jeu ? Commencez par <a href="../vesper-protocol/">la présentation de Vesper Protocol</a>,
@@ -104,14 +107,14 @@
         <li><a href="../devlog/">Devlog</a></li>
         <li><a href="../presskit/">Presskit</a></li>
         <li><a href="../ressources/">Ressources à télécharger</a></li>
-        <li><a href="../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../contact/">Contacter le studio</a></li>
         <li><a href="../mentions-legales/">Mentions légales</a></li>
         <li><a href="../feed.xml">Flux RSS du devlog</a></li>
         <li><a href="../en/">English version</a></li>
       </ul>
     </nav>
   </div>
-  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a></p>
+  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a> · <a href="https://www.instagram.com/flexarion.studio/" rel="me">Instagram</a> · <a href="https://www.tiktok.com/@flexarion.studio" rel="me">TikTok</a></p>
   <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.<br>Site réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.</p>
 </footer>
 </body>

@@ -25,9 +25,7 @@
 <meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://flexarion-studio.github.io/"},{"@type":"ListItem","position":2,"name":"Codex","item":"https://flexarion-studio.github.io/codex/"},{"@type":"ListItem","position":3,"name":"Tau-Héliade, l'étoile mourante","item":"https://flexarion-studio.github.io/codex/tau-heliade/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Tau-Héliade, l'étoile mourante","url":"https://flexarion-studio.github.io/codex/tau-heliade/","description":"Fiche du codex : Tau-Héliade, la naine rouge instable autour de laquelle tourne la Vesper, sa nébuleuse et le mystère de son effondrement.","inLanguage":"fr","dateModified":"2026-11-17","isPartOf":{"@type":"CollectionPage","name":"Codex de l'univers de Vesper Protocol","url":"https://flexarion-studio.github.io/codex/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/vesper-protocol/"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"}}</script>
@@ -70,6 +68,17 @@
   <a href="../../devlog/raymarching-nebuleuse-shader/">bases du raymarching</a> et
   <a href="../../devlog/optimisation-shaders-nebuleuse/">l'optimisation du shader</a>.</p>
 
+  <h2>Dans le jeu Vesper Protocol</h2>
+  <p>Dans Vesper Protocol, Tau-Héliade donne le tempo. Son effondrement déclenche le signal de la Vesper et fixe
+  l'horizon de l'aventure : Ilya Sorel n'a que quelques cycles orbitaux pour comprendre ce que l'anneau essaie de
+  dire. Ce compte à rebours pèse sur chaque décision, entre exploration méthodique et prise de risque. L'étoile agit
+  aussi directement sur le gameplay : face à elle, les radiateurs saturent et la jauge de chaleur s'emballe, ce qui
+  pousse à planifier ses piratages dans l'ombre de l'anneau. Sa lumière rouge, filtrée par la nébuleuse, baigne les
+  couloirs et donne au jeu son identité visuelle. Le studio Flexarion calcule cette nébuleuse en temps réel par
+  raymarching volumétrique, une technique détaillée pas à pas dans
+  <a href="../../devlog/raymarching-nebuleuse-shader/">notre tutoriel de shader</a>. Pour l'admirer en grand,
+  téléchargez <a href="../../ressources/">nos fonds d'écran gratuits</a>.</p>
+
   <h2>Voir aussi</h2>
   <ul class="ticks">
     <li><a href="../la-vesper/">La Vesper</a></li>
@@ -97,14 +106,14 @@
         <li><a href="../../devlog/">Devlog</a></li>
         <li><a href="../../presskit/">Presskit</a></li>
         <li><a href="../../ressources/">Ressources à télécharger</a></li>
-        <li><a href="../../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../../contact/">Contacter le studio</a></li>
         <li><a href="../../mentions-legales/">Mentions légales</a></li>
         <li><a href="../../feed.xml">Flux RSS du devlog</a></li>
         <li><a href="../../en/">English version</a></li>
       </ul>
     </nav>
   </div>
-  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a></p>
+  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a> · <a href="https://www.instagram.com/flexarion.studio/" rel="me">Instagram</a> · <a href="https://www.tiktok.com/@flexarion.studio" rel="me">TikTok</a></p>
   <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.<br>Site réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.</p>
 </footer>
 </body>

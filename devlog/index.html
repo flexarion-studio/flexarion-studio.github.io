@@ -29,12 +29,10 @@
 <meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" href="../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/style.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://flexarion-studio.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Devlog", "item": "https://flexarion-studio.github.io/devlog/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "name": "Devlog Flexarion", "url": "https://flexarion-studio.github.io/devlog/", "publisher": {"@id": "https://flexarion-studio.github.io/#organisation"}, "blogPost": [{"@type": "BlogPosting", "headline": "Raymarching d'une nébuleuse : les bases, avec un exemple de shader", "url": "https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/"}, {"@type": "BlogPosting", "headline": "La logique ternaire expliquée par un jeu de hacking", "url": "https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/"}, {"@type": "BlogPosting", "headline": "Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image", "url": "https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/"}, {"@type": "BlogPosting", "headline": "Concevoir l'IA des Gardiens : des automates qui patchent vos exploits", "url": "https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "name": "Devlog Flexarion", "url": "https://flexarion-studio.github.io/devlog/", "publisher": {"@id": "https://flexarion-studio.github.io/#organisation"}, "blogPost": [{"@id": "https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/#article"}, {"@id": "https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/#article"}, {"@id": "https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/#article"}, {"@id": "https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/#article"}]}</script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -44,7 +42,7 @@
       <img src="../assets/img/logo-flexarion.svg" alt="Logo du studio Flexarion" width="36" height="36">
       <span>FLEXARION</span>
     </a>
-    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../">Accueil</a></li><li><a href="../studio/">Le studio</a></li><li><a href="../vesper-protocol/">Le jeu</a></li><li><a href="../codex/">Codex</a></li><li><a href="../demo/">Démo</a></li><li><a href="../devlog/" aria-current="page">Devlog</a></li><li><a href="../contact/">Contact & presse</a></li></ul></nav>
+    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../">Accueil</a></li><li><a href="../studio/">Le studio</a></li><li><a href="../vesper-protocol/">Le jeu</a></li><li><a href="../codex/">Codex</a></li><li><a href="../demo/">Démo</a></li><li><a href="../devlog/" aria-current="page">Devlog</a></li><li><a href="../contact/">Contact & presse</a></li><li><a href="../en/devlog/" hreflang="en" lang="en">English</a></li></ul></nav>
   </div>
 </header>
 <main id="contenu">
@@ -52,7 +50,7 @@
 
 <section class="wrap section">
   <h1>Devlog Flexarion : le journal de développement de Vesper Protocol</h1>
-  <p class="lead">Chaque mois, l'équipe du studio Flexarion raconte les coulisses de Vesper Protocol : intelligence artificielle,
+  <p class="lead">Régulièrement, l'équipe du studio Flexarion raconte les coulisses de Vesper Protocol : intelligence artificielle,
   rendu, game design, et les erreurs qui nous ont fait progresser.</p>
   <p class="meta"><a href="../feed.xml" type="application/rss+xml">RSS</a> · suivez les nouveaux articles dans votre lecteur de flux (Feedly, Inoreader, Thunderbird…)</p>
   <div class="cards">
@@ -102,14 +100,14 @@
         <li><a href="../devlog/">Devlog</a></li>
         <li><a href="../presskit/">Presskit</a></li>
         <li><a href="../ressources/">Ressources à télécharger</a></li>
-        <li><a href="../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../contact/">Contacter le studio</a></li>
         <li><a href="../mentions-legales/">Mentions légales</a></li>
         <li><a href="../feed.xml">Flux RSS du devlog</a></li>
         <li><a href="../en/">English version</a></li>
       </ul>
     </nav>
   </div>
-  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a></p>
+  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a> · <a href="https://www.instagram.com/flexarion.studio/" rel="me">Instagram</a> · <a href="https://www.tiktok.com/@flexarion.studio" rel="me">TikTok</a></p>
   <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.<br>Site réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.</p>
 </footer>
 </body>

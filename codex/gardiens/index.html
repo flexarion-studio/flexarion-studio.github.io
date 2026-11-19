@@ -25,9 +25,7 @@
 <meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://flexarion-studio.github.io/"},{"@type":"ListItem","position":2,"name":"Codex","item":"https://flexarion-studio.github.io/codex/"},{"@type":"ListItem","position":3,"name":"Les Gardiens","item":"https://flexarion-studio.github.io/codex/gardiens/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Les Gardiens","url":"https://flexarion-studio.github.io/codex/gardiens/","description":"Fiche du codex : les Gardiens, automates aliens qui entretiennent la Vesper, mémorisent les exploits du joueur et publient des correctifs.","inLanguage":"fr","dateModified":"2026-11-17","isPartOf":{"@type":"CollectionPage","name":"Codex de l'univers de Vesper Protocol","url":"https://flexarion-studio.github.io/codex/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/vesper-protocol/"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"}}</script>
@@ -69,6 +67,17 @@
   compris. Leur conception est racontée dans le <a href="../../devlog/ia-gardiens-aliens/">devlog sur l'IA des Gardiens</a>,
   et leurs routines utilisent la <a href="../logique-ternaire/">logique ternaire</a> de la Vesper.</p>
 
+  <h2>Dans le jeu Vesper Protocol</h2>
+  <p>Dans Vesper Protocol, les Gardiens remplacent les ennemis classiques : ils ne tirent pas, ils corrigent. Chaque
+  piratage réussi alimente la mémoire d'exploits de leur secteur. Quand une même méthode revient trop souvent, un
+  message diégétique prévient le joueur, puis le correctif tombe 90 secondes plus tard : juste le temps d'utiliser la
+  faille une dernière fois. Le seuil qui déclenche cette réaction dépend de la profondeur du secteur et de la variété
+  des failles déjà employées, si bien qu'un joueur inventif garde l'avantage plus longtemps. Leurs cycles de
+  maintenance, qui exposent leur micrologiciel, ouvrent aussi de courtes fenêtres de piratage. Le studio Flexarion a
+  réécrit leur IA trois fois avant d'aboutir à ce système, comme le raconte
+  <a href="../../devlog/ia-gardiens-aliens/">l'article du devlog sur leur conception</a>. Pour vous faufiler entre
+  leurs cônes de détection, tentez <a href="../../jouer/">Vesper : Dérive</a>.</p>
+
   <h2>Voir aussi</h2>
   <ul class="ticks">
     <li><a href="../la-vesper/">La Vesper</a></li>
@@ -96,14 +105,14 @@
         <li><a href="../../devlog/">Devlog</a></li>
         <li><a href="../../presskit/">Presskit</a></li>
         <li><a href="../../ressources/">Ressources à télécharger</a></li>
-        <li><a href="../../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../../contact/">Contacter le studio</a></li>
         <li><a href="../../mentions-legales/">Mentions légales</a></li>
         <li><a href="../../feed.xml">Flux RSS du devlog</a></li>
         <li><a href="../../en/">English version</a></li>
       </ul>
     </nav>
   </div>
-  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a></p>
+  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a> · <a href="https://www.instagram.com/flexarion.studio/" rel="me">Instagram</a> · <a href="https://www.tiktok.com/@flexarion.studio" rel="me">TikTok</a></p>
   <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.<br>Site réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.</p>
 </footer>
 </body>

@@ -47,7 +47,7 @@ jobs:
           : > urls.txt
           while IFS= read -r f; do
             case "$f" in
-              404.html|ancre-7/*|outils/*|.github/*|*/embed/*) continue ;;
+              404.html|ancre-7/*|outils/*|.github/*|*/embed/*|jouer/jeu/*) continue ;;
               index.html) p="" ;;
               */index.html) p="${f%index.html}" ;;
               *.html) p="$f" ;;

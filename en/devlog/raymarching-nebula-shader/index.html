@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Raymarching a nebula in GLSL: a tutorial | Devlog</title>
+<title>Raymarching a nebula in GLSL: tutorial | Flexarion devlog</title>
 <meta name="description" content="Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.">
 <link rel="canonical" href="https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/">
 <link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Raymarching a nebula in GLSL: a tutorial | Devlog">
+<meta property="og:title" content="Raymarching a nebula in GLSL: tutorial | Flexarion devlog">
 <meta property="og:description" content="Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.">
 <meta property="og:url" content="https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/">
 <meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
@@ -24,17 +24,15 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Flexarion studio banner: Vesper Protocol, a science-fiction video game">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Raymarching a nebula in GLSL: a tutorial | Devlog">
+<meta name="twitter:title" content="Raymarching a nebula in GLSL: tutorial | Flexarion devlog">
 <meta name="twitter:description" content="Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.">
 <meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
 <link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" href="../../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../../assets/css/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flexarion-studio.github.io/en/"},{"@type":"ListItem","position":2,"name":"Devlog","item":"https://flexarion-studio.github.io/en/devlog/"},{"@type":"ListItem","position":3,"name":"Raymarching a nebula","item":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Raymarching a nebula: the basics, with an example shader","description":"Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.","url":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/","mainEntityOfPage":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/","datePublished":"2026-11-17","dateModified":"2026-11-17","inLanguage":"en","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Yanis Belkacem"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"translationOfWork":{"@type":"BlogPosting","url":"https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/"},"isPartOf":{"@type":"Blog","name":"Flexarion devlog","url":"https://flexarion-studio.github.io/en/devlog/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/en/vesper-protocol/"},"keywords":"raymarching, volumetric rendering, GLSL shader, nebula, Beer-Lambert, fBm, Shadertoy","articleSection":"Tutorial","license":"https://creativecommons.org/licenses/by-nc/4.0/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting", "@id": "https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/#article","headline":"Raymarching a nebula: the basics, with an example shader","description":"Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy.","url":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/","mainEntityOfPage":"https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/","datePublished":"2026-11-17T09:00:00+01:00","dateModified":"2026-11-17T09:00:00+01:00","inLanguage":"en","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Yanis Belkacem"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"translationOfWork":{"@id": "https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/#article"},"isPartOf":{"@type":"Blog","name":"Flexarion devlog","url":"https://flexarion-studio.github.io/en/devlog/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/en/vesper-protocol/"},"keywords":"raymarching, volumetric rendering, GLSL shader, nebula, Beer-Lambert, fBm, Shadertoy","articleSection":"Tutorial","license":"https://creativecommons.org/licenses/by-nc/4.0/"}</script>
 </head>
 <body>
 <a class="skip" href="#contenu">Skip to content</a>
@@ -44,7 +42,7 @@
       <img src="../../../assets/img/logo-flexarion.svg" alt="Flexarion studio logo" width="36" height="36">
       <span>FLEXARION</span>
     </a>
-    <nav aria-label="Main navigation"><ul class="menu"><li><a href="../../../en/">Home</a></li><li><a href="../../../en/vesper-protocol/">The game</a></li><li><a href="../../../en/demo/">Demo</a></li><li><a href="../../../en/devlog/" aria-current="page">Devlog</a></li><li><a href="../../../devlog/raymarching-nebuleuse-shader/" hreflang="fr" lang="fr">Français</a></li></ul></nav>
+    <nav aria-label="Main navigation"><ul class="menu"><li><a href="../../../en/">Home</a></li><li><a href="../../../en/studio/">About</a></li><li><a href="../../../en/vesper-protocol/">The game</a></li><li><a href="../../../en/demo/">Demo</a></li><li><a href="../../../en/devlog/" aria-current="page">Devlog</a></li><li><a href="../../../devlog/raymarching-nebuleuse-shader/" hreflang="fr" lang="fr">Français</a></li></ul></nav>
   </div>
 </header>
 <main id="contenu">
@@ -255,7 +253,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
       </ul>
     </nav>
   </div>
-  <p class="wrap footer-social">Follow the studio: <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a></p>
+  <p class="wrap footer-social">Follow the studio: <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a> · <a href="https://www.instagram.com/flexarion.studio/" rel="me">Instagram</a> · <a href="https://www.tiktok.com/@flexarion.studio" rel="me">TikTok</a></p>
   <p class="wrap edu">Flexarion is a fictional studio, created for a teaching project in the BUT Informatique (computer science degree) at IUT d'Aix-Marseille, France.<br>Website by Adam MANKAI, Gabriel GOUIN and Mattéo YANNI.</p>
 </footer>
 <script>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La logique ternaire expliquée par un jeu de hacking | Devlog</title>
+<title>Logique ternaire expliquée par un jeu de hacking | Flexarion</title>
 <meta name="description" content="Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.">
 <link rel="canonical" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
 <link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="La logique ternaire expliquée par un jeu de hacking | Devlog">
+<meta property="og:title" content="Logique ternaire expliquée par un jeu de hacking | Flexarion">
 <meta property="og:description" content="Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.">
 <meta property="og:url" content="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
 <meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
@@ -24,17 +24,15 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Bannière du studio Flexarion : Vesper Protocol, jeu vidéo de science-fiction">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="La logique ternaire expliquée par un jeu de hacking | Devlog">
+<meta name="twitter:title" content="Logique ternaire expliquée par un jeu de hacking | Flexarion">
 <meta name="twitter:description" content="Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.">
 <meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://flexarion-studio.github.io/"},{"@type":"ListItem","position":2,"name":"Devlog","item":"https://flexarion-studio.github.io/devlog/"},{"@type":"ListItem","position":3,"name":"Logique ternaire","item":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"La logique ternaire expliquée par un jeu de hacking","description":"Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.","url":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/","mainEntityOfPage":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/","datePublished":"2026-11-17","dateModified":"2026-11-17","inLanguage":"fr","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Camille Roux"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"isPartOf":{"@type":"Blog","name":"Devlog Flexarion","url":"https://flexarion-studio.github.io/devlog/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/vesper-protocol/"},"keywords":"logique ternaire, ternaire équilibré, trit, logique de Kleene, jeu de hacking, Vesper Protocol","articleSection":"Tutoriel","license":"https://creativecommons.org/licenses/by-nc/4.0/","wordCount":1003}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting", "@id": "https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/#article","headline":"La logique ternaire expliquée par un jeu de hacking","description":"Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.","url":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/","mainEntityOfPage":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/","datePublished":"2026-11-17T09:00:00+01:00","dateModified":"2026-11-17T09:00:00+01:00","inLanguage":"fr","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Camille Roux"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"isPartOf":{"@type":"Blog","name":"Devlog Flexarion","url":"https://flexarion-studio.github.io/devlog/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/vesper-protocol/"},"keywords":"logique ternaire, ternaire équilibré, trit, logique de Kleene, jeu de hacking, Vesper Protocol","articleSection":"Tutoriel","license":"https://creativecommons.org/licenses/by-nc/4.0/","wordCount":1003}</script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -44,7 +42,7 @@
       <img src="../../assets/img/logo-flexarion.svg" alt="Logo du studio Flexarion" width="36" height="36">
       <span>FLEXARION</span>
     </a>
-    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../../">Accueil</a></li><li><a href="../../studio/">Le studio</a></li><li><a href="../../vesper-protocol/">Le jeu</a></li><li><a href="../../codex/">Codex</a></li><li><a href="../../demo/">Démo</a></li><li><a href="../../devlog/" aria-current="page">Devlog</a></li><li><a href="../../contact/">Contact & presse</a></li></ul></nav>
+    <nav aria-label="Navigation principale"><ul class="menu"><li><a href="../../">Accueil</a></li><li><a href="../../studio/">Le studio</a></li><li><a href="../../vesper-protocol/">Le jeu</a></li><li><a href="../../codex/">Codex</a></li><li><a href="../../demo/">Démo</a></li><li><a href="../../devlog/" aria-current="page">Devlog</a></li><li><a href="../../contact/">Contact & presse</a></li><li><a href="../../en/devlog/ternary-logic-hacking-game/" hreflang="en" lang="en">English</a></li></ul></nav>
   </div>
 </header>
 <main id="contenu">
@@ -209,14 +207,14 @@ MAX R0, R1    // R0 = max(0, +1) = +1  → porte ouverte</code></pre>
         <li><a href="../../devlog/">Devlog</a></li>
         <li><a href="../../presskit/">Presskit</a></li>
         <li><a href="../../ressources/">Ressources à télécharger</a></li>
-        <li><a href="../../contact/">Contact &amp; kit presse</a></li>
+        <li><a href="../../contact/">Contacter le studio</a></li>
         <li><a href="../../mentions-legales/">Mentions légales</a></li>
         <li><a href="../../feed.xml">Flux RSS du devlog</a></li>
         <li><a href="../../en/">English version</a></li>
       </ul>
     </nav>
   </div>
-  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a></p>
+  <p class="wrap footer-social">Suivre le studio : <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a> · <a href="https://www.instagram.com/flexarion.studio/" rel="me">Instagram</a> · <a href="https://www.tiktok.com/@flexarion.studio" rel="me">TikTok</a></p>
   <p class="wrap edu">Flexarion est un studio fictif imaginé dans le cadre d'un projet pédagogique du BUT Informatique de l'IUT d'Aix-Marseille.<br>Site réalisé par Adam MANKAI, Gabriel GOUIN et Mattéo YANNI.</p>
 </footer>
 </body>

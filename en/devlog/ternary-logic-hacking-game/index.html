@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ternary logic explained through a hacking game | Devlog</title>
+<title>Ternary logic explained by a hacking game | Flexarion</title>
 <meta name="description" content="Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.">
 <link rel="canonical" href="https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/">
 <link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ternary logic explained through a hacking game | Devlog">
+<meta property="og:title" content="Ternary logic explained by a hacking game | Flexarion">
 <meta property="og:description" content="Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.">
 <meta property="og:url" content="https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/">
 <meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
@@ -24,17 +24,15 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Flexarion studio banner: Vesper Protocol, a science-fiction video game">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ternary logic explained through a hacking game | Devlog">
+<meta name="twitter:title" content="Ternary logic explained by a hacking game | Flexarion">
 <meta name="twitter:description" content="Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.">
 <meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
 <link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" href="../../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../../assets/css/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flexarion-studio.github.io/en/"},{"@type":"ListItem","position":2,"name":"Devlog","item":"https://flexarion-studio.github.io/en/devlog/"},{"@type":"ListItem","position":3,"name":"Ternary logic","item":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ternary logic explained through a hacking game","description":"Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.","url":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/","mainEntityOfPage":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/","datePublished":"2026-11-17","dateModified":"2026-11-17","inLanguage":"en","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Camille Roux"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"translationOfWork":{"@type":"BlogPosting","url":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/"},"isPartOf":{"@type":"Blog","name":"Flexarion devlog","url":"https://flexarion-studio.github.io/en/devlog/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/en/vesper-protocol/"},"keywords":"ternary logic, balanced ternary, trit, Kleene logic, hacking game, Vesper Protocol","articleSection":"Tutorial","license":"https://creativecommons.org/licenses/by-nc/4.0/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting", "@id": "https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/#article","headline":"Ternary logic explained through a hacking game","description":"Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol.","url":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/","mainEntityOfPage":"https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/","datePublished":"2026-11-17T09:00:00+01:00","dateModified":"2026-11-17T09:00:00+01:00","inLanguage":"en","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Camille Roux"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"translationOfWork":{"@id": "https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/#article"},"isPartOf":{"@type":"Blog","name":"Flexarion devlog","url":"https://flexarion-studio.github.io/en/devlog/"},"about":{"@type":"VideoGame","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/en/vesper-protocol/"},"keywords":"ternary logic, balanced ternary, trit, Kleene logic, hacking game, Vesper Protocol","articleSection":"Tutorial","license":"https://creativecommons.org/licenses/by-nc/4.0/"}</script>
 </head>
 <body>
 <a class="skip" href="#contenu">Skip to content</a>
@@ -44,7 +42,7 @@
       <img src="../../../assets/img/logo-flexarion.svg" alt="Flexarion studio logo" width="36" height="36">
       <span>FLEXARION</span>
     </a>
-    <nav aria-label="Main navigation"><ul class="menu"><li><a href="../../../en/">Home</a></li><li><a href="../../../en/vesper-protocol/">The game</a></li><li><a href="../../../en/demo/">Demo</a></li><li><a href="../../../en/devlog/" aria-current="page">Devlog</a></li><li><a href="../../../devlog/logique-ternaire-jeu-hacking/" hreflang="fr" lang="fr">Français</a></li></ul></nav>
+    <nav aria-label="Main navigation"><ul class="menu"><li><a href="../../../en/">Home</a></li><li><a href="../../../en/studio/">About</a></li><li><a href="../../../en/vesper-protocol/">The game</a></li><li><a href="../../../en/demo/">Demo</a></li><li><a href="../../../en/devlog/" aria-current="page">Devlog</a></li><li><a href="../../../devlog/logique-ternaire-jeu-hacking/" hreflang="fr" lang="fr">Français</a></li></ul></nav>
   </div>
 </header>
 <main id="contenu">
@@ -205,7 +203,7 @@ MAX R0, R1    // R0 = max(0, +1) = +1  → door open</code></pre>
       </ul>
     </nav>
   </div>
-  <p class="wrap footer-social">Follow the studio: <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a></p>
+  <p class="wrap footer-social">Follow the studio: <a href="https://studio-flexarion.itch.io/" rel="me">itch.io</a> · <a href="https://github.com/flexarion-studio" rel="me">GitHub</a> · <a href="https://www.instagram.com/flexarion.studio/" rel="me">Instagram</a> · <a href="https://www.tiktok.com/@flexarion.studio" rel="me">TikTok</a></p>
   <p class="wrap edu">Flexarion is a fictional studio, created for a teaching project in the BUT Informatique (computer science degree) at IUT d'Aix-Marseille, France.<br>Website by Adam MANKAI, Gabriel GOUIN and Mattéo YANNI.</p>
 </footer>
 </body>
