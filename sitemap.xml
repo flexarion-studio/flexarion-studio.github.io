@@ -52,7 +52,7 @@
   </url>
   <url>
     <loc>https://flexarion-studio.github.io/devlog/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flexarion-studio.github.io/en/devlog/"/>
@@ -213,5 +213,29 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/"/>
+  </url>
+  <url>
+    <loc>https://flexarion-studio.github.io/vesper-protocol/bande-annonce/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.7</priority>
+    <video:video>
+      <video:thumbnail_loc>https://flexarion-studio.github.io/assets/video/vesper-protocol-bande-annonce.jpg</video:thumbnail_loc>
+      <video:title>Vesper Protocol — bande-annonce de la démo PC</video:title>
+      <video:description>Bande-annonce de la démo PC gratuite de Vesper Protocol, jeu de hacking spatial en hard SF du studio fictif Flexarion. Images réelles de la démo bêta 0.5.0.</video:description>
+      <video:content_loc>https://flexarion-studio.github.io/assets/video/vesper-protocol-bande-annonce.mp4</video:content_loc>
+      <video:duration>63</video:duration>
+      <video:publication_date>2026-11-20T12:00:00+01:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://flexarion-studio.github.io/devlog/jeux-de-hacking/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://flexarion-studio.github.io/devlog/ordinateur-ternaire-setun/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>

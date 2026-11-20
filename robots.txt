@@ -9,22 +9,27 @@
 User-agent: *
 Allow: /
 Disallow: /outils/
+Disallow: /README.md
 
 # Robots d'IA autorisés explicitement (résumé du site : /llms.txt)
 User-agent: GPTBot
 Allow: /
 Disallow: /outils/
+Disallow: /README.md
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /outils/
+Disallow: /README.md
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /outils/
+Disallow: /README.md
 
 User-agent: Google-Extended
 Allow: /
 Disallow: /outils/
+Disallow: /README.md
 
 Sitemap: https://flexarion-studio.github.io/sitemap.xml

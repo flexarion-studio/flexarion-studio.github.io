@@ -7,12 +7,30 @@
     <description>Le journal de développement de Vesper Protocol, par le studio Flexarion (studio fictif, projet pédagogique du BUT Informatique).</description>
     <language>fr-FR</language>
     <copyright>© 2026 Flexarion — studio fictif</copyright>
-    <lastBuildDate>Tue, 17 Nov 2026 08:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 09:00:00 +0000</lastBuildDate>
     <image>
       <url>https://flexarion-studio.github.io/assets/img/logo-flexarion.png</url>
       <title>Devlog Flexarion</title>
       <link>https://flexarion-studio.github.io/devlog/</link>
     </image>
+    <item>
+      <title>Ordinateur ternaire : l'histoire du Setun</title>
+      <link>https://flexarion-studio.github.io/devlog/ordinateur-ternaire-setun/</link>
+      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/ordinateur-ternaire-setun/</guid>
+      <pubDate>Fri, 20 Nov 2026 09:00:00 +0000</pubDate>
+      <dc:creator>Flexarion</dc:creator>
+      <category>Devlog #6</category>
+      <description>Setun, Setun-70 et Nikolaï Brousentsov : l'histoire de l'ordinateur ternaire soviétique, les vrais atouts du ternaire équilibré et pourquoi le binaire a gagné.</description>
+    </item>
+    <item>
+      <title>Jeux de hacking et de programmation à essayer</title>
+      <link>https://flexarion-studio.github.io/devlog/jeux-de-hacking/</link>
+      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/jeux-de-hacking/</guid>
+      <pubDate>Fri, 20 Nov 2026 08:00:00 +0000</pubDate>
+      <dc:creator>Flexarion</dc:creator>
+      <category>Devlog #5</category>
+      <description>Uplink, Hacknet, Exapunks, TIS-100, Bitburner : une sélection de jeux de hacking et de programmation à essayer, avec un tableau comparatif pour choisir.</description>
+    </item>
     <item>
       <title>Raymarching d'une nébuleuse : les bases, avec un exemple de shader</title>
       <link>https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/</link>

@@ -21,6 +21,7 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 - [Accueil](https://flexarion-studio.github.io/): présentation du studio Flexarion et de Vesper Protocol
 - [Le studio](https://flexarion-studio.github.io/studio/): histoire (game jam de 2023), équipe fondatrice et ancrage à Aix-en-Provence
 - [Vesper Protocol](https://flexarion-studio.github.io/vesper-protocol/): univers, mécaniques de jeu, fiche technique et bêta
+- [Bande-annonce de Vesper Protocol](https://flexarion-studio.github.io/vesper-protocol/bande-annonce/): vidéo de 63 s, vrai gameplay de la démo PC 0.5.0, avec transcription
 - [Vesper : Dérive, mini-jeu](https://flexarion-studio.github.io/jouer/): mini-jeu d'arcade gratuit à une touche dans l'univers de Vesper Protocol (câble d'ancrage, record, défi du jour), navigateur et mobile
 - [Démo jouable dans le navigateur](https://flexarion-studio.github.io/demo/): trois puzzles courts de logique ternaire, accessibles au clavier
 - [Presskit](https://flexarion-studio.github.io/presskit/): fact sheet, descriptions, visuels et vidéo à télécharger, contact presse
@@ -30,6 +31,8 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 ## Devlog
 
 - [Index du devlog](https://flexarion-studio.github.io/devlog/): tous les journaux de développement
+- [Jeux de hacking et de programmation à essayer](https://flexarion-studio.github.io/devlog/jeux-de-hacking/): Uplink, Hacknet, Exapunks, TIS-100, Bitburner : une sélection commentée avec un tableau comparatif (studio, année, plateformes)
+- [Ordinateur ternaire : l'histoire du Setun](https://flexarion-studio.github.io/devlog/ordinateur-ternaire-setun/): Setun, Setun-70 et Nikolaï Brousentsov, les atouts du ternaire équilibré et pourquoi le binaire a gagné
 - [Raymarching d'une nébuleuse : les bases, avec un exemple de shader](https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/): Rayon, densité, loi de Beer-Lambert et accumulation : un tutoriel GLSL pas à pas pour coder une nébuleuse volumétrique, avec un shader complet à copier.
 - [La logique ternaire expliquée par un jeu de hacking](https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/): Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.
 - [Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image](https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/): Raymarching, bruit bleu, demi-résolution et reprojection temporelle : comment le ciel volumétrique de Vesper Protocol est passé de 9 ms à 2,1 ms par image.
