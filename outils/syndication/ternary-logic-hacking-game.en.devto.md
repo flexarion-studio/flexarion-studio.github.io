@@ -3,8 +3,8 @@ title: "Ternary logic explained through a hacking game"
 published: false
 description: "Trits, balanced ternary, NEG, MIN, MAX and addition modulo 3: an approachable tutorial on ternary logic, through the puzzles of Vesper Protocol."
 tags: gamedev, tutorial, beginners, computerscience
-canonical_url: https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/
-cover_image: https://flexarion-studio.github.io/assets/img/og-flexarion.png
+canonical_url: https://flexarion.eu/en/devlog/ternary-logic-hacking-game/
+cover_image: https://flexarion.eu/assets/img/og-flexarion.png
 ---
 
 In Vesper Protocol, alien machines don't think in 0s and 1s, but in −1, 0 and +1. This tutorial explains ternary logic through the game's puzzles: how to count with three states, how ternary logic gates work, and why they trip up even experienced developers.
@@ -99,7 +99,7 @@ These mistakes are the best part of the game: players realise they can't apply t
 
 ## Exercises: your turn
 
-Three short exercises to check everything is clear. Click to reveal the answer. Prefer hands-on? Try the [playable mini demo](https://flexarion-studio.github.io/en/demo/), with three ternary locks.
+Three short exercises to check everything is clear. Click to reveal the answer. Prefer hands-on? Try the [playable mini demo](https://flexarion.eu/en/demo/), with three ternary locks.
 
 1. What is `+−0` in decimal? — *Answer:* 9 − 3 + 0 = **6**.
 2. What is MAX(NEG(+1), 0)? — *Answer:* NEG(+1) = −1, then MAX(−1, 0) = **0**.
@@ -107,8 +107,8 @@ Three short exercises to check everything is clear. Click to reveal the answer. 
 
 ## Going further
 
-Ternary logic is at the heart of [Vesper Protocol](https://flexarion-studio.github.io/en/vesper-protocol/), our space hacking game. On the rendering side, our [tutorial on raymarching a nebula](https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/) explains how we draw the sky around Tau-Heliade. All English articles are in the [Flexarion devlog](https://flexarion-studio.github.io/en/devlog/); more articles, a lore codex and the full press kit are available [in French](https://flexarion-studio.github.io/devlog/).
+Ternary logic is at the heart of [Vesper Protocol](https://flexarion.eu/en/vesper-protocol/), our space hacking game. On the rendering side, our [tutorial on raymarching a nebula](https://flexarion.eu/en/devlog/raymarching-nebula-shader/) explains how we draw the sky around Tau-Heliade. All English articles are in the [Flexarion devlog](https://flexarion.eu/en/devlog/); more articles, a lore codex and the full press kit are available [in French](https://flexarion.eu/devlog/).
 
 ---
 
-*Originally published on the [Flexarion devlog](https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/). Flexarion is a fictional video game studio created for a computer science student project. Text licensed under CC BY-NC 4.0.*
+*Originally published on the [Flexarion devlog](https://flexarion.eu/en/devlog/ternary-logic-hacking-game/). Flexarion is a fictional video game studio created for a computer science student project. Text licensed under CC BY-NC 4.0.*

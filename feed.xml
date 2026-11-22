@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>Devlog Flexarion</title>
-    <link>https://flexarion-studio.github.io/devlog/</link>
-    <atom:link href="https://flexarion-studio.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>https://flexarion.eu/devlog/</link>
+    <atom:link href="https://flexarion.eu/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Le journal de développement de Vesper Protocol, par le studio Flexarion (studio fictif, projet pédagogique du BUT Informatique).</description>
     <language>fr-FR</language>
     <copyright>© 2026 Flexarion — studio fictif</copyright>
     <lastBuildDate>Fri, 20 Nov 2026 09:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://flexarion-studio.github.io/assets/img/logo-flexarion.png</url>
+      <url>https://flexarion.eu/assets/img/logo-flexarion.png</url>
       <title>Devlog Flexarion</title>
-      <link>https://flexarion-studio.github.io/devlog/</link>
+      <link>https://flexarion.eu/devlog/</link>
     </image>
     <item>
       <title>Ordinateur ternaire : l'histoire du Setun</title>
-      <link>https://flexarion-studio.github.io/devlog/ordinateur-ternaire-setun/</link>
-      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/ordinateur-ternaire-setun/</guid>
+      <link>https://flexarion.eu/devlog/ordinateur-ternaire-setun/</link>
+      <guid isPermaLink="true">https://flexarion.eu/devlog/ordinateur-ternaire-setun/</guid>
       <pubDate>Fri, 20 Nov 2026 09:00:00 +0000</pubDate>
       <dc:creator>Flexarion</dc:creator>
       <category>Devlog #6</category>
@@ -24,8 +24,8 @@
     </item>
     <item>
       <title>Jeux de hacking et de programmation à essayer</title>
-      <link>https://flexarion-studio.github.io/devlog/jeux-de-hacking/</link>
-      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/jeux-de-hacking/</guid>
+      <link>https://flexarion.eu/devlog/jeux-de-hacking/</link>
+      <guid isPermaLink="true">https://flexarion.eu/devlog/jeux-de-hacking/</guid>
       <pubDate>Fri, 20 Nov 2026 08:00:00 +0000</pubDate>
       <dc:creator>Flexarion</dc:creator>
       <category>Devlog #5</category>
@@ -33,8 +33,8 @@
     </item>
     <item>
       <title>Raymarching d'une nébuleuse : les bases, avec un exemple de shader</title>
-      <link>https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/</link>
-      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/</guid>
+      <link>https://flexarion.eu/devlog/raymarching-nebuleuse-shader/</link>
+      <guid isPermaLink="true">https://flexarion.eu/devlog/raymarching-nebuleuse-shader/</guid>
       <pubDate>Tue, 17 Nov 2026 08:00:00 +0000</pubDate>
       <dc:creator>Yanis Belkacem</dc:creator>
       <category>Devlog #4</category>
@@ -42,8 +42,8 @@
     </item>
     <item>
       <title>La logique ternaire expliquée par un jeu de hacking</title>
-      <link>https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/</link>
-      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/</guid>
+      <link>https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/</link>
+      <guid isPermaLink="true">https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/</guid>
       <pubDate>Tue, 17 Nov 2026 08:00:00 +0000</pubDate>
       <dc:creator>Camille Roux</dc:creator>
       <category>Devlog #3</category>
@@ -51,8 +51,8 @@
     </item>
     <item>
       <title>Optimiser le shader de la nébuleuse : de 9 ms à 2,1 ms par image</title>
-      <link>https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/</link>
-      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/</guid>
+      <link>https://flexarion.eu/devlog/optimisation-shaders-nebuleuse/</link>
+      <guid isPermaLink="true">https://flexarion.eu/devlog/optimisation-shaders-nebuleuse/</guid>
       <pubDate>Fri, 13 Nov 2026 08:00:00 +0000</pubDate>
       <dc:creator>Yanis Belkacem</dc:creator>
       <category>Devlog #2</category>
@@ -60,8 +60,8 @@
     </item>
     <item>
       <title>Concevoir l'IA des Gardiens : des automates qui patchent vos exploits</title>
-      <link>https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/</link>
-      <guid isPermaLink="true">https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/</guid>
+      <link>https://flexarion.eu/devlog/ia-gardiens-aliens/</link>
+      <guid isPermaLink="true">https://flexarion.eu/devlog/ia-gardiens-aliens/</guid>
       <pubDate>Fri, 13 Nov 2026 08:00:00 +0000</pubDate>
       <dc:creator>Camille Roux</dc:creator>
       <category>Devlog #1</category>

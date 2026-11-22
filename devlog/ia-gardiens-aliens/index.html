@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IA adaptative : des ennemis qui apprennent | Devlog Flexarion</title>
 <meta name="description" content="L'IA adaptative des Gardiens de Vesper Protocol : machine à états, IA utilitaire puis mémoire d'exploits, pour des ennemis qui apprennent de vos attaques.">
-<link rel="canonical" href="https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/">
+<link rel="canonical" href="https://flexarion.eu/devlog/ia-gardiens-aliens/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Flexarion">
 <meta name="theme-color" content="#f1eee6">
@@ -14,24 +14,24 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="IA adaptative : des ennemis qui apprennent | Devlog Flexarion">
 <meta property="og:description" content="L'IA adaptative des Gardiens de Vesper Protocol : machine à états, IA utilitaire puis mémoire d'exploits, pour des ennemis qui apprennent de vos attaques.">
-<meta property="og:url" content="https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/">
-<meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<meta property="og:url" content="https://flexarion.eu/devlog/ia-gardiens-aliens/">
+<meta property="og:image" content="https://flexarion.eu/assets/img/og-flexarion.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Bannière du studio Flexarion : Vesper Protocol, jeu vidéo de science-fiction">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="IA adaptative : des ennemis qui apprennent | Devlog Flexarion">
 <meta name="twitter:description" content="L'IA adaptative des Gardiens de Vesper Protocol : machine à états, IA utilitaire puis mémoire d'exploits, pour des ennemis qui apprennent de vos attaques.">
-<meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
-<link rel="icon" href="https://flexarion-studio.github.io/favicon-192.png" type="image/png" sizes="192x192">
+<meta name="twitter:image" content="https://flexarion.eu/assets/img/og-flexarion.png">
+<link rel="icon" href="https://flexarion.eu/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="https://flexarion-studio.github.io/favicon.ico" sizes="48x48">
-<link rel="apple-touch-icon" href="https://flexarion-studio.github.io/assets/img/logo-flexarion.png">
-<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
+<link rel="icon" href="https://flexarion.eu/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="https://flexarion.eu/assets/img/logo-flexarion.png">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion.eu/feed.xml">
 <link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://flexarion-studio.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Devlog", "item": "https://flexarion-studio.github.io/devlog/"}, {"@type": "ListItem", "position": 3, "name": "IA des Gardiens", "item": "https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/#article", "headline": "Concevoir l'IA des Gardiens : des automates qui patchent vos exploits", "description": "L'IA adaptative des Gardiens de Vesper Protocol : machine à états, IA utilitaire puis mémoire d'exploits, pour des ennemis qui apprennent de vos attaques.", "url": "https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/", "mainEntityOfPage": "https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/", "datePublished": "2026-11-13T09:00:00+01:00", "dateModified": "2026-11-17T09:00:00+01:00", "inLanguage": "fr", "image": "https://flexarion-studio.github.io/assets/img/og-flexarion.png", "author": {"@type": "Person", "name": "Camille Roux"}, "publisher": {"@id": "https://flexarion-studio.github.io/#organisation"}, "about": {"@type":"VideoGame","@id":"https://flexarion-studio.github.io/vesper-protocol/#jeu","name":"Vesper Protocol"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://flexarion.eu/"}, {"@type": "ListItem", "position": 2, "name": "Devlog", "item": "https://flexarion.eu/devlog/"}, {"@type": "ListItem", "position": 3, "name": "IA des Gardiens", "item": "https://flexarion.eu/devlog/ia-gardiens-aliens/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://flexarion.eu/devlog/ia-gardiens-aliens/#article", "headline": "Concevoir l'IA des Gardiens : des automates qui patchent vos exploits", "description": "L'IA adaptative des Gardiens de Vesper Protocol : machine à états, IA utilitaire puis mémoire d'exploits, pour des ennemis qui apprennent de vos attaques.", "url": "https://flexarion.eu/devlog/ia-gardiens-aliens/", "mainEntityOfPage": "https://flexarion.eu/devlog/ia-gardiens-aliens/", "datePublished": "2026-11-13T09:00:00+01:00", "dateModified": "2026-11-17T09:00:00+01:00", "inLanguage": "fr", "image": "https://flexarion.eu/assets/img/og-flexarion.png", "author": {"@type": "Person", "name": "Camille Roux"}, "publisher": {"@id": "https://flexarion.eu/#organisation"}, "about": {"@type":"VideoGame","@id":"https://flexarion.eu/vesper-protocol/#jeu","name":"Vesper Protocol"}}</script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>

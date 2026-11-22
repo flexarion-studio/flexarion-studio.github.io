@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Logique ternaire expliquée par un jeu de hacking | Flexarion</title>
 <meta name="description" content="Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.">
-<link rel="canonical" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
-<link rel="alternate" hreflang="fr" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
-<link rel="alternate" hreflang="en" href="https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/">
-<link rel="alternate" hreflang="x-default" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
+<link rel="canonical" href="https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/">
+<link rel="alternate" hreflang="fr" href="https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/">
+<link rel="alternate" hreflang="en" href="https://flexarion.eu/en/devlog/ternary-logic-hacking-game/">
+<link rel="alternate" hreflang="x-default" href="https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Camille Roux">
 <meta name="theme-color" content="#f1eee6">
@@ -18,24 +18,24 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Logique ternaire expliquée par un jeu de hacking | Flexarion">
 <meta property="og:description" content="Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.">
-<meta property="og:url" content="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/">
-<meta property="og:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
+<meta property="og:url" content="https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/">
+<meta property="og:image" content="https://flexarion.eu/assets/img/og-flexarion.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Bannière du studio Flexarion : Vesper Protocol, jeu vidéo de science-fiction">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Logique ternaire expliquée par un jeu de hacking | Flexarion">
 <meta name="twitter:description" content="Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.">
-<meta name="twitter:image" content="https://flexarion-studio.github.io/assets/img/og-flexarion.png">
-<link rel="icon" href="https://flexarion-studio.github.io/favicon-192.png" type="image/png" sizes="192x192">
+<meta name="twitter:image" content="https://flexarion.eu/assets/img/og-flexarion.png">
+<link rel="icon" href="https://flexarion.eu/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="https://flexarion-studio.github.io/favicon.ico" sizes="48x48">
-<link rel="apple-touch-icon" href="https://flexarion-studio.github.io/assets/img/logo-flexarion.png">
-<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion-studio.github.io/feed.xml">
+<link rel="icon" href="https://flexarion.eu/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="https://flexarion.eu/assets/img/logo-flexarion.png">
+<link rel="alternate" type="application/rss+xml" title="Devlog Flexarion (RSS)" href="https://flexarion.eu/feed.xml">
 <link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/style.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://flexarion-studio.github.io/"},{"@type":"ListItem","position":2,"name":"Devlog","item":"https://flexarion-studio.github.io/devlog/"},{"@type":"ListItem","position":3,"name":"Logique ternaire","item":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting", "@id": "https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/#article","headline":"La logique ternaire expliquée par un jeu de hacking","description":"Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.","url":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/","mainEntityOfPage":"https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/","datePublished":"2026-11-17T09:00:00+01:00","dateModified":"2026-11-17T09:00:00+01:00","inLanguage":"fr","image":"https://flexarion-studio.github.io/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Camille Roux"},"publisher":{"@id":"https://flexarion-studio.github.io/#organisation"},"isPartOf":{"@type":"Blog","name":"Devlog Flexarion","url":"https://flexarion-studio.github.io/devlog/"},"about":{"@type":"VideoGame","@id":"https://flexarion-studio.github.io/vesper-protocol/#jeu","name":"Vesper Protocol","url":"https://flexarion-studio.github.io/vesper-protocol/"},"keywords":"logique ternaire, ternaire équilibré, trit, logique de Kleene, jeu de hacking, Vesper Protocol","articleSection":"Tutoriel","license":"https://creativecommons.org/licenses/by-nc/4.0/","wordCount":1003}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://flexarion.eu/"},{"@type":"ListItem","position":2,"name":"Devlog","item":"https://flexarion.eu/devlog/"},{"@type":"ListItem","position":3,"name":"Logique ternaire","item":"https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting", "@id": "https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/#article","headline":"La logique ternaire expliquée par un jeu de hacking","description":"Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol.","url":"https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/","mainEntityOfPage":"https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/","datePublished":"2026-11-17T09:00:00+01:00","dateModified":"2026-11-17T09:00:00+01:00","inLanguage":"fr","image":"https://flexarion.eu/assets/img/og-flexarion.png","author":{"@type":"Person","name":"Camille Roux"},"publisher":{"@id":"https://flexarion.eu/#organisation"},"isPartOf":{"@type":"Blog","name":"Devlog Flexarion","url":"https://flexarion.eu/devlog/"},"about":{"@type":"VideoGame","@id":"https://flexarion.eu/vesper-protocol/#jeu","name":"Vesper Protocol","url":"https://flexarion.eu/vesper-protocol/"},"keywords":"logique ternaire, ternaire équilibré, trit, logique de Kleene, jeu de hacking, Vesper Protocol","articleSection":"Tutoriel","license":"https://creativecommons.org/licenses/by-nc/4.0/","wordCount":1003}</script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -186,9 +186,9 @@ MAX R0, R1    // R0 = max(0, +1) = +1  → porte ouverte</code></pre>
     Vous pouvez le republier (dev.to, Hashnode, blog personnel) à condition de citer Flexarion et de pointer vers
     la version originale avec une URL canonique :</p>
     <ul>
-      <li><strong>dev.to</strong> : dans l'en-tête de l'article, ajoutez <code>canonical_url: https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/</code>.</li>
+      <li><strong>dev.to</strong> : dans l'en-tête de l'article, ajoutez <code>canonical_url: https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/</code>.</li>
       <li><strong>Hashnode</strong> : dans les réglages de l'article, cochez « Are you republishing? » et collez l'URL ci-dessus comme <em>Original article URL</em>.</li>
-      <li><strong>Autre blog</strong> : ajoutez <code>&lt;link rel="canonical" href="https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/"&gt;</code> dans le <code>&lt;head&gt;</code>.</li>
+      <li><strong>Autre blog</strong> : ajoutez <code>&lt;link rel="canonical" href="https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/"&gt;</code> dans le <code>&lt;head&gt;</code>.</li>
     </ul>
   </aside>
 </article>

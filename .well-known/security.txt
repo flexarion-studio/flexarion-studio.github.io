@@ -8,11 +8,11 @@
 # Si vous pensez avoir trouvé une vraie faille sur ce site, merci de la signaler via
 # le formulaire de contact ci-dessous. Il n'y a pas de programme de bug bounty.
 
-Contact: https://flexarion-studio.github.io/contact/
+Contact: https://flexarion.eu/contact/
 Expires: 2027-11-17T00:00:00.000Z
 Preferred-Languages: fr, en
-Canonical: https://flexarion-studio.github.io/.well-known/security.txt
-Policy: https://flexarion-studio.github.io/mentions-legales/
+Canonical: https://flexarion.eu/.well-known/security.txt
+Policy: https://flexarion.eu/mentions-legales/
 
 # ------------------------------------------------------------------
 # [ANCRE-7 // JOURNAL D'AUDIT // ENTRÉE 0x4A30]

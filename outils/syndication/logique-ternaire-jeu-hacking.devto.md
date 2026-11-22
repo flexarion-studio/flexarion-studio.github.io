@@ -3,8 +3,8 @@ title: "La logique ternaire expliquée par un jeu de hacking"
 published: false
 description: "Trits, ternaire équilibré, NEG, MIN, MAX et addition modulo 3 : un tutoriel accessible sur la logique ternaire, à travers les puzzles de Vesper Protocol."
 tags: gamedev, tutorial, beginners, computerscience
-canonical_url: https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/
-cover_image: https://flexarion-studio.github.io/assets/img/og-flexarion.png
+canonical_url: https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/
+cover_image: https://flexarion.eu/assets/img/og-flexarion.png
 ---
 
 Dans Vesper Protocol, les machines aliens ne pensent pas en 0 et en 1, mais en −1, 0 et +1. Ce tutoriel explique la logique ternaire à partir des puzzles du jeu : comment compter avec trois états, comment fonctionnent les portes logiques ternaires, et pourquoi elles piègent même les développeurs aguerris.
@@ -107,8 +107,8 @@ Trois petits exercices pour vérifier que tout est clair. Cliquez pour afficher 
 
 ## Pour aller plus loin
 
-La logique ternaire est au cœur de [Vesper Protocol](https://flexarion-studio.github.io/vesper-protocol/), notre jeu de hacking spatial. Les Gardiens qui surveillent la Vesper utilisent eux aussi ces routines pour corriger vos failles : leur conception est racontée dans [le devlog sur l'IA des Gardiens](https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/). Côté rendu, notre [tutoriel sur le raymarching d'une nébuleuse](https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/) explique comment nous dessinons le ciel de Tau-Héliade. Tous les articles sont dans le [devlog Flexarion](https://flexarion-studio.github.io/devlog/).
+La logique ternaire est au cœur de [Vesper Protocol](https://flexarion.eu/vesper-protocol/), notre jeu de hacking spatial. Les Gardiens qui surveillent la Vesper utilisent eux aussi ces routines pour corriger vos failles : leur conception est racontée dans [le devlog sur l'IA des Gardiens](https://flexarion.eu/devlog/ia-gardiens-aliens/). Côté rendu, notre [tutoriel sur le raymarching d'une nébuleuse](https://flexarion.eu/devlog/raymarching-nebuleuse-shader/) explique comment nous dessinons le ciel de Tau-Héliade. Tous les articles sont dans le [devlog Flexarion](https://flexarion.eu/devlog/).
 
 ---
 
-*Cet article a été publié à l'origine sur le [devlog Flexarion](https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/). Flexarion est un studio de jeux vidéo fictif, imaginé pour un projet pédagogique du BUT Informatique. Texte sous licence CC BY-NC 4.0.*
+*Cet article a été publié à l'origine sur le [devlog Flexarion](https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/). Flexarion est un studio de jeux vidéo fictif, imaginé pour un projet pédagogique du BUT Informatique. Texte sous licence CC BY-NC 4.0.*

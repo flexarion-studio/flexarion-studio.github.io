@@ -32,4 +32,4 @@ Allow: /
 Disallow: /outils/
 Disallow: /README.md
 
-Sitemap: https://flexarion-studio.github.io/sitemap.xml
+Sitemap: https://flexarion.eu/sitemap.xml

@@ -5,10 +5,10 @@ Le dossier `/outils/` est exclu de l'exploration dans `robots.txt` : il ne crée
 
 | Fichier | Article original (URL canonique) |
 | --- | --- |
-| `logique-ternaire-jeu-hacking.devto.md` | https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/ |
-| `raymarching-nebuleuse-shader.devto.md` | https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/ |
-| `ternary-logic-hacking-game.en.devto.md` (anglais) | https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/ |
-| `raymarching-nebula-shader.en.devto.md` (anglais) | https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/ |
+| `logique-ternaire-jeu-hacking.devto.md` | https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/ |
+| `raymarching-nebuleuse-shader.devto.md` | https://flexarion.eu/devlog/raymarching-nebuleuse-shader/ |
+| `ternary-logic-hacking-game.en.devto.md` (anglais) | https://flexarion.eu/en/devlog/ternary-logic-hacking-game/ |
+| `raymarching-nebula-shader.en.devto.md` (anglais) | https://flexarion.eu/en/devlog/raymarching-nebula-shader/ |
 
 dev.to est surtout lu en anglais : publie de préférence les versions `.en.devto.md`.
 
@@ -29,6 +29,6 @@ dev.to est surtout lu en anglais : publie de préférence les versions `.en.devt
 
 ## Après publication
 
-- Vérifie dans le code source de la page dev.to / Hashnode que `<link rel="canonical">` pointe bien vers flexarion-studio.github.io.
+- Vérifie dans le code source de la page dev.to / Hashnode que `<link rel="canonical">` pointe bien vers flexarion.eu.
 - Ajoute les liens dev.to / Hashnode dans le plan de communication (netlinking).
 - Si le domaine change (voir `outils/domaine-custom/`), le script de remplacement met aussi ces fichiers à jour ; pense à modifier l'URL canonique des articles déjà publiés.

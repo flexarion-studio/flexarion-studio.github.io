@@ -3,8 +3,8 @@ title: "Raymarching d'une nébuleuse : les bases, avec un exemple de shader"
 published: false
 description: "Rayon, densité, loi de Beer-Lambert et accumulation : un tutoriel GLSL pas à pas pour coder une nébuleuse volumétrique, avec un shader complet à copier."
 tags: gamedev, glsl, shaders, tutorial
-canonical_url: https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/
-cover_image: https://flexarion-studio.github.io/assets/img/og-flexarion.png
+canonical_url: https://flexarion.eu/devlog/raymarching-nebuleuse-shader/
+cover_image: https://flexarion.eu/assets/img/og-flexarion.png
 ---
 
 Dans le devlog #2, nous avons raconté comment optimiser la nébuleuse de Vesper Protocol. Plusieurs lecteurs nous ont demandé de reprendre depuis le début. Voici donc les bases du raymarching volumétrique, étape par étape, avec un shader GLSL complet que vous pouvez coller dans Shadertoy.
@@ -70,7 +70,7 @@ Voici le shader entier, prêt à copier dans Shadertoy. Il ajoute deux détails 
 
 ```glsl
 // Nébuleuse volumétrique : exemple pédagogique (Flexarion, devlog #4)
-// Licence CC BY-NC 4.0 : flexarion-studio.github.io
+// Licence CC BY-NC 4.0 : flexarion.eu
 
 float hash(vec3 p) {
     p = fract(p * 0.3183099 + 0.1);
@@ -143,20 +143,20 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 - **La sortie anticipée** : inutile de continuer quand moins de 2 % de la lumière passe encore.
 - **La correction gamma** : sans elle, les zones sombres paraissent bouchées.
 
-Ce shader est volontairement simple : il recalcule tout le bruit à chaque pas, en pleine résolution. Dans le jeu, nous le précalculons dans une texture 3D et le rendons à demi-résolution. C'est tout le sujet du [devlog #2 sur l'optimisation du shader de nébuleuse](https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/), qui explique comment passer de 9 ms à 2,1 ms par image.
+Ce shader est volontairement simple : il recalcule tout le bruit à chaque pas, en pleine résolution. Dans le jeu, nous le précalculons dans une texture 3D et le rendons à demi-résolution. C'est tout le sujet du [devlog #2 sur l'optimisation du shader de nébuleuse](https://flexarion.eu/devlog/optimisation-shaders-nebuleuse/), qui explique comment passer de 9 ms à 2,1 ms par image.
 
 ## Tester le shader
 
 Le rendu ci-dessous exécute exactement le code de l'étape 4 dans votre navigateur, avec WebGL.
 
-*Aperçu en direct du shader : [sur le devlog Flexarion](https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/#shadertoy).*
+*Aperçu en direct du shader : [sur le devlog Flexarion](https://flexarion.eu/devlog/raymarching-nebuleuse-shader/#shadertoy).*
 
 Pour le modifier, ouvrez un [nouveau shader sur Shadertoy](https://www.shadertoy.com/new), remplacez le code par défaut par celui de l'étape 4, puis appuyez sur Alt + Entrée. Essayez de changer `STEP`, les couleurs d'émission ou le coefficient d'absorption pour voir l'effet de chaque paramètre.
 
 ## Pour aller plus loin
 
-Cette nébuleuse entoure Tau-Héliade, l'étoile mourante de [Vesper Protocol](https://flexarion-studio.github.io/vesper-protocol/). Si vous préférez la logique au rendu, lisez notre [tutoriel sur la logique ternaire](https://flexarion-studio.github.io/devlog/logique-ternaire-jeu-hacking/), ou découvrez comment nous avons conçu [l'IA des Gardiens](https://flexarion-studio.github.io/devlog/ia-gardiens-aliens/). Tous les articles sont dans le [devlog Flexarion](https://flexarion-studio.github.io/devlog/).
+Cette nébuleuse entoure Tau-Héliade, l'étoile mourante de [Vesper Protocol](https://flexarion.eu/vesper-protocol/). Si vous préférez la logique au rendu, lisez notre [tutoriel sur la logique ternaire](https://flexarion.eu/devlog/logique-ternaire-jeu-hacking/), ou découvrez comment nous avons conçu [l'IA des Gardiens](https://flexarion.eu/devlog/ia-gardiens-aliens/). Tous les articles sont dans le [devlog Flexarion](https://flexarion.eu/devlog/).
 
 ---
 
-*Cet article a été publié à l'origine sur le [devlog Flexarion](https://flexarion-studio.github.io/devlog/raymarching-nebuleuse-shader/). Flexarion est un studio de jeux vidéo fictif, imaginé pour un projet pédagogique du BUT Informatique. Texte sous licence CC BY-NC 4.0.*
+*Cet article a été publié à l'origine sur le [devlog Flexarion](https://flexarion.eu/devlog/raymarching-nebuleuse-shader/). Flexarion est un studio de jeux vidéo fictif, imaginé pour un projet pédagogique du BUT Informatique. Texte sous licence CC BY-NC 4.0.*

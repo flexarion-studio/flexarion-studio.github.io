@@ -19,7 +19,7 @@ Standards : HTML5, CSS3, JSON-LD (schema.org), RSS 2.0, IndexNow
 Composants : aucun framework, aucune dépendance JavaScript
 Polices : IBM Plex Sans, IBM Plex Mono
 Hébergement : GitHub Pages
-Contact : https://flexarion-studio.github.io/contact/
+Contact : https://flexarion.eu/contact/
 
 /* ------------------------------------------------------------------ */
 /* [ANCRE-7 // TRANSMISSION INTERCEPTÉE // SEGMENT 12]                 */

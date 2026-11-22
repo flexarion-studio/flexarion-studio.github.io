@@ -3,8 +3,8 @@ title: "Raymarching a nebula: the basics, with an example shader"
 published: false
 description: "Ray, density, Beer–Lambert law and accumulation: a step-by-step GLSL tutorial to code a volumetric nebula, with a complete shader to copy."
 tags: gamedev, glsl, shaders, tutorial
-canonical_url: https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/
-cover_image: https://flexarion-studio.github.io/assets/img/og-flexarion.png
+canonical_url: https://flexarion.eu/en/devlog/raymarching-nebula-shader/
+cover_image: https://flexarion.eu/assets/img/og-flexarion.png
 ---
 
 In an earlier devlog, we explained how we optimised the nebula of Vesper Protocol. Several readers asked us to start from the beginning. So here are the basics of volumetric raymarching, step by step, with a complete GLSL shader you can paste into Shadertoy.
@@ -70,7 +70,7 @@ Here is the whole shader, ready to paste into Shadertoy. It adds two details: a 
 
 ```glsl
 // Volumetric nebula: teaching example (Flexarion, devlog #4)
-// License CC BY-NC 4.0: flexarion-studio.github.io
+// License CC BY-NC 4.0: flexarion.eu
 
 float hash(vec3 p) {
     p = fract(p * 0.3183099 + 0.1);
@@ -143,20 +143,20 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 - **Early exit**: no point going on once less than 2% of the light gets through.
 - **Gamma correction**: without it, dark areas look crushed.
 
-This shader is deliberately simple: it recomputes all the noise at every step, at full resolution. In the game, we precompute it into a 3D texture and render at half resolution. That is the topic of our [devlog on optimising the nebula shader](https://flexarion-studio.github.io/devlog/optimisation-shaders-nebuleuse/) (in French), which explains how we went from 9 ms to 2.1 ms per frame.
+This shader is deliberately simple: it recomputes all the noise at every step, at full resolution. In the game, we precompute it into a 3D texture and render at half resolution. That is the topic of our [devlog on optimising the nebula shader](https://flexarion.eu/devlog/optimisation-shaders-nebuleuse/) (in French), which explains how we went from 9 ms to 2.1 ms per frame.
 
 ## Try the shader
 
 The render below runs exactly the code from step 4 in your browser, with WebGL.
 
-*Live preview of the shader: [on the Flexarion devlog](https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/#shadertoy).*
+*Live preview of the shader: [on the Flexarion devlog](https://flexarion.eu/en/devlog/raymarching-nebula-shader/#shadertoy).*
 
 To tweak it, open a [new shader on Shadertoy](https://www.shadertoy.com/new), replace the default code with the code from step 4, then press Alt + Enter. Try changing `STEP`, the emission colours or the absorption coefficient to see the effect of each parameter.
 
 ## Going further
 
-This nebula surrounds Tau-Heliade, the dying star of [Vesper Protocol](https://flexarion-studio.github.io/en/vesper-protocol/). If you prefer logic to rendering, read our [tutorial on ternary logic](https://flexarion-studio.github.io/en/devlog/ternary-logic-hacking-game/), or play the [mini demo](https://flexarion-studio.github.io/en/demo/) in your browser. All English articles are in the [Flexarion devlog](https://flexarion-studio.github.io/en/devlog/).
+This nebula surrounds Tau-Heliade, the dying star of [Vesper Protocol](https://flexarion.eu/en/vesper-protocol/). If you prefer logic to rendering, read our [tutorial on ternary logic](https://flexarion.eu/en/devlog/ternary-logic-hacking-game/), or play the [mini demo](https://flexarion.eu/en/demo/) in your browser. All English articles are in the [Flexarion devlog](https://flexarion.eu/en/devlog/).
 
 ---
 
-*Originally published on the [Flexarion devlog](https://flexarion-studio.github.io/en/devlog/raymarching-nebula-shader/). Flexarion is a fictional video game studio created for a computer science student project. Text licensed under CC BY-NC 4.0.*
+*Originally published on the [Flexarion devlog](https://flexarion.eu/en/devlog/raymarching-nebula-shader/). Flexarion is a fictional video game studio created for a computer science student project. Text licensed under CC BY-NC 4.0.*

@@ -40,7 +40,7 @@ h1{margin:0;font-size:clamp(26px,6vw,40px);letter-spacing:.16em;font-weight:700}
   <p class="how"><b>Maintenez</b> (clic, doigt ou Espace) pour accrocher votre câble. <b>Relâchez</b> pour vous envoler. Allez le plus loin possible sans toucher les radiateurs ni les Gardiens.</p>
   <button class="btn" id="bPlay">▶ JOUER<small id="bestInf"></small></button>
   <button class="btn amber" id="bDaily">DÉFI DU JOUR<small id="bestDay"></small></button>
-  <div class="vp">Un mini-jeu dans l'univers de <b>Vesper Protocol</b>, le jeu de hacking hard SF du studio Flexarion. <a href="https://flexarion-studio.github.io/vesper-protocol/" target="_blank" rel="noopener">Découvrir le vrai jeu ↗</a></div>
+  <div class="vp">Un mini-jeu dans l'univers de <b>Vesper Protocol</b>, le jeu de hacking hard SF du studio Flexarion. <a href="https://flexarion.eu/vesper-protocol/" target="_blank" rel="noopener">Découvrir le vrai jeu ↗</a></div>
 </div></div>
 
 <div class="ov" id="over"><div class="card">
@@ -49,7 +49,7 @@ h1{margin:0;font-size:clamp(26px,6vw,40px);letter-spacing:.16em;font-weight:700}
   <div class="best" id="oBest"></div>
   <div class="row"><button class="btn" id="bAgain">REJOUER<small>Espace / toucher</small></button><button class="btn ghost" id="bShare">PARTAGER<small id="shareState">mon score</small></button></div>
   <button class="btn ghost" id="bMenu">Menu</button>
-  <div class="vp">Dans <b>Vesper Protocol</b>, Ilya Sorel traverse la Vesper en apesanteur et pirate le firmware des Gardiens. <a href="https://flexarion-studio.github.io/vesper-protocol/" target="_blank" rel="noopener">Voir le jeu</a> · <a href="https://flexarion-studio.github.io/contact/" target="_blank" rel="noopener">Rejoindre la bêta fermée</a></div>
+  <div class="vp">Dans <b>Vesper Protocol</b>, Ilya Sorel traverse la Vesper en apesanteur et pirate le firmware des Gardiens. <a href="https://flexarion.eu/vesper-protocol/" target="_blank" rel="noopener">Voir le jeu</a> · <a href="https://flexarion.eu/contact/" target="_blank" rel="noopener">Rejoindre la bêta fermée</a></div>
 </div></div>
 
 <script>
@@ -132,7 +132,7 @@ $('#bDaily').onclick = () => start(true);
 $('#bAgain').onclick = () => start(mode === 'day');
 $('#bMenu').onclick = () => menu();
 $('#bShare').onclick = async () => {
-  const txt = `J'ai dérivé ${score} m dans Vesper : Dérive${mode === 'day' ? ' (défi du jour)' : ''}. Tu fais mieux ? https://flexarion-studio.github.io/jouer/`;
+  const txt = `J'ai dérivé ${score} m dans Vesper : Dérive${mode === 'day' ? ' (défi du jour)' : ''}. Tu fais mieux ? https://flexarion.eu/jouer/`;
   try { if (navigator.share) await navigator.share({ text: txt }); else { await navigator.clipboard.writeText(txt); $('#shareState').textContent = 'copié !'; } } catch (e) { $('#shareState').textContent = 'copié ?'; }
 };
 function menu() {
