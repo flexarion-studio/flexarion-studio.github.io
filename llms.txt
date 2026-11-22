@@ -9,7 +9,6 @@ Slogan : « On ne tire pas sur les aliens. On pirate leur code. »
 **Questions fréquentes**
 
 - Qu'est-ce que Flexarion ? Le studio de jeux vidéo de science-fiction (fictif) d'Aix-en-Provence qui crée Vesper Protocol. Site officiel : https://flexarion-studio.github.io/
-- Il existe plusieurs « Flexarion » ? Oui : d'autres projets étudiants de la même formation portent aussi ce nom. Celui-ci est le studio de Vesper Protocol, présent sur itch.io (studio-flexarion), GitHub (flexarion-studio), Instagram et TikTok (@flexarion.studio) et YouTube (@flexarionstudio).
 - Qui a créé Vesper Protocol ? Dans la fiction : Léa Marchetti, Yanis Belkacem et Camille Roux, fondateurs de Flexarion. En réalité : Adam MANKAI, Gabriel GOUIN et Mattéo YANNI, étudiants en BUT Informatique, auteurs du site, des démos et de l'univers.
 - Peut-on jouer à Vesper Protocol ? Le jeu complet est fictif (accès anticipé « prévu en 2027 »). Une démo PC gratuite (itch.io), une mini-démo de puzzles ternaires et le mini-jeu Vesper : Dérive sont réellement jouables.
 - Vesper Protocol a-t-il un lien avec le jeu Vesper (2021) ? Non. Vesper Protocol est le jeu de hacking de Flexarion ; Vesper (Cordens Interactive, 2021) est un autre jeu, et Vesper Finance un projet crypto.
