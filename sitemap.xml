@@ -5,33 +5,33 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://flexarion.eu/</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flexarion.eu/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flexarion.eu/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flexarion.eu/"/>
-    <image:image><image:loc>https://flexarion.eu/assets/img/keyart-vesper-protocol.svg</image:loc><image:title>Key art de Vesper Protocol : la Vesper en orbite autour de Tau-Héliade</image:title></image:image>
-    <image:image><image:loc>https://flexarion.eu/assets/img/capture-console-glyphes.svg</image:loc><image:title>Capture de Vesper Protocol : console de débogage et glyphes ternaires</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/og-flexarion.png</image:loc><image:title>Flexarion : studio de développement aixois et Vesper Protocol</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/capture-console-glyphes.png</image:loc><image:title>Capture de Vesper Protocol : console de débogage et glyphes ternaires</image:title></image:image>
   </url>
   <url>
     <loc>https://flexarion.eu/vesper-protocol/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flexarion.eu/vesper-protocol/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flexarion.eu/en/vesper-protocol/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flexarion.eu/vesper-protocol/"/>
-    <image:image><image:loc>https://flexarion.eu/assets/img/keyart-vesper-protocol.svg</image:loc><image:title>Key art de Vesper Protocol : la Vesper en orbite autour de Tau-Héliade</image:title></image:image>
-    <image:image><image:loc>https://flexarion.eu/assets/img/capture-console-glyphes.svg</image:loc><image:title>Capture de Vesper Protocol : console de débogage et glyphes ternaires</image:title></image:image>
-    <image:image><image:loc>https://flexarion.eu/assets/img/capture-couloir-vesper.svg</image:loc><image:title>Capture de Vesper Protocol : couloir en apesanteur de la Vesper</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/og-flexarion.png</image:loc><image:title>Vesper Protocol : la Vesper en orbite autour de Tau-Héliade</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/capture-console-glyphes.png</image:loc><image:title>Capture de Vesper Protocol : console de débogage et glyphes ternaires</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/capture-couloir-vesper.png</image:loc><image:title>Capture de Vesper Protocol : couloir en apesanteur de la Vesper</image:title></image:image>
   </url>
   <url>
     <loc>https://flexarion.eu/jouer/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://flexarion.eu/demo/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flexarion.eu/demo/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flexarion.eu/en/demo/"/>
@@ -44,7 +44,7 @@
   </url>
   <url>
     <loc>https://flexarion.eu/studio/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flexarion.eu/studio/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flexarion.eu/en/studio/"/>
@@ -156,12 +156,12 @@
   </url>
   <url>
     <loc>https://flexarion.eu/en/</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flexarion.eu/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flexarion.eu/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flexarion.eu/"/>
-    <image:image><image:loc>https://flexarion.eu/assets/img/keyart-vesper-protocol.svg</image:loc><image:title>Key art de Vesper Protocol : la Vesper en orbite autour de Tau-Héliade</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/og-flexarion.png</image:loc><image:title>Vesper Protocol key art: the Vesper orbiting Tau-Héliade</image:title></image:image>
   </url>
   <url>
     <loc>https://flexarion.eu/en/studio/</loc>
@@ -173,14 +173,14 @@
   </url>
   <url>
     <loc>https://flexarion.eu/en/vesper-protocol/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flexarion.eu/vesper-protocol/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://flexarion.eu/en/vesper-protocol/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flexarion.eu/vesper-protocol/"/>
-    <image:image><image:loc>https://flexarion.eu/assets/img/keyart-vesper-protocol.svg</image:loc><image:title>Key art de Vesper Protocol : la Vesper en orbite autour de Tau-Héliade</image:title></image:image>
-    <image:image><image:loc>https://flexarion.eu/assets/img/capture-console-glyphes.svg</image:loc><image:title>Capture de Vesper Protocol : console de débogage et glyphes ternaires</image:title></image:image>
-    <image:image><image:loc>https://flexarion.eu/assets/img/capture-couloir-vesper.svg</image:loc><image:title>Capture de Vesper Protocol : couloir en apesanteur de la Vesper</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/og-flexarion.png</image:loc><image:title>Vesper Protocol key art: the Vesper orbiting Tau-Héliade</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/capture-console-glyphes.png</image:loc><image:title>Vesper Protocol screenshot: debugging console and ternary glyphs</image:title></image:image>
+    <image:image><image:loc>https://flexarion.eu/assets/img/capture-couloir-vesper.png</image:loc><image:title>Vesper Protocol screenshot: zero-gravity corridor inside the Vesper</image:title></image:image>
   </url>
   <url>
     <loc>https://flexarion.eu/en/demo/</loc>
@@ -230,7 +230,7 @@
   </url>
   <url>
     <loc>https://flexarion.eu/devlog/jeux-de-hacking/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
