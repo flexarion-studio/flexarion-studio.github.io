@@ -9,6 +9,7 @@
 User-agent: *
 Allow: /
 Disallow: /outils/
+Disallow: /.agents/
 Disallow: /README.md
 
 # Robots d'IA autorisés explicitement (résumé du site : /llms.txt)
